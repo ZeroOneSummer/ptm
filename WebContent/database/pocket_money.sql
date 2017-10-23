@@ -247,7 +247,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`loginName`,`password`,`idNumber`,`bankNumber`,`exchangePassword`,`userName`,`userType`) values (1,'admin','admin','422312199602123569','95989965465465466','admin666666','管理员',1),(2,'zhangsan','123456','430231201011256535','54645654165465456','666666','张三',2),(3,'lisi','123456','421321198011034568','46455144114564664','666666','李四',2);
+insert  into `user`(`id`,`loginName`,`password`,`idNumber`,`bankNumber`,`exchangePassword`,`userName`,`userType`) values (1,'admin','21232f297a57a5a743894a0e4a801fc3','422312199602123569','95989965465465466','admin666666','管理员',1),(2,'zhangsan','e10adc3949ba59abbe56e057f20f883e','430231201011256535','54645654165465456','666666','张三',2),(3,'lisi','e10adc3949ba59abbe56e057f20f883e','421321198011034568','46455144114564664','666666','李四',2);
 
 /*Table structure for table `user_income` */
 
