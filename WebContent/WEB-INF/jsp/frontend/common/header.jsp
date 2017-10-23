@@ -57,8 +57,8 @@
                     <i>登录/注册</i>
                 </a>
                 <ul class="dropdown" style="display: none;">
-                    <li><a href="${pageContext.request.contextPath}/jsp/frontend/loginRegister/login.jsp">请登录</a></li>
-                    <li><a href="${pageContext.request.contextPath}/jsp/frontend/loginRegister/register.jsp">免费注册</a></li>
+                    <li><a href="login">请登录</a></li>
+                    <li><a href="register">免费注册</a></li>
                 </ul>
             </li>
         </ul>

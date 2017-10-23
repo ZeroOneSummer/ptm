@@ -20,7 +20,7 @@ public class MyBatisUtil {
 	}
 	//创建sqlSession对象方法
 	public static SqlSession createSqlSession(){
-		return factory.openSession(false);//事务手动提交
+		return factory.openSession(false);//事务手动提交			
 	}
 	//关闭sqlSession对象方法
 	public static void closeSqlSession(SqlSession sqlSession){

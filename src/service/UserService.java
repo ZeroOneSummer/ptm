@@ -1,9 +1,9 @@
-package mapper.user;
+package service;
 
 import pojo.User;
 
-public interface UserMapper {
-
+public interface UserService{
+	
 	public User getUser(User user);
 	
 }

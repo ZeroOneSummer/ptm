@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
  * @author Administrator
  *
  */
-@WebFilter
+@WebFilter("/*")
 public class Encoding implements Filter{
 
 	@Override

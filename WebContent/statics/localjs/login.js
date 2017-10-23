@@ -1,4 +1,59 @@
 
+var username=$("#username");
+var password=$("#password");
+var error=$(" #notification");         
+
+function login(){
+	var tel=/^1(3|5|8)\d{9}$/;
+	var name=username.val();
+	var pwd=password.val();	
+	
+	if(name == "" || pwd == ""){
+		error.html("用户名或密码不能为空！");
+	}else if(!(tel.test(name))){
+		error.html("用户名不合法！");
+	}else if(pwd.length<5){
+		error.html("密码长度不能少于5位！");
+	}else{
+		$.ajax({
+			url:"doLogin",
+			type:"get",
+			dataType:"json",
+			data:{"username":name,"password":pwd},
+			success:function(data){
+				if(data){					
+					if("13123456789"==name){
+						location.href="admin";//管理员进入后台
+					}else{
+						var ctel=name.substring(0,3)+"****"+name.substring(7);
+						var str="<li><a href='/account/my-invest'>我的投资</a></li>"+
+	                            "<li><a href='/account/user-center'>账户中心</a></li>"+
+	                            "<li><a href='/account/msg-center'>消息中心</a></li>"+
+	                            "<li><a href='javascript:loginOut();'>安全退出</a></li>";
+						$("._000>i").html(ctel);
+						$(".dropdown").html(str);
+						/*var s=$(".dropdown").html();
+						alert(s);
+						location.href="firstPage.jsp";*/
+					}
+				}else{
+					error.html("用户名或密码错误！");					
+				}
+			}
+		});
+	}
+}
+
+
+
+
+
+
+
+
+
+
+/*
 var ajax_url = "https://deposit.koudailc.com/user/login?clientType=pc";
 var captcha_url = "https://deposit.koudailc.com/user/captcha?refresh=1&clientType=pc";
 
@@ -149,4 +204,4 @@ $(document).ready(function() {
             }
         }
         });
-      
+      */

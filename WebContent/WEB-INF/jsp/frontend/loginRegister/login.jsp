@@ -45,9 +45,9 @@
 			
 			                <a id="red_btn" class="_input _border btn_fd5353 a_center f_20_45 fff" name="r_submit" onclick="javascript:login()">登录</a>
 			                <div class="_input _border1 a_center">
-			                    <span><a href="${pageContext.request.contextPath}/jsp/frontend/personalCenter/ForgotPassword.jsp" class="f_14_16 ff534f">忘记密码</a></span>
+			                    <span><a href="ForgotPassword" class="f_14_16 ff534f">忘记密码</a></span>
 			                    <span class="f_14_16 b5b5b5 nth_child">|</span>
-			                    <span><a href="${pageContext.request.contextPath}/jsp/frontend/loginRegister/register.jsp" class="f_14_16 ff534f">立即注册</a></span>
+			                    <span><a href="register" class="f_14_16 ff534f">立即注册</a></span>
 			                </div>
 			            </form>
 			        </div>
