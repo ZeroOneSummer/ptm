@@ -14,7 +14,7 @@ public class Test {
 		User user= session.getMapper(UserMapper.class).getUsers();
 		System.out.println(user.getLoginName()+"---"+user.getPassword());*/
 		
-		String pwd = H5Utils.Hex5("123456789");
+		String pwd = H5Utils.Hex5("123456");
 		System.out.println(pwd);
 	}
 }
