@@ -1,5 +1,5 @@
- <%@page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-
+<%@page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 头部开始 -->
 	<!-- 公共css -->
      <link href="${pageContext.request.contextPath}/statics/css/base.css" rel="stylesheet">
@@ -52,15 +52,38 @@
                     <img src="${pageContext.request.contextPath}/statics/img/dl.png" id="download_qrcode" style="display: none;">下载app
                 </a>
             </li>
-            <li class="dropdown-nav _cursor" style="background-color: rgb(255, 255, 255);">               
-                <a class="_000" href="javascript:;">
-                    <i>登录/注册</i>
-                </a>
-                <ul class="dropdown" style="display: none;">
-                    <li><a href="login">请登录</a></li>
-                    <li><a href="register">免费注册</a></li>
-                </ul>
-            </li>
+            
+            
+            <c:if test="${user == null}">
+	            <li class="dropdown-nav _cursor" style="background-color: rgb(255, 255, 255);">               
+	                <a class="_000" href="javascript:;">
+	                    <i>登录/注册</i>
+	                </a>
+	                <ul class="dropdown" style="display: none;">	                	
+	                    <li><a href="login">请登录</a></li>
+	                    <li><a href="register">免费注册</a></li> 	                    
+	                </ul>
+	            </li>
+           </c:if> 
+           <c:if test="${user != null}">
+	            <li class="dropdown-nav _cursor" style="background-color: rgb(255, 255, 255);">               
+	                <a class="_000" href="javascript:;">
+	                    <i id="loginName">${user.loginName}</i>
+	                    <script type="text/javascript">
+	                    	var name=$("#loginName").html();
+	                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+	                    	$("#loginName").html(cname);
+	                    </script>
+	                </a>
+	                <ul class="dropdown" style="display: none;">	                		                   
+	                    <li><a href='/account/my-invest'>我的投资</a></li>
+	                    <li><a href='/account/user-center'>账户中心</a></li>
+	                    <li><a href='/account/msg-center'>消息中心</a></li>
+	                    <li><a href='loginOut'>安全退出</a></li>
+	                </ul>
+	            </li>
+           </c:if>
+            
         </ul>
         <div class="clear"></div>
     </div>

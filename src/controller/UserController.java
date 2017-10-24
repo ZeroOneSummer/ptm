@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,13 @@ public class UserController{
 	@RequestMapping("/doLogin")
 	public void doLogin(String username,String password,
 					HttpServletRequest request,HttpServletResponse response){
-		String pwd=H5Utils.Hex5(password);
+		String pwd=null;
+		try {
+			pwd = H5Utils.Hex5(password);
+		} catch (Exception e1) {
+			System.out.println("error");
+			e1.printStackTrace();
+		}
 		User user=new User();
 		System.out.println(username+"---"+password+"---"+pwd);
 		user.setLoginName(username);
@@ -54,7 +61,7 @@ public class UserController{
 			PrintWriter writer=response.getWriter();
 			User user2=userService.getUser(user);
 			if (user2!=null) {
-				request.getSession().setAttribute("user", Constants.USER_SESSION);				
+				request.getSession().setAttribute(Constants.USER_SESSION,user2);				
 			}
 			Object json=JSON.toJSON(user2);
 			writer.println(json);			
@@ -79,5 +86,17 @@ public class UserController{
 	@RequestMapping("/ForgotPassword")
 	public String forgotPassword(){
 		return "frontend/personalCenter/ForgotPassword";
+	}
+	
+	/*
+	 * 注销用户
+	 */
+	@RequestMapping("/loginOut")
+	public String loginOut(HttpSession session){
+		Object object=session.getAttribute(Constants.USER_SESSION);
+		if (object!=null) {
+			session.invalidate();
+		}
+		return "firstPage";
 	}
 }

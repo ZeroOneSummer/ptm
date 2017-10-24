@@ -25,16 +25,16 @@ function login(){
 					if("13123456789"==name){
 						location.href="admin";//管理员进入后台
 					}else{
-						var ctel=name.substring(0,3)+"****"+name.substring(7);
+						/*var ctel=name.substring(0,3)+"****"+name.substring(7);
 						var str="<li><a href='/account/my-invest'>我的投资</a></li>"+
 	                            "<li><a href='/account/user-center'>账户中心</a></li>"+
 	                            "<li><a href='/account/msg-center'>消息中心</a></li>"+
 	                            "<li><a href='javascript:loginOut();'>安全退出</a></li>";
 						$("._000>i").html(ctel);
 						$(".dropdown").html(str);
-						/*var s=$(".dropdown").html();
-						alert(s);
-						location.href="firstPage.jsp";*/
+						var s=$(".dropdown").html();
+						alert(s);*/
+						location.href="index.jsp";
 					}
 				}else{
 					error.html("用户名或密码错误！");					
