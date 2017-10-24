@@ -13,8 +13,54 @@
 <%@include file="../common/js.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/localcss/register.css"/>
 
+<script language="javascript" type="text/javascript">
+	var code ; //在全局 定义验证码
+	function createCode(){ 
+		code = new Array();
+		var codeLength = 4;//验证码的长度
+		var checkCode = document.getElementById("checkCode");
+		checkCode.value = "";
+		
+		var selectChar = new Array(2,3,4,5,6,7,8,9,
+			'A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z',
+			'a','b','c','d','e','f','g','h','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z');
+		
+		for(var i=0;i<codeLength;i++) {
+		   var charIndex = Math.floor(Math.random()*56);
+		   code +=selectChar[charIndex];
+		}
+		if(code.length != codeLength){
+		   createCode();
+		}
+		checkCode.value = code;//跟新新的验证码（未转大写）
+		
+	}
+	
+	function validate () {
+		var inputCode = document.getElementById("imgcode").value.toUpperCase();//输入的验证码转大写
+		
+		if(inputCode.length <=0) {
+		   alert("请输入验证码！");
+		   return false;
+		}
+		else if(inputCode == code.toUpperCase() ){//新的验证码（转大写进行比较）
+		   alert("成功！");
+		   return true;
+		}
+		else {
+		   alert("验证码输入错误！");
+		   
+		createCode();
+		   return false;
+		}
+	}
+</script>
+
+
+
+
 </head>
-<body style="background: #F7F7F7;">
+<body style="background: #F7F7F7;" onLoad="createCode();">
     <div class="kdlc_pc_wrap">
         <!-- 头部开始 -->
         <%@include file="../common/header.jsp"%>   
@@ -32,9 +78,19 @@
 							<span class="f_14_16 _433f3e">手机号</span>
 							<input class="_input bg_input first_child" type="text" maxlength="11" name="phone" id="phone" placeholder="请输入您的手机号码"><br>
 							<span class="f_14_16 _433f3e">图片验证码</span>
+							
 							<input class="_input _w_input bg_input" type="text" name="imgcode" id="imgcode" placeholder="请输入图片验证码">
-							<img onclick="refreshCaptcha();" class="_w_input1 btn_fd5353 a_center f_14_47 fff" title="点击刷新验证码" src="./注册-口袋理财_files/captcha" id="loginform-verifycode-image"><br><br>
-							<span class="f_14_16 _433f3e">手机验证码</span>
+							
+							<input type="button" id="checkCode" class="code" 
+								   style="width:100px;margin:4px 35px 0 9px;background-image:url(statics/img/yzmb.png);
+								   font-family:Arial,宋体;font-style:italic;color:white;letter-spacing:3px;
+								   font-weight:bolder;font-size:22px;line-height: 46px;border-radius:5px;" onClick="createCode()" />
+																					
+							<!-- <input type="text" id="input1" />
+							<input type="button" id="checkCode" class="code" style="width:100px" onClick="createCode()" />
+							<input id="Button1" onClick="validate();" type="button" value="确定" /> -->
+																											
+							<br><br><span class="f_14_16 _433f3e">手机验证码</span>
 							<input class="_input _w_input bg_input" type="text" name="msgcode" id="msgcode" placeholder="请输入手机验证码">
 							<a id="get_reg_code" class="_w_input1 btn_fd5353 a_center f_14_47 fff">点击获取</a><br>
 			                <!-- //用于阻止 chrome表单自动填充的占位符 -->
