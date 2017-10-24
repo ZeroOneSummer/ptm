@@ -6,4 +6,6 @@ public interface UserMapper {
 
 	public User getUser(User user);
 	
+	public int addUser(User user);
+	
 }
