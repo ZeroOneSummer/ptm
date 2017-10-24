@@ -11,7 +11,7 @@
 <meta name="baidu_union_verify" content="ac175d4c07bcca63a8a2f76d7023d69d">
 
 <%@include file="frontend/common/js.jsp"%>
-<link rel="stylesheet" href="statics/localcss/index_0.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/localcss/index_0.css">
 
 </head>
 <body style="background: #F7F7F7;">

@@ -15,16 +15,16 @@
 <div class="p_fixed" id="main-nav">
     <div class="content">
         <div class="f_left logo">
-            <a href="${pageContext.request.contextPath}/firstPage.jsp">
+            <a href="javascript:void(0);">
                 <img src="${pageContext.request.contextPath}/statics/img/logo.png" title="口袋理财官方网站-专业的移动理财平台" alt="口袋理财">
             </a>
         </div>
         <ul class="f_left" id="slide-nav">
-            <li><a href="${pageContext.request.contextPath}/firstPage.jsp" class=" on">首页</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/frontend/invest/investList.jsp" class=" _000">我要投资</a></li>
-            <li><a target="_blank" href="${pageContext.request.contextPath}/jsp/frontend/personalCenter/exchangeShop.jsp" class=" _000">积分商城</a></li>
+            <li><a href="index.html" class=" on">首页</a></li>
+            <li><a href="toInvest.html" class=" _000">我要投资</a></li>
+            <li><a target="_blank" href="exchangeShop.html" class=" _000">积分商城</a></li>
             <li class="dropdown-nav _cursor">
-                <a class="_000" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp">
+                <a class="_000" href="infoList.html">
                     <i>信息披露</i>
                 </a>
                 <!-- <ul class="dropdown">
@@ -39,8 +39,8 @@
                     <i>帮助中心</i>
                 </a>
                 <ul class="dropdown">
-                    <li><a href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/packageProject.jsp">帮助中心</a></li>
-                    <li><a href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/publicNews.jsp">公告中心</a></li>
+                    <li><a href="packageProject.html">帮助中心</a></li>
+                    <li><a href="publicNews.html">公告中心</a></li>
                     <!-- <li><a href="http://tieba.baidu.com/f?kw=%E5%8F%A3%E8%A2%8B%E7%90%86%E8%B4%A2&ie=utf-8">官方贴吧</a></li> -->
                 </ul>
             </li>

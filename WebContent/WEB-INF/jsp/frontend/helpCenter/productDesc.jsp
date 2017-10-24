@@ -24,10 +24,10 @@
 			<div id="help_wrap">
 			    <div class="content">
 			        <ul id="help_nav">
-                         <li id="title_property"><a href="packageProject.jsp" class="title_a">资产说明</a></li>
-                         <li id="title_function"><a href="moneyInfo.jsp" class="title_a">功能介绍</a></li>
-                         <li id="title_goods" class="help_curr_option"><a href="productDesc.jsp" class="title_a">产品介绍</a></li>
-                         <li id="title_safety"><a href="security.jsp" class="title_a">安全特性</a></li>
+                         <li id="title_property" class="help_curr_option"><a href="packageProject.html" class="title_a">资产说明</a></li>
+                        <li id="title_function"><a href="moneyInfo.html" class="title_a">功能介绍</a></li>
+                        <li id="title_goods"><a href="productDesc.html" class="title_a">产品介绍</a></li>
+                        <li id="title_safety"><a href="security.html" class="title_a">安全特性</a></li>
                     </ul>
 			        <ul id="help_content">
                         <li>

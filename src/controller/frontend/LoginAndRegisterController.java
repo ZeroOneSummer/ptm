@@ -1,4 +1,4 @@
-package controller;
+package controller.frontend;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import service.UserService;
 import utils.Constants;
 import utils.H5Utils;
 @Controller
-public class UserController{
+public class LoginAndRegisterController{
 	
 	@Resource
 	private UserService userService;
