@@ -1,4 +1,4 @@
-
+//验证登录信息
 var username=$("#username");
 var password=$("#password");
 var error=$(" #notification");         
@@ -22,7 +22,7 @@ function login(){
 			data:{"username":name,"password":pwd},
 			success:function(data){
 				if(data){				
-					if("13123456789"==name){
+					if(data.userType == 1){
 						location.href="admin";//管理员进入后台
 					}else{						
 						location.href="index.jsp";

@@ -237,17 +237,17 @@ CREATE TABLE `user` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键（编号）',
   `loginName` varchar(50) NOT NULL COMMENT '登陆名（手机号码）',
   `password` varchar(50) NOT NULL COMMENT '登陆密码',
-  `idNumber` varchar(50) NOT NULL COMMENT '身份证号码',
-  `bankNumber` varchar(50) NOT NULL COMMENT '银行卡号',
-  `exchangePassword` varchar(50) NOT NULL COMMENT '交易密码',
-  `userName` varchar(50) NOT NULL COMMENT '姓名',
+  `idNumber` varchar(50) DEFAULT NULL COMMENT '身份证号码',
+  `bankNumber` varchar(50) DEFAULT NULL COMMENT '银行卡号',
+  `exchangePassword` varchar(50) DEFAULT NULL COMMENT '交易密码',
+  `userName` varchar(50) DEFAULT NULL COMMENT '姓名',
   `userType` int(10) NOT NULL COMMENT '用户类型(1:管理员 2：普通用户)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户注册信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户注册信息表';
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`loginName`,`password`,`idNumber`,`bankNumber`,`exchangePassword`,`userName`,`userType`) values (1,'13123456789','21232f297a57a5a743894a0e4a801fc3','422312199602123569','95989965465465466','admin666666','管理员',1),(2,'15123456789','e10adc3949ba59abbe56e057f20f883e','430231201011256535','54645654165465456','666666','张三',2),(3,'18123456789','e10adc3949ba59abbe56e057f20f883e','421321198011034568','46455144114564664','666666','李四',2);
+insert  into `user`(`id`,`loginName`,`password`,`idNumber`,`bankNumber`,`exchangePassword`,`userName`,`userType`) values (1,'13123456789','21232f297a57a5a743894a0e4a801fc3','422312199602123569','95989965465465466','admin666666','管理员',1),(2,'15123456789','e10adc3949ba59abbe56e057f20f883e','430231201011256535','54645654165465456','666666','张三',2),(3,'18123456789','e10adc3949ba59abbe56e057f20f883e','421321198011034568','46455144114564664','666666','李四',2),(4,'15212345678','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,NULL,NULL,2);
 
 /*Table structure for table `user_income` */
 

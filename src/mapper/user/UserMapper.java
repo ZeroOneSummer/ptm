@@ -11,6 +11,7 @@ public interface UserMapper {
 	 */
 	public User getUser(User user);
 	
+
 	/**
 	 * 修改登录密码
 	 * @param user
@@ -24,4 +25,7 @@ public interface UserMapper {
 	 * @return
 	 */
 	public int updateExchangePassword(User user);
+
+	public int addUser(User user);
+	
 }

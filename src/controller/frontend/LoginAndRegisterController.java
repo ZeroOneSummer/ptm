@@ -82,8 +82,58 @@ public class LoginAndRegisterController{
 	 * 进入注册页面
 	 */
 	@RequestMapping("/register")
-	public String register(){
+	public String register(String loginName,String password,
+			HttpServletRequest request,HttpServletResponse response){
+		
 		return "frontend/loginRegister/register";
+	}
+	
+	/*
+	 * 注册验证页面
+	 */
+	@RequestMapping("/doRegister")
+	public void doRegister(String loginName,String password,
+			HttpServletRequest request,HttpServletResponse response){
+		String pwd=null;
+		try {
+			pwd = H5Utils.Hex5(password);
+		} catch (Exception e1) {
+			System.out.println("error");
+			e1.printStackTrace();
+		}
+		User user=new User();
+		System.out.println("注册信息:"+loginName+"---"+password+"---"+pwd);
+		user.setLoginName(loginName);		
+		
+		try {
+			PrintWriter writer=response.getWriter();
+			User user2=null;
+			try {
+				user2 = userService.getUser(user);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (user2 == null) {//不存在该用户
+				User user3=new User();
+				user3.setLoginName(loginName);
+				user3.setPassword(pwd);
+				user3.setUserType(2);//默认普通用户
+				int num=userService.addUser(user3);
+				if (num>0) {
+					System.out.println("添加用户成功");
+					request.getSession().setAttribute(Constants.USER_SESSION,user3);				
+				} else{
+					System.out.println("添加失败");
+				}
+			} 			
+			Object json=JSON.toJSON(user2);
+			writer.println(json);						
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 					
 	}
 		
 	/*

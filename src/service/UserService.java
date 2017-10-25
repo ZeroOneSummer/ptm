@@ -20,4 +20,6 @@ public interface UserService{
 	 */
 	public int updateExchangePassword(User user)throws Exception;
 	
+	public int addUser(User user);
+	
 }

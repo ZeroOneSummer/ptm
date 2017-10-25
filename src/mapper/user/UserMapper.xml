@@ -3,8 +3,11 @@
     PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="mapper.user.UserMapper">
-  <select id="getUser"  resultType="User">
-  	select * from user where loginName=#{loginName} and password=#{password}
+  <select id="getUser" parameterType="User" resultType="User">
+  	select * from user where loginName=#{loginName} 
+  	<if test="password != null and password != '' ">
+  		and password=#{password}  	
+  	</if>
   </select>
 	
 	<!-- 修改登录密码 -->
@@ -17,4 +20,9 @@
 	<update id="updateExchangePassword" parameterType="User">
 		update user set exchangePassword=#{exchangePassword} where id=#{id}
 	</update>
+   
+  <insert id="addUser" parameterType="User" >
+  		insert into user(loginName,password,userType) values(#{loginName},#{password},#{userType})
+  </insert>
+  
 </mapper>

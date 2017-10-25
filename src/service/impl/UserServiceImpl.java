@@ -30,5 +30,11 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.updateExchangePassword(user);
 	}
+	
+	
+	
+	public int addUser(User user) {
+		return userMapper.addUser(user);
+	}
 
 }
