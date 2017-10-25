@@ -59,7 +59,13 @@ public class LoginAndRegisterController{
 		
 		try {
 			PrintWriter writer=response.getWriter();
-			User user2=userService.getUser(user);
+			User user2 = null;
+			try {
+				user2 = userService.getUser(user);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (user2!=null) {
 				request.getSession().setAttribute(Constants.USER_SESSION,user2);				
 			}

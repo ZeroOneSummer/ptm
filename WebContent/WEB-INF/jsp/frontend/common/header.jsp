@@ -76,9 +76,9 @@
 	                    </script>
 	                </a>
 	                <ul class="dropdown" style="display: none;">	                		                   
-	                    <li><a href='/account/my-invest'>我的投资</a></li>
-	                    <li><a href='/account/user-center'>账户中心</a></li>
-	                    <li><a href='/account/msg-center'>消息中心</a></li>
+	                    <li><a href='myInvest.html'>我的投资</a></li>
+	                    <li><a href='account.html'>账户中心</a></li>
+	                    <li><a href='messageCenter.html'>消息中心</a></li>
 	                    <li><a href='loginOut'>安全退出</a></li>
 	                </ul>
 	            </li>

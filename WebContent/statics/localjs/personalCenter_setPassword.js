@@ -1,4 +1,32 @@
- var _hmt = _hmt || [];
+function setpwd(){
+	var id=$("#userId").val();
+	var password=$("#password").val();
+	var repassword=$("#repassword").val();
+	if ('' == $.trim(password)){
+        $('#notification').html("密码不能为空");
+    }else if (!reglx_pwd(repassword)){
+        $('#notification').html('交易密码为6位数字');
+    }else if (repassword != password){
+        $('#notification').html('两次输入密码不一致'); 
+    }else{
+    	$.ajax({
+    		url:"user/setExchangePassword.html",
+    		dateType:"json",
+    		type:"post",
+    		data:{"password":password,"id":id},
+    		success:function(data){
+    			if(data == 1){
+    				location.href="account.html";
+    			}else{
+    				 $('#notification').html('设置失败！');
+    			}
+    		}
+    	})
+    }
+	
+}
+
+/* var _hmt = _hmt || [];
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?6938787281b59cbc7fcb6a9381463695";
@@ -154,6 +182,6 @@
            }
        });
    }
-   if (/*@cc_on!@*/true) {
+   if (@cc_on!@true) {
        document.documentElement.className += ' ie' + document.documentMode;
-   }
+   }*/

@@ -36,11 +36,21 @@
 								<table cellpadding="0" cellspacing="0">
 			                                                    <tbody><tr>
 			                                <td class="f_18_20 _333">手机号：</td>
-			                                <td class="f_18_20 _333">147****1657</td>
+			                                <td class="f_18_20 _333"><i id="loginName">${user.loginName }</i></td>
+								        	<script type="text/javascript">
+						                    	var name=$("#loginName").html();
+						                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+						                    	$("#loginName").html(cname);
+						                    </script>
 			                            </tr>
 			                            <tr>
 			                                <td class="f_18_20 _333">实 名：</td>
-			                                <td class="f_18_20 _333">*涛</td>
+			                                <td class="f_18_20 _333"><i id="name">${user.name }</i></td>
+			                                <script type="text/javascript">
+						                    	var name=$("#name").html();
+						                    	var cname="*"+name.substring(1);
+						                    	$("#name").html(cname);
+						                    </script>
 			                            </tr>
 			                        						<tr>
 										<td class="f_18_20 _333">身份证：</td>

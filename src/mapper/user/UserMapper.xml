@@ -6,4 +6,15 @@
   <select id="getUser"  resultType="User">
   	select * from user where loginName=#{loginName} and password=#{password}
   </select>
+	
+	<!-- 修改登录密码 -->
+	<update id="updatePassword" parameterType="User">
+		update user set password=#{password} where id=#{id}
+	</update>
+	
+	
+	<!-- 修改交易密码 -->
+	<update id="updateExchangePassword" parameterType="User">
+		update user set exchangePassword=#{exchangePassword} where id=#{id}
+	</update>
 </mapper>

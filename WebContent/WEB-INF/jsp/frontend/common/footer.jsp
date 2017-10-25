@@ -84,7 +84,7 @@
             <li class="gotop" style="display: none;"><a href="javascript:;"></a></li>
         </ul> 
     </div> -->
-    <p class="a_center"><i class="f_14">©2017 口袋理财｜ 沪ICP备14028494号-1｜上海鱼耀金融信息服务有限公司｜<a class="_999 f_14" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011002000165">沪公网安备 31011002000165号</a></i></p>
+    <p class="a_center"><i class="f_14">©2017 口袋理财｜ 沪ICP备14028494号-1｜上海鱼耀金融信息服务有限公司｜<a class="_999 f_14" href="javascript:void(0);">沪公网安备 31011002000165号</a></i></p>
     <p class="a_center f_14">预期年化收益非实际收益承诺，投资需谨慎</p>
 </div>
      <!-- 底部结束 -->
