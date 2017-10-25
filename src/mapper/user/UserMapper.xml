@@ -11,6 +11,17 @@
   		and password=#{password}  	
   	</if>
   </select>
+	
+	<!-- 修改登录密码 -->
+	<update id="updatePassword" parameterType="User">
+		update user set password=#{password} where id=#{id}
+	</update>
+	
+	
+	<!-- 修改交易密码 -->
+	<update id="updateExchangePassword" parameterType="User">
+		update user set exchangePassword=#{exchangePassword} where id=#{id}
+	</update>
    
   <!-- 添加用户，添加属性（登录名，登录密码，用户类别） -->
   <insert id="addUser" parameterType="User" >

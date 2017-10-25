@@ -14,7 +14,8 @@ public interface UserMapper {
 	 * @throws Exception
 	 */
 	public User getUser(User user) throws Exception;
-	
+
+
 	/**
 	 *添加用户
 	 * @param user （登录名，登录密码，用户类别）
@@ -22,6 +23,22 @@ public interface UserMapper {
 	 * @throws Exception
 	 */
 	public int  addUser(User user) throws Exception;
+
+
+	/**
+	 * 修改登录密码
+	 * @param user
+	 * @return
+	 */
+	public int updatePassword(User user) throws Exception;
+	
+	/**
+	 * 修改交易密码
+	 * @param user
+	 * @return
+	 */
+	public int updateExchangePassword(User user) throws Exception;
+
 	
 	/**
 	 * 用户充值

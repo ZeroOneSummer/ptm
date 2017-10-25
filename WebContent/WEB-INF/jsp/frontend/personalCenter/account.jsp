@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class=" ieundefined">
 <head>
@@ -31,7 +32,12 @@
 				<div class="content">
 			       
 			        	<div class="my_pocket_header">
-			        	<span class="f_14_35 _333 f_left">Hi，188****6917用户，为理想和财富开始活力的一天吧！</span>
+			        	<span class="f_14_35 _333 f_left">Hi，<i id="login">${user.loginName }</i>用户，为理想和财富开始活力的一天吧！
+			        	<script type="text/javascript">
+	                    	var name=$("#login").html();
+	                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+	                    	$("#login").html(cname);
+	                    </script></span>
 			        	<div class="f_right">
 			        		<a href="user/recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
@@ -61,7 +67,7 @@
 			                <script src="${pageContext.request.contextPath }/statics/js/mask.js"></script>            <div class="my_pocket_content">
 			                <div class="_bar ">
 			                    <span class="f_18_20 _333 f_left">登录密码</span><span class="f_14_16 b5b5b5 p_relative">登录口袋理财账户时需要输入的密码</span>
-			                    <a href="loginPassword.jsp" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
+			                    <a href="loginPassword.html" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
 			                <div class="clear"></div>
 			                </div>
 			              <!--   <div class="_bar">
@@ -86,7 +92,13 @@
 			                </div>
 			                <div class="_bar ">
 			                    <span class="f_18_20 _333 f_left">交易密码</span><span class="f_14_16 b5b5b5 p_relative">保障资金安全，提现投资等资金相关操作时使用</span>
-			                                            <a href="updatePassword.jsp" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
+			                                            <c:if test="${user.exchangePassword == null }">
+			                                            	<a href="setPassword.html" class="f_14_16 ff534f f_right">设置&nbsp;&nbsp;&gt;</a>
+			                                            </c:if>
+			                                            
+			                                            <c:if test="${user.exchangePassword != null }">
+			                                            	<a href="updatePassword.html" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
+			                                            </c:if>
 			                                    <div class="clear"></div>
 			                </div>
 			            </div>

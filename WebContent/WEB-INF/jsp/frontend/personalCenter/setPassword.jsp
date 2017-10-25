@@ -30,7 +30,12 @@
             <div class="my_pocket_wrap">
 				<div class="content">
 					<div class="my_pocket_header">
-					<span class="f_14_35 _333 f_left">Hi，147****1657用户，为理想和财富开始活力的一天吧！</span>
+					<span class="f_14_35 _333 f_left">Hi，<i id="login">${user.loginName }</i>用户，为理想和财富开始活力的一天吧！
+			        	<script type="text/javascript">
+	                    	var name=$("#login").html();
+	                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+	                    	$("#login").html(cname);
+	                    </script></span>
 					<div class="f_right">
 			        		<a href="user/recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
@@ -45,10 +50,10 @@
 					<div class="my_pocket_body">
 						<div class="my_pocket_main a_center">
 							<ul>
-									<li><a href="myInvest.html" class="f_14_47 _999">我的投资</a></li>
-				        			<li><a href="account.html" class="f_14_47 fff">账户中心</a></li>
-				        			<li><a href="myPocket.html" class="f_14_47 _999">我的口袋券</a></li>
-				        			<li><a href="messageCenter.html" class="f_14_47 _999">消息中心</a></li>
+								<li><a href="myInvest.html" class="f_14_47 _999">我的投资</a></li>
+			        			<li><a href="account.html" class="f_14_47 fff">账户中心</a></li>
+			        			<li><a href="myPocket.html" class="f_14_47 _999">我的口袋券</a></li>
+			        			<li><a href="messageCenter.html" class="f_14_47 _999">消息中心</a></li>
 							</ul>
 						</div>
 						<div id="detail_invest_confirm">
@@ -60,20 +65,27 @@
 			                 <script src="${pageContext.request.contextPath }/statics/js/mask.js"></script>			
 			                 <div class="my_pocket_content">
 							<div class="_title"><span class="f_18_20 _333 f_left">设置交易密码</span>
-			                    <a href="account.jsp" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
+			                    <a href="account.html" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
 			                    <div class="clear"></div>
 			                </div>
 							<div class="_content a_right">
 								<div class="f_14_16 ff534f a_center">请设置交易密码以保障你的每一笔资金变动的安全</div>
-								<div class="f_14_16 _333 a_center">147****1657</div>
+								<div class="f_14_16 _333 a_center"><i id="exchangePassword">${user.loginName }</i>
+								<script type="text/javascript">
+				                    	var name=$("#exchangePassword").html();
+				                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+				                    	$("#exchangePassword").html(cname);
+				                 </script>
+								</div>
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                    <input class="_hidden" type="text">
 			                    <input class="_hidden" type="password">
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
 								<span class="f_14_16 _333">创建交易密码</span><input type="password" autocomplete="off" class="_input" id="password"><br>
 								<span class="f_14_16 _333">确认交易密码</span><input type="password" autocomplete="off" class="_input" id="repassword"><br>
+								<input type="hidden" value="${user.id }" id="userId">
 			                    <div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
-								<a href="javascript:setpwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">设置</a>
+								<a onclick="javascript:setpwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">设置</a>
 							</div>
 						</div>
 						<div class="clear"></div>

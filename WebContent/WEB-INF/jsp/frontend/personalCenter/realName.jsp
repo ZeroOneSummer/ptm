@@ -34,7 +34,12 @@
 			<div class="my_pocket_wrap">
 				<div class="content">
 					<div class="my_pocket_header">
-						<span class="f_14_35 _333 f_left">Hi，136****7598用户，为理想和财富开始活力的一天吧！</span>
+					<span class="f_14_35 _333 f_left">Hi，<i id="login">${user.loginName }</i>用户，为理想和财富开始活力的一天吧！
+			        	<script type="text/javascript">
+	                    	var name=$("#login").html();
+	                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+	                    	$("#login").html(cname);
+	                    </script></span>
 						<div class="f_right">
 							<a href="user/recharge.html"> <span
 								class="btn_fd5353 f_14_35 fff a_center">充值</span>
@@ -43,7 +48,6 @@
 							</a>
 						</div>
 						<div class="clear"></div>
-					</div>
 					<div class="my_pocket_body">
 						<div class="my_pocket_main a_center">
 							<ul>

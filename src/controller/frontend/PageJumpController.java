@@ -151,6 +151,8 @@ public class PageJumpController {
 		return "frontend/personalCenter/myPocket";
 	}
 	
+
+
 	/**
 	 * 跳转到-账户中心-充值页面
 	 * @return
@@ -169,5 +171,29 @@ public class PageJumpController {
 	public String toWithdrawDeposit(){
 		
 		return "frontend/personalCenter/withdrawDeposit";
+
+	}
+	/**
+	 * 跳转到-设置交易密码-页面
+	 * @return
+	 */
+	@RequestMapping("/setPassword.html")
+	public String toSetPassword(){
+		
+		return "frontend/personalCenter/setPassword";
+	}
+	
+	
+	
+	/**
+	 * 跳转到-修改交易密码-页面
+	 * @return
+	 */
+	@RequestMapping("/updatePassword.html")
+	public String toupdatePassword(){
+		
+		return "frontend/personalCenter/updatePassword";
+
+
 	}
 }

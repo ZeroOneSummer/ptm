@@ -63,6 +63,8 @@ public class LoginAndRegisterController{
 			try {
 				user2 = userService.getUser(user);
 			} catch (Exception e) {
+
+
 				e.printStackTrace();
 			}
 			if (user2!=null) {
@@ -106,10 +108,13 @@ public class LoginAndRegisterController{
 		
 		try {
 			PrintWriter writer=response.getWriter();
+
+
 			User user2 = null;
 			try {
 				user2 = userService.getUser(user);
 			} catch (Exception e) {
+
 				e.printStackTrace();
 			}
 			if (user2 == null) {//不存在该用户
