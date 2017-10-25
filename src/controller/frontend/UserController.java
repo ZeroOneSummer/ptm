@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import service.TradeService;
 import service.UserService;
 
 
@@ -29,6 +28,7 @@ import com.alibaba.fastjson.JSON;
 
 import pojo.User;
 import service.UserService;
+import utils.Constants;
 import utils.H5Utils;
 
 /**
@@ -42,9 +42,6 @@ public class UserController {
 	
 	@Resource
 	private UserService userService;
-	
-	@Resource
-	private TradeService tradeService;
 	
 	
 	/**
@@ -74,6 +71,7 @@ public class UserController {
     	int i=0;
     	try {
 			i=userService.updateExchangePassword(user);
+			/*request.getSession().setAttribute(Constants.USER_SESSION, userService.getUser(user));*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,8 +80,10 @@ public class UserController {
 			PrintWriter out= response.getWriter();
 			String str=JSON.toJSONString(i);
 			out.println(str);
+			System.out.println("str>>"+str);
 			out.flush();
 			out.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
