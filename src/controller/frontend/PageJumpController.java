@@ -18,7 +18,7 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/index.html")
 	public String toIndex(){
-		System.out.println("跳转到首页+++++++++++++++++++++++++++++");
+		System.out.println("跳转到firstPage.jsp++");
 		return "firstPage";
 	}
 	

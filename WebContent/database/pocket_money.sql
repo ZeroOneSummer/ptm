@@ -89,21 +89,18 @@ CREATE TABLE `invest_product` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `produceName` varchar(50) NOT NULL COMMENT '产品名称',
   `invTypeId` int(10) NOT NULL COMMENT '产品类别（外键）',
-  `annualYield` double(10,2) NOT NULL COMMENT '年化收益率',
-  `purchaseMoney` double(10,2) NOT NULL COMMENT '起购金额',
-  `deadline` int(10) NOT NULL COMMENT '投资期限（天）',
-  `investor` int(10) NOT NULL COMMENT '投资人数',
-  `totalAmount` double(10,2) NOT NULL COMMENT '本期可投总金额',
-  `residueAmount` double(10,2) NOT NULL COMMENT '剩余可投金额',
-  `invStatus` int(10) NOT NULL COMMENT '产品投资状态(1:未发布2:可投3:已投满)\n            \n            ',
+  `investor` int(10) DEFAULT NULL COMMENT '投资人数',
+  `totalAmount` double(10,2) DEFAULT NULL COMMENT '本期可投总金额',
+  `residueAmount` double(10,2) DEFAULT NULL COMMENT '剩余可投金额',
+  `invStatus` int(10) DEFAULT NULL COMMENT '产品投资状态(1:未发布2:可投3:已投满)\n            \n            ',
   PRIMARY KEY (`id`),
   KEY `FK_Reference_3` (`invTypeId`),
   CONSTRAINT `FK_Reference_3` FOREIGN KEY (`invTypeId`) REFERENCES `invest_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
 
 /*Data for the table `invest_product` */
 
-insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`annualYield`,`purchaseMoney`,`deadline`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,0.10,1000.00,15,36,1000000.00,394000.00,2),(2,'月盈宝-信17JWQ4期',2,0.06,1000.00,31,24,1000000.00,580000.00,2);
+insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(2,'月盈宝-信17JQ04期',2,24,1000000.00,580000.00,2),(3,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(4,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2);
 
 /*Table structure for table `invest_type` */
 
@@ -112,12 +109,15 @@ DROP TABLE IF EXISTS `invest_type`;
 CREATE TABLE `invest_type` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `invTypeName` varchar(50) NOT NULL COMMENT '类别名称',
+  `annualYield` double(10,4) NOT NULL COMMENT '年化收益率',
+  `purchaseMoney` double(10,2) NOT NULL COMMENT '起购金额',
+  `deadline` int(10) NOT NULL COMMENT '投资期限（天）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='投资产品类别表';
 
 /*Data for the table `invest_type` */
 
-insert  into `invest_type`(`id`,`invTypeName`) values (1,'新手宝'),(2,'月盈宝'),(3,'季盈宝'),(4,'双季盈');
+insert  into `invest_type`(`id`,`invTypeName`,`annualYield`,`purchaseMoney`,`deadline`) values (1,'新手宝',0.1000,1000.00,15),(2,'月盈宝',0.0650,1000.00,31),(3,'季盈宝',0.0750,1000.00,92),(4,'双季盈',0.0850,1000.00,183);
 
 /*Table structure for table `msg_push` */
 

@@ -8,6 +8,28 @@ public class Invest_type {
 
 	private int id;//主键
 	private String invTypeName;//类别名称
+	private double annualYield;//年华收益率
+	private double purchaseMoney;//起购金额
+	private int deadline;//投资期限（天）
+	
+	public double getAnnualYield() {
+		return annualYield;
+	}
+	public void setAnnualYield(double annualYield) {
+		this.annualYield = annualYield;
+	}
+	public double getPurchaseMoney() {
+		return purchaseMoney;
+	}
+	public void setPurchaseMoney(double purchaseMoney) {
+		this.purchaseMoney = purchaseMoney;
+	}
+	public int getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(int deadline) {
+		this.deadline = deadline;
+	}
 	public int getId() {
 		return id;
 	}
