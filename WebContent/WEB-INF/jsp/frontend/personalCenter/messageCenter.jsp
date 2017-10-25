@@ -29,10 +29,10 @@
 			        <div class="my_pocket_header">
 			        	<span class="f_14_35 _333 f_left">Hi，147****1657用户，为理想和财富开始活力的一天吧！</span>
 			        	<div class="f_right">
-			        		<a href="recharge.jsp">
+			        		<a href="user/recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="tiXian.jsp">
+			        		<a href="user/withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        	</div>
@@ -41,10 +41,10 @@
 			        <div class="my_pocket_body">
 			        	<div class="my_pocket_main a_center">
 			        		<ul>
-			        			<li><a href="myInvest.jsp" class="f_14_47 _999">我的投资</a></li>
-			        			<li><a href="account.jsp" class="f_14_47 _999">账户中心</a></li>
-			        			<li><a href="myPocket.jsp" class="f_14_47 _999">我的口袋券</a></li>
-			        			<li><a href="messageCenter.jsp" class="f_14_47 fff">消息中心</a></li>
+			        				<li><a href="myInvest.html" class="f_14_47 _999">我的投资</a></li>
+				        			<li><a href="account.html" class="f_14_47 fff">账户中心</a></li>
+				        			<li><a href="myPocket.html" class="f_14_47 _999">我的口袋券</a></li>
+				        			<li><a href="messageCenter.html" class="f_14_47 _999">消息中心</a></li>
 			        		</ul>
 			        	</div>
 			        	<div id="detail_invest_confirm">

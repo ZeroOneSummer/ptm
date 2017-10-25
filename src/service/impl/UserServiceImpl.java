@@ -15,13 +15,18 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;	
 	
 	@Override
-	public User getUser(User user) {
+	public User getUser(User user) throws Exception{
 		return userMapper.getUser(user);
 	}
 
 	@Override
-	public int addUser(User user) {
+	public int addUser(User user) throws Exception{
 		return userMapper.addUser(user);
+	}
+
+	@Override
+	public int rechange(int userId, int money) throws Exception {
+		return userMapper.rechange(userId, money);
 	}
 
 }

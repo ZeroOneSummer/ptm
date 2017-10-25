@@ -106,4 +106,68 @@ public class PageJumpController {
 		
 		return "frontend/helpCenter/security";
 	}
+	
+	/**
+	 * 跳转到-我的投资-页面
+	 * @return
+	 */
+	@RequestMapping("/myInvest.html")
+	public String toMyInvest(){
+		
+		return "frontend/personalCenter/myInvest";
+	}
+	
+	
+	/**
+	 * 跳转到-账户中心-页面
+	 * @return
+	 */
+	@RequestMapping("/account.html")
+	public String toAccount(){
+		
+		return "frontend/personalCenter/account";
+	}
+	
+	
+	
+	/**
+	 * 跳转到-消息中心-页面
+	 * @return
+	 */
+	@RequestMapping("/messageCenter.html")
+	public String toMessageCenter(){
+		
+		return "frontend/personalCenter/messageCenter";
+	}
+	
+	
+	/**
+	 * 跳转到-我的口袋券-页面
+	 * @return
+	 */
+	@RequestMapping("/myPocket.html")
+	public String toMyPocket(){
+		
+		return "frontend/personalCenter/myPocket";
+	}
+	
+	/**
+	 * 跳转到-账户中心-充值页面
+	 * @return
+	 */
+	@RequestMapping("/recharge.html")
+	public String toRecharge(){
+		
+		return "frontend/personalCenter/recharge";
+	}
+	
+	/**
+	 * 跳转到-账户中心-提现页面
+	 * @return
+	 */
+//	@RequestMapping("/withdrawDeposit.html")
+	public String toWithdrawDeposit(){
+		
+		return "frontend/personalCenter/withdrawDeposit";
+	}
 }

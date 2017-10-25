@@ -96,9 +96,9 @@
 	                    </script>
 	                </a>
 	                <ul class="dropdown" style="display: none;">	                		                   
-	                    <li><a href='/account/my-invest'>我的投资</a></li>
-	                    <li><a href='/account/user-center'>账户中心</a></li>
-	                    <li><a href='/account/msg-center'>消息中心</a></li>
+	                    <li><a href='myInvest.html'>我的投资</a></li>
+	                    <li><a href='account.html'>账户中心</a></li>
+	                    <li><a href='messageCenter.html'>消息中心</a></li>
 	                    <li><a href='loginOut'>安全退出</a></li>
 	                </ul>
 	            </li>
@@ -139,7 +139,7 @@
 			                <div class="banner_c2">
 			                    <p><i class="f_20">上市公司背景</i><br><span class="lh_em_1_5 f_16 _999 letter_spacing__2">投资资金仅限同卡进出</span></p>
 			                </div>
-			                                <div class="p_relative _btn bg_fd5353 a_center fff f_18 _b_radius">注册领红包<a class="indie" href="${pageContext.request.contextPath}/jsp/frontend/loginRegister/register.jsp"></a></div>
+			                                <div class="p_relative _btn bg_fd5353 a_center fff f_18 _b_radius">注册领红包<a class="indie" href="register"></a></div>
 			                                <p class="lh_em_2 a_right t_underline"><a class="_000" href="${pageContext.request.contextPath}/jsp/frontend/invest/Newfuli.jsp">新手福利</a></p>
 			            </div>
 			        </div>

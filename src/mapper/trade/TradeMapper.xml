@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="mapper.trade.TradeMapper">
+   <!-- `trade_record``id``userId``produceId``tradeMoney`
+   `tradeDate``tradeStatus``tradeTypeId` -->
+  
+    <sql id="trade_record">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="userId !=0">
+                userId,
+            </if>
+            <if test="produceId !=0">
+                produceId,
+            </if>
+            <if test="tradeMoney !=0">
+                tradeMoney,
+            </if>
+            <if test="tradeDate !=null">
+                tradeDate,
+            </if>
+            <if test="tradeStatus !=0">
+                tradeStatus,
+            </if>
+            <if test="tradeTypeId !=0">
+                tradeTypeId
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="trade_record_value">
+         <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="userId !=0">
+                #{userId},
+            </if>
+            <if test="produceId !=0">
+                #{produceId},
+            </if>
+            <if test="tradeMoney !=0">
+                #{tradeMoney},
+            </if>
+            <if test="tradeDate !=null">
+                #{tradeDate},
+            </if>
+            <if test="tradeStatus !=0">
+                #{tradeStatus},
+            </if>
+            <if test="tradeTypeId !=0">
+                #{tradeTypeId}
+            </if>
+        </trim>
+    </sql>
+
+
+    <!-- <include refid="trade_record"/>和<include refid="trade_record_value"/>表示引用上面定义的sql片段 -->
+	<!-- 动态添加交易记录  -->  
+    <insert id="addTradeRecord" parameterType="Trade_record">
+        insert into trade_record(<include refid="trade_record"/>) values(<include refid="trade_record_value"/>)
+    </insert>
+  
+  
+  <!-- 动态查询交易记录  （userId，produceId，tradeStatus，tradeTypeId）-->
+  <select id="getTradeRecords" resultType="trade_record">
+   		select * from trade_record 
+   		<where>
+   			<if test="userId !=0">
+                userId = #{userId},
+            </if>
+            <if test="produceId !=0">
+               produceId = #{produceId},
+            </if>
+            <if test="tradeStatus !=0">
+                tradeStatus = #{tradeStatus},
+            </if>
+            <if test="tradeTypeId !=0">
+                tradeTypeId = #{tradeTypeId},
+            </if>
+   		</where>
+          ORDER BY tradeDate DESC
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+
+</mapper>
