@@ -59,7 +59,14 @@ public class LoginAndRegisterController{
 		
 		try {
 			PrintWriter writer=response.getWriter();
-			User user2=userService.getUser(user);
+			User user2 = null;
+			try {
+				user2 = userService.getUser(user);
+			} catch (Exception e) {
+
+
+				e.printStackTrace();
+			}
 			if (user2!=null) {
 				request.getSession().setAttribute(Constants.USER_SESSION,user2);				
 			}
@@ -101,13 +108,27 @@ public class LoginAndRegisterController{
 		
 		try {
 			PrintWriter writer=response.getWriter();
-			User user2=userService.getUser(user);
+
+
+			User user2 = null;
+			try {
+				user2 = userService.getUser(user);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
 			if (user2 == null) {//不存在该用户
 				User user3=new User();
 				user3.setLoginName(loginName);
 				user3.setPassword(pwd);
 				user3.setUserType(2);//默认普通用户
-				int num=userService.addUser(user3);
+				user3.setIdNumber("");
+				int num = 0;
+				try {
+					num = userService.addUser(user3);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				if (num>0) {
 					System.out.println("添加用户成功");
 					request.getSession().setAttribute(Constants.USER_SESSION,user3);				
