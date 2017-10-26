@@ -1,0 +1,353 @@
+/*所有页面共用样式开始*/
+body{
+    line-height: normal;
+}
+
+.kdlc_pc_wrap{
+    margin: 0 auto;
+    width:100%;
+    min-width:1170px;
+}
+.kdlc_pc_activity_wrap{
+    min-width:1010px;
+}
+.kdlc_pc_wrap *{
+    font-family: '\5FAE\8F6F\96C5\9ED1';
+}
+.kdlc_pc_wrap .content{
+    width: 1170px;
+    margin: 0 auto;
+}
+.kdlc_pc_activity_wrap .content{
+    width: 1000px;
+    margin: 0 auto;
+}
+.kdlc_pc_wrap ._hover:hover{
+    color: #fd5353;
+    -webkit-transition: all .5s;
+            transition: all .5s;
+}
+.btn_fd5353{
+    background: #fd5353;
+    border-radius: 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px;
+}
+.btn_eb4444{
+    background: #eb4444;
+    /* W3C syntax */
+    border-radius: 5px;
+    /* Gecko browsers */
+    -moz-border-radius: 5px 5px 5px 5px;
+    /* Webkit browsers */
+    -webkit-border-radius: 5px;
+    opacity:0.8;
+    -moz-opacity:0.8;
+    /* 旧版IE */
+    -ms-filter:"alpha(opacity=80)"; 
+}
+.bg_fd5353{
+    background: #fd5353;
+}
+.bg_fd5353_img{
+    background: #fd5353 url(../image/site/triangle.png) no-repeat center bottom;
+}
+.bg_f7f7f7{
+    background: #f7f7f7;
+}
+.bg_f8f8f8{
+    background: #f8f8f8;
+}
+.bg_f1f3f2{
+    background: #f1f3f2;
+}
+.bg_ccc{
+    background: #ccc;
+}
+.bg_c9c9c9{
+    background: #c9c9c9;
+}
+.bg_fff{
+    background: #fff;
+}
+.bg_f2f2f2{
+    background: #f2f2f2;
+}
+.bg_f15b62{
+    background: #f15b62;
+}
+.bg_759fde{
+    background: #759fde;
+}
+.bg_8ae7d0{
+    background: #8ae7d0;
+}
+.bg_fba326{
+    background: #fba326;
+}
+.bg_494949{
+    background: #494949;
+}
+.bg_input{
+    background: #ffffff;
+    border-radius: 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px;
+}
+.f_14_16{
+    font:normal 14px/16px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_14_28{
+    font:normal 14px/28px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_14_35{
+    font:normal 14px/35px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_14_47{
+    font:normal 14px/47px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_14_60{
+    font:normal 14px/60px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_15_22{
+    font:bold 15px/22px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_16_42{
+    font:normal 16px/42px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_18_20{
+    font:normal 18px/20px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_18_28{
+    font:normal 18px/28px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_18_42{
+    font:normal 18px/42px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_20_22{
+    font:normal 20px/22px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_20_30{
+    font:normal 20px/30px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_20_45{
+    font:normal 20px/45px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_20_50{
+    font:normal 20px/50px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_20_61{
+    font:normal 20px/61px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_24_26{
+    font:normal 24px/26px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_24_45{
+    font:normal 24px/45px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_26_28{
+    font:normal 26px/30px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_30_32{
+    font:normal 30px/32px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_36_38{
+    font:normal 36px/38px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_45_47{
+    font:normal 45px/47px '\5FAE\8F6F\96C5\9ED1';
+}
+.f_40{
+    font-size: 40px;
+}
+.f_20{
+    font-size: 20px;
+}
+.f_18{
+    font-size: 18px;
+}
+.f_16{
+    font-size: 16px;
+}
+.f_15{
+    font-size: 15px;
+}
+.f_14{
+    font-size: 14px;
+}
+.f_13{
+    font-size: 13px;
+}
+.f_12{
+    font-size: 12px;
+}
+._000{
+    color: #000;
+}
+._333{
+    color: #333;
+}
+._666{
+    color: #666;
+}
+._888{
+    color: #888;
+}
+._999{
+    color: #999;
+}
+.ccc{
+    color: #ccc;
+}
+.fff{
+    color: #fff;
+}
+.f3ff73{
+    color: #f3ff73;
+}
+._1b3ad7{
+    color: #1b3ad7;
+}
+.a36103{
+    color: #a36103;
+}
+.ff8f01{
+    color: #ff8f01;
+}
+._433f3e{
+    color: #433f3e;
+}
+.aaa{
+    color: #aaa;
+}
+.ff534f{
+    color: #ff534f;
+}
+.f7f7f7{
+    color: #f7f7f7;
+}
+._3d3d3b{
+    color: #3d3d3b;
+}
+.b5b5b5{
+    color: #b5b5b5;
+}
+.fd5353{
+    color: #fd5353;
+}
+.ed211e{
+    color: #ed211e;
+}
+.ef454e{
+    color: #ef454e;
+}
+.ee3333{
+    color: #ee3333;
+}
+.ef1015{
+    color: #ef1015;
+}
+._4980d1{
+    color: #4980d1;
+}
+._43c39c{
+    color: #43c39c;
+}
+.ff9726{
+    color: #ff9726;
+}
+._7d8390{
+    color: #7d8390;
+}
+._2666e8{
+    color: #2666e8;
+}
+.lh_em_1_5{
+    line-height: 1.5em;
+}
+.lh_em_1_8{
+    line-height: 1.8em;
+}
+.lh_em_2{
+    line-height: 2em;
+}
+.lh_em_1{
+    line-height: 1em;
+}
+.lh_em_2_5{
+    line-height: 2.5em;
+}
+.letter_spacing__2{
+    letter-spacing: .2em;
+}
+/*所有页面共用样式结束*/
+
+/*分页样式开始*/
+.pagination {
+    position: relative;
+    float: left;
+    margin: 20px auto auto;
+    left: 50%;
+}
+.pagination li {
+    position: relative;
+    float: left;
+    right: 50%;
+}
+.pagination li a, .pagination li span {
+    color: #666;
+    line-height: 1.42857;
+    margin-left: 8px;
+    padding: 4px 10px;
+    display: block;
+    border-radius: 4px;
+    -webkit-transition:.3s;
+            transition:.3s;
+}
+.pagination  li:first-child  a, .pagination  li:first-child  span {
+    border-radius: 4px 0 0 4px;
+}
+.pagination  li:last-child  a, .pagination  li:last-child  span {
+    border-radius: 0 4px 4px 0;
+}
+.pagination  li  a:hover, .pagination  li  span:hover,.pagination  .active  a, .pagination  .active  span{
+    background-color: #fd5353;
+    color: #fff;
+}
+.pagination  .disabled  span, .pagination  .disabled  span:hover, .pagination  .disabled  span:focus, .pagination  .disabled  a, .pagination  .disabled  a:hover, .pagination  .disabled  a:focus {
+    background-color: #fff;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/*2015-09-17 Pan 添加*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.db{
+    display: block;
+}
+.dn{
+    display: none;
+}
+.font12{font-size: 12px;}
+.font14{font-size: 14px;}
+.font16{font-size: 16px;}
+.font18{font-size: 18px;}
+.f_24_260{font-size: 20px;}
+.mb30{margin-bottom: 30px;}
+.mb15{margin-bottom: 15px;}
+.centerblock{
+    margin-left:auto;
+    margin-right:auto;
+}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{zoom: 1;}
+.small_size_8_8{
+    font-size:12px;
+    -webkit-transform: translate(32px,0) scale(.8);
+    -ms-transform: translate(32px,0) scale(.8);
+    -moz-transform: translate(32px,0) scale(.8);
+    -o-transform: translate(32px,0) scale(.8);
+}

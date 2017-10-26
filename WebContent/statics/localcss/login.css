@@ -1,0 +1,12 @@
+
+#login_wrap .content ._w_input {
+    width: 167px;
+    margin-right: auto;
+}
+#login_wrap .content ._w_input1 {
+    width: 100px;
+    display: inline-block;
+    margin-left: 9px;
+    margin-right: 34px;
+    vertical-align: bottom;
+}
