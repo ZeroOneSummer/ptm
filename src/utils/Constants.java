@@ -7,4 +7,5 @@ public class Constants {
 	public final static String product_list = "product_list";
 	public final static String PRODUCT_LIST_BYPAGE = "product_list_page";
 	public final static String PAGE = "page";
+
 }

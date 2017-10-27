@@ -21,7 +21,6 @@
 	}
 
 
-
 // 风险提示lightbox效果
 	$(function(){
 		$('.rel').hover(function(){

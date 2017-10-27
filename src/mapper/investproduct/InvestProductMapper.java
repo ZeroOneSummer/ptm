@@ -1,7 +1,6 @@
 package mapper.investproduct;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 import pojo.Invest_product;
@@ -16,4 +15,5 @@ public interface InvestProductMapper {
 	public int countInvest_product();
 		
 	public List<Invest_product> getInvest_productsByPage(@Param("start")int start,@Param("size")int size);
+
 }

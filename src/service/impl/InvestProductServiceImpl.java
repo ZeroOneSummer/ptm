@@ -48,4 +48,5 @@ public class InvestProductServiceImpl implements InvestProductService {
 		return investProductMapper.countInvest_product();
 	}
 
+
 }
