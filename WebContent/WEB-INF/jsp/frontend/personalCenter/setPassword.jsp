@@ -37,10 +37,10 @@
 	                    	$("#login").html(cname);
 	                    </script></span>
 					<div class="f_right">
-			        		<a href="user/recharge.html">
+			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="user/withdrawDeposit.html">
+			        		<a href="withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        </div>

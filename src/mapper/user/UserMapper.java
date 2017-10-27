@@ -3,7 +3,6 @@ package mapper.user;
 import org.apache.ibatis.annotations.Param;
 
 import pojo.User;
-import pojo.User_property;
 
 public interface UserMapper {
 
@@ -43,9 +42,20 @@ public interface UserMapper {
 	/**
 	 * 用户充值
 	 * @param userId 用户编号
-	 * @param money 充值金额
+	 * @param balance 充值金额
 	 * @return
 	 * @throws Exception
 	 */
-	public int rechange(@Param("userId") int userId,@Param("money") int money) throws Exception;
+	public int rechange(@Param("userId") int userId,@Param("balance") double money) throws Exception;
+	
+	/**
+	 * 用户提现
+	 * @param userId 用户编号
+	 * @param balance 提现后用户的余额
+	 * @return
+	 * @throws Exception
+	 */
+	public int withdrawDeposit(@Param("userId") int userId,@Param("balance") double balance,@Param("withdrawMoney") double withdrawMoney) throws Exception;
+	
+
 }

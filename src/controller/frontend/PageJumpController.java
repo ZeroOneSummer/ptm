@@ -113,8 +113,7 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/myInvest.html")
 	public String toMyInvest(){
-		
-		return "frontend/personalCenter/myInvest";
+		return "redirect:jumpToMyInvest.html";
 	}
 	
 	
@@ -160,17 +159,17 @@ public class PageJumpController {
 	@RequestMapping("/recharge.html")
 	public String toRecharge(){
 		
-		return "frontend/personalCenter/recharge";
+		return "redirect: jumpToRecharge.html";
 	}
 	
 	/**
 	 * 跳转到-账户中心-提现页面
 	 * @return
 	 */
-//	@RequestMapping("/withdrawDeposit.html")
+	@RequestMapping("/withdrawDeposit.html")
 	public String toWithdrawDeposit(){
 		
-		return "frontend/personalCenter/withdrawDeposit";
+		return "redirect: jumpToWithdrawDeposit.html";
 
 	}
 	/**

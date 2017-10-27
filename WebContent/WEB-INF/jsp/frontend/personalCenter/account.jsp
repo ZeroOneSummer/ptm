@@ -39,10 +39,10 @@
 	                    	$("#login").html(cname);
 	                    </script></span>
 			        	<div class="f_right">
-			        		<a href="user/recharge.html">
+			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="user/withdrawDeposit.html">
+			        		<a href="withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        	</div>
@@ -92,11 +92,11 @@
 			                </div>
 			                <div class="_bar ">
 			                    <span class="f_18_20 _333 f_left">交易密码</span><span class="f_14_16 b5b5b5 p_relative">保障资金安全，提现投资等资金相关操作时使用</span>
-			                                            <c:if test="${user.exchangePassword == null and  user.exchangePassword == ''}">
+			                                            <c:if test="${user.exchangePassword == null}">
 			                                            	<a href="setPassword.html" class="f_14_16 ff534f f_right">设置&nbsp;&nbsp;&gt;</a>
 			                                            </c:if>
 			                                            
-			                                            <c:if test="${user.exchangePassword != null and  user.exchangePassword == ''}">
+			                                            <c:if test="${user.exchangePassword != null &&user.exchangePassword !=''}">
 			                                            	<a href="updatePassword.html" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
 			                                            </c:if>
 			                                    <div class="clear"></div>

@@ -63,9 +63,9 @@
 								$("#login").html(cname);
 							</script></span>
 						<div class="f_right">
-							<a href="user/recharge.html"> <span
+							<a href="recharge.html"> <span
 								class="btn_fd5353 f_14_35 fff a_center">充值</span>
-							</a> <a href="user/withdrawDeposit.html"> <span
+							</a> <a href="withdrawDeposit.html"> <span
 								class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 							</a>
 						</div>
@@ -101,22 +101,29 @@
 												class="f_14_16 _333 fff">累计收益&nbsp;&nbsp;0</span>
 										</div>
 									</li>
-									<li class="a_center" invest_value="1">
-										<div style="height: 144px;">
-											<span class="f_20_22 _999">持有资产（元）</span><br> <span
-												class="f_36_38 _333">0</span><br> <span
-												class="f_14_16 _333">&nbsp;<!-- 占位 --></span>
-										</div>
-									</li>
-									<li class="a_center" style="float: right;" invest_value="2">
-										<div style="height: 144px;">
-											<span class="f_20_22 _999">我的余额（元）</span><br> <span
-												class="f_36_38 _333">0</span><br> <span
-												class="f_14_16 _333">提现中&nbsp;0</span> <span
-												class="f_14_16 _333">&nbsp;|&nbsp;</span> <span
-												class="f_14_16 _333">可用余额&nbsp;0</span>
-										</div>
-									</li>
+								<c:if test="user_property == null and noFinishWithdrawDepositNum<0">
+										<script type="text/javascript">
+												location.href="user/jumpToMyInvest.html";
+										</script>
+								</c:if>
+								<c:if test="${user_property != null and noFinishWithdrawDepositNum>=0}">
+										<li class="a_center" invest_value="0">
+											<div style="height: 144px;">
+												<span class="f_20_22 _999">持有资产（元）</span><br> 
+														<span class="f_36_38 _333">${user_property.invProperty}</span><br> 
+												<span class="f_14_16 _333">&nbsp;<!-- 占位 --></span>
+											</div>
+										</li>
+										<li class="a_center" style="float: right;" invest_value="0">
+											<div style="height: 144px;">
+												<span class="f_20_22 _999">我的余额（元）</span><br> 
+												<span class="f_36_38 _333">${user_property.balance}</span><br> 
+												<span class="f_14_16 _333">提现中&nbsp;${noFinishWithdrawDepositNum}</span> 
+												<span class="f_14_16 _333">&nbsp;|&nbsp;</span> 
+												<span class="f_14_16 _333">可用余额&nbsp;${user_property.balance - user_property.withdrawMoney}</span>
+											</div>
+										</li>
+								</c:if>
 								</ul>
 								<div class="clear"></div>
 							</div>
@@ -174,15 +181,17 @@
 									<div class="clear"></div>
 								</div>
 								<div class="column_content a_center _balance">
-									<span class="f_20_22 _999">我的余额（元）</span><br> <span
-										class="f_36_38 _333">0</span><br> <span
-										class="f_14_16 _333">提现中&nbsp;0</span> <span
-										class="f_14_16 _333">&nbsp;|&nbsp;</span> <span
-										class="f_14_16 _333">可用余额&nbsp;0</span>
+								<c:if test="${user_property != null and noFinishWithdrawDepositNum>=0}">
+												<span class="f_20_22 _999">我的余额（元）</span><br> 
+												<span class="f_36_38 _333">${user_property.balance}</span><br> 
+												<span class="f_14_16 _333">提现中&nbsp;${noFinishWithdrawDepositNum}</span> 
+												<span class="f_14_16 _333">&nbsp;|&nbsp;</span> 
+												<span class="f_14_16 _333">可用余额&nbsp;${user_property.balance - user_property.withdrawMoney}</span>
+								</c:if>
 									<div class="account_recharge_withdraw">
-										<a href="recharge.jsp" class="btn_fd5353 f_18_20 fff a_center">充值</a>
+										<a href="recharge.html" class="btn_fd5353 f_18_20 fff a_center">充值</a>
 
-										<a href="tiXian.jsp"
+										<a href="withdrawDeposit.html"
 											class="btn_fd5353 bg_fff f_18_20 fd5353 a_center">提现</a>
 									</div>
 								</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.user.UserPropertyMapper">
+	<!-- `pocketId``userId``balance`
+	`withdrawMoney``score``invProperty``withdrawMoney` user_property -->
+
+	<!-- 根据用户id 获取用户财富 -->
+	<select id="getUserProperty" resultType="User_property" parameterType="int">
+	   select * from user_property 
+	   <where>
+	   		<if test="userId != 0">
+	   			and userId = #{userId}
+	   		</if>
+	   </where>
+	</select>
+
+</mapper>

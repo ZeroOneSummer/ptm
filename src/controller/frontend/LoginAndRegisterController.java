@@ -36,7 +36,7 @@ public class LoginAndRegisterController{
 	 */
 	@RequestMapping("/admin")
 	public String admin(){
-		return "redirect: userList.html";
+		return "redirect:userList.html";
 	}
 	
 	/*

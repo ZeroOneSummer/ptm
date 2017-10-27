@@ -39,10 +39,10 @@
 						<span class="f_14_35 _333 f_left">Hi，136****7598用户，为理想和财富开始活力的一天吧！
 						</span>
 						<div class="f_right">
-			        		<a href="user/recharge.html">
+			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="user/withdrawDeposit.html">
+			        		<a href="withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        	</div>
@@ -76,10 +76,10 @@
 	                    	$("#login").html(cname);
 	                    </script></span>
 							<div class="f_right">
-							<a href="recharge.jsp">
+							<a href="recharge.html">
 								<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 							</a>
-							<a href="tiXian.jsp">
+							<a href="withdrawDeposit.html">
 								<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span></a>
 								</div><div class="clear"></div></div>
 								<div class="my_pocket_body">
