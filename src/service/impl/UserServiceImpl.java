@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int rechange(int userId, double money) throws Exception {
-		return userMapper.rechange(userId, money);
+		return userPropertyMapper.rechange(userId, money);
 	}
 
 	@Override
 	public int withdrawDeposit(int userId, double balance, double withdrawMoney) throws Exception {
-		return userMapper.withdrawDeposit(userId, balance, withdrawMoney);
+		return userPropertyMapper.withdrawDeposit(userId, balance, withdrawMoney);
 	}
 
 	@Override

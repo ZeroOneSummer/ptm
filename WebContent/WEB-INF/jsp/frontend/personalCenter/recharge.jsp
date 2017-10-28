@@ -30,7 +30,7 @@
 		<div class="container">
 			<!--连连网银支付 <form id="user_charge_form" method="post" target="_blank" action="https://deposit.koudailc.com/user/web-charge?clientType=pc">-->
 			<!--宝付网银支付 -->
-			<form id="user_charge_form" method="post" target="_blank" action="https://www.koudailc.com/account/web-charge">
+			<form id="user_charge_form" method="post"  action="doRecharge">
 			<div class="operation_wrap">
 				<div class="content">
 					<div>
@@ -46,11 +46,11 @@
 											<c:choose>
 												<c:when test="${user_property == null}">
 													<script type="text/javascript">
-														location.href="user/jumpToRecharge.html";
+														location.href="jumpToRecharge.html";
 													</script>
 												</c:when>
 												<c:otherwise>
-					                                <span>${user_property.balance}</span>
+					                                <span>${user_property.balance - user_property.withdrawMoney}</span>
 												</c:otherwise>
 											</c:choose>
 			                                </p>
@@ -193,10 +193,10 @@
 										<td class="cash-left">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                                <input class="_hidden" type="text">
-			                                <input class="_hidden" type="password">
+			                                <input class="_hidden" type="exchangePassword" >
 			                                <input class="_hidden" name="platform" value="pc">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
-			                                <input id="order_char_id" name="order_char_id" style="display: none" type="password" autocomplete="off" placeholder="">
+			                                <input id="order_char_id" name="order_char_id" style="display: none" type="exchangePassword" autocomplete="off" placeholder="">
 										</td>
 										<td class="cash-right">
 			                                <div id="notification" class="f_14_16 ff534f">&nbsp;</div>

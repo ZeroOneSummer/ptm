@@ -39,14 +39,5 @@
 		values(#{loginName},#{password},#{userType})
 	</insert>
 
-	<!-- 模拟用户充值 -->
-	<update id="rechange" >
-		update user_property set balance=#{balance} where userId=#{id}
-	</update>
 	
-	<!-- 模拟用户提现 -->
-	<update id="withdrawDeposit" >
-		update user_property set balance=#{balance},withdrawMoney=#{withdrawMoney} where userId=#{id}
-	</update>
-
 </mapper>
