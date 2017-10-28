@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService {
 		return userPropertyMapper.getUserProperty(userId);
 	}
 
+	@Override
+	public int doInvest(User_property user_property) {
+		return userPropertyMapper.doInvest(user_property);
+	}
+
 }

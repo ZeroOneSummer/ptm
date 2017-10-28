@@ -64,5 +64,11 @@ public interface UserService{
 	 */
 	public User_property getUserProperty(@Param("userId")int userId) throws Exception;
 	
+	/**
+	 * 用户投资后个人资产更新
+	 * @param user_property
+	 * @return
+	 */
+	public int doInvest(User_property user_property);
 	
 }

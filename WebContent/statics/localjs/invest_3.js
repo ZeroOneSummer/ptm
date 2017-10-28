@@ -1,3 +1,58 @@
+
+//----------------------------自己添加----------------------------------	
+    // 点击立即投资
+    $('.invest_sure').click(function(){
+    	var user_session=$("#user_session").val();
+    	if(user_session){    	
+    		var invest_money=$('.user_invest_money').val();//投资金额
+    		if(invest_money>=1000 && invest_money<=30000 && invest_money%1000==0){
+    			var userId=$('#userId').val();//用户id
+    			var productId=$('#productId').val();//产品id
+    			var tradeTypeId=1;//交易类型：投资
+    			
+    			$.ajax({
+    				url:"doInvest",
+    				type:"get",
+    				data:{tradeMoney:invest_money,userId:userId,produceId:productId,tradeTypeId:tradeTypeId},
+    				dataType:"json",
+    				success:function(data){
+    					if(data){
+    						alert('投资成功,跳转至组长提供的to个人中心--我要投资页面（暂无）');
+    						//location.href='';
+    					}else{
+    						alert('投资失败，赶紧回滚事物');
+    					}
+    				}
+    			});   			
+    		}else{
+    			alert("单笔投资金额必须是在1000-30000之间1000的倍数")
+    			/*location.href="account.html";//未实名认证则跳转到账户中心*/   			
+    		}   		
+    	}else{    		
+    		location.href="login";//登录
+    	}       
+    });
+   
+
+//将可投余额按xx,xxx,xxx.xx显示
+	var sz1=$("#bqze").text().split('.');	
+	var a1=sz1[0].split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('');
+	$("#bqze").text(a1+'.'+sz1[1]);
+	
+	var sz2=$("#sykt").text().split('.');
+	var a2=sz2[0].split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('');
+	$("#sykt").text(a2+'.'+sz2[1]);
+
+//-------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //投资频道-口袋理财
 	var a,b,c,d;
 	var tips=Array();
@@ -180,19 +235,7 @@
     	place();
     });*/
 	
-//----------------------------自己添加----------------------------------	
-    // 点击立即投资
-    $('.invest_sure').click(function(){
-    	var user_session=$("#user_session").val();
-    	/*alert(user_session+"--"+typeof user_session);*/
-    	if(user_session){    		
-    		location.href="account.html";//账户中心
-    	}else{    		
-    		location.href="login";//登录
-    	}       
-    });
-   
-//--------------------------------------------------------------
+
     var order_id = '';
     //下单
     function projectBuyTips(result_msg){

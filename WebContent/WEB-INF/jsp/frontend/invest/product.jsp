@@ -18,7 +18,6 @@
 	id="layui_layer_cssskinlayercss">
 <script
 	src="${pageContext.request.contextPath}/statics/js/raphael.min.js"></script>
-<script src="${pageContext.request.contextPath}/statics/js/circle.js"></script>
 <script src="${pageContext.request.contextPath}/statics/js/layer.js"></script>
 <script src="${pageContext.request.contextPath}/statics/js/base64.js"></script>
 
@@ -33,12 +32,12 @@
 			<div class="content">
 				<div class="site-map clearfix">
 					<ul>
-						<li><a href="https://www.koudailc.com/site/index">首页</a></li>
+						<li><a href="index.html">首页</a></li>
 						<li>&gt;</li>
-						<li><a href="https://www.koudailc.com/list/list?channelId=4">到期还款</a></li>
+						<li><a href="#">到期还款</a></li>
 						<li>&gt;</li>
 						<li class="on"><a
-							href="${pageContext.request.contextPath}/statics/img/新手宝-信17IQW1期-到期还款-口袋理财.html">新手宝-信17IQW1期</a></li>
+							href="#">${product_list.produceName}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -65,24 +64,19 @@
 								<p>${product_list.investor}</p>
 							</div>
 							<div class="f_left meta3 clearfix">
-								<div class="round-progress f_left">
+								<div class="round-progress f_left">								
 									<svg height="66" version="1.1" width="66"
 										xmlns="http://www.w3.org/2000/svg"
 										style="overflow: hidden; position: relative;">
 									<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created
 									with Raphaël 2.1.2</desc>
-									<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
-									<path fill="none" stroke="#f0f0f0"
-										d="M33,7A26,26,0,1,1,32.99,7" stroke-width="5"
-										style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-									<path fill="none" stroke="#ff5b07"
-										d="M33,7A26,26,0,1,1,15.201775245854094,51.9531843129567"
-										stroke-width="5"
-										style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path></svg>
+									<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs></svg>								
 									<span>${100-product_list.residueAmount*100/product_list.totalAmount}%</span>
 								</div>
-								<p>本期总额：${product_list.totalAmount}元</p>
-								<p>剩余可投：${product_list.residueAmount}元</p>
+								<p>本期总额：<i id="bqze">${product_list.totalAmount}</i>元</p>
+								<p>剩余可投：<i id="sykt">${product_list.residueAmount}</i>元</p>
+								<input type="hidden" value="${user.id}" id="userId"/> 
+								<input type="hidden" value="${product_list.id}" id="productId"/> 							
 							</div>
 						</div>
 						<p class="font16 _999">
@@ -112,7 +106,7 @@
 										readonly="readonly" class="selec" href="javascript:void(0);"
 										style="color: rgb(153, 153, 153);">请选择优惠券</input>
 									<ul class="kdq" style=""></ul>
-									<div class="triangle-down"></div>
+									<div class="triangle-down"></div> 
 								</div>
 							</div>
 							<!-- 判断是否为可投状态，(1:未发布2:可投3:已投满)不可投 “投资”按钮禁用-->
@@ -332,6 +326,7 @@
 		<!-- 主体部分结束 -->
 		<script type="text/javascript"
 			src="${pageContext.request.contextPath}/statics/localjs/invest_3.js"></script>
+		<script src="${pageContext.request.contextPath}/statics/js/circle.js"></script> 
 		<!-- 底部开始 -->
 		<%@include file="../common/footer.jsp"%>
 		<!-- 底部结束 -->

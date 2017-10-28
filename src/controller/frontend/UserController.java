@@ -358,6 +358,6 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
-		return  (User) request.getSession().getAttribute(Constants.USER_SESSION);
+		return  user;
 	}
 }

@@ -26,4 +26,18 @@
 		update user_property set balance=#{balance},withdrawMoney=#{withdrawMoney} where userId=#{userId}
 	</update>
 	
+	<!-- 模拟用户投资-->
+	<update id="doInvest" >
+		update user_property  
+		<set>
+			<if test="balance != 0">
+				balance=#{balance},
+			</if>
+			<if test="invProperty != 0">
+				invProperty=#{invProperty}
+			</if>
+		</set>
+		where userId=#{userId}
+	</update>
+	
 </mapper>

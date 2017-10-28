@@ -13,4 +13,6 @@ public interface InvestProductService {
 	public int countInvest_product();
 	
 	public List<Invest_product> getInvest_productsByPage(int start,int size);
+	
+	public int updateInvest_product(Invest_product invest_product);
 }

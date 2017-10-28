@@ -59,6 +59,19 @@
     		<result property="purchaseMoney" column="purchaseMoney"/>
     		<result property="deadline" column="deadline"/>
     	</association>
-    </resultMap>
+    </resultMap>   
+    
+    <update id="updateInvest_product" parameterType="Invest_product">
+    	update invest_product
+    	<set>
+    		<if test="residueAmount != 0">
+    			residueAmount=#{residueAmount},
+    		</if>
+    		<if test="invStatus != 0">
+    			invStatus=#{invStatus},
+    		</if>
+    	</set>
+    	where id=#{id}
+    </update>
     
 </mapper>

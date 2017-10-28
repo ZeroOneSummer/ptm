@@ -1,3 +1,4 @@
+
 package mapper.user;
 
 import org.apache.ibatis.annotations.Param;
@@ -39,5 +40,10 @@ public interface UserPropertyMapper {
 	 */
 	public int withdrawDeposit(@Param("userId") int userId,@Param("balance") double balance,@Param("withdrawMoney") double withdrawMoney) throws Exception;
 	
-
+	/**
+	 * 用户投资后个人资产更新
+	 * @param user_property
+	 * @return
+	 */
+	public int doInvest(User_property user_property);
 }

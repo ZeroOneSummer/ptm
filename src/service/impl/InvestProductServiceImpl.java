@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import mapper.investproduct.InvestProductMapper;
 import pojo.Invest_product;
 import pojo.Invest_type;
+import pojo.Trade_record;
 import service.InvestProductService;
 @Service
 public class InvestProductServiceImpl implements InvestProductService {
@@ -46,6 +47,14 @@ public class InvestProductServiceImpl implements InvestProductService {
 	@Override
 	public int countInvest_product() {
 		return investProductMapper.countInvest_product();
+	}
+
+	/**
+	 * 投资产品可投金额、可投状态等更新
+	 */
+	@Override
+	public int updateInvest_product(Invest_product invest_product) {
+		return investProductMapper.updateInvest_product(invest_product);
 	}
 
 
