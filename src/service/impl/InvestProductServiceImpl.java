@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import mapper.investproduct.InvestProductMapper;
 import pojo.Invest_product;
 import pojo.Invest_type;
-import pojo.Trade_record;
 import service.InvestProductService;
 @Service
 public class InvestProductServiceImpl implements InvestProductService {
