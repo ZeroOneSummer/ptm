@@ -93,7 +93,7 @@
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">提取金额：</td>
-			                            <td class="f_18_20 _333"><input id="money" class="_input" type="text" placeholder="请输入您的提现金额"><span class="f_24_45 _999 _unit">元</span></td>
+			                            <td class="f_18_20 _333"><input id="amount" class="_input" type="text" placeholder="请输入您的提现金额"><span class="f_24_45 _999 _unit">元</span></td>
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">交易密码：</td>
@@ -102,8 +102,8 @@
 			                                <input class="_hidden" type="text">
 			                                <input class="_hidden" type="password">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
-			                                <input id="password" class="_input" type="password" autocomplete="off" placeholder="请输入您的交易密码">
-			                                <a href="ForgotPassword.jsp" class="f_14_16 ff534f">忘记密码?</a>
+			                                <input id="exchangePassword" class="_input" type="password" autocomplete="off" placeholder="请输入您的交易密码">
+			                                <a href="ForgotPassword" class="f_14_16 ff534f">忘记密码?</a>
 			                            </td>
 			                        </tr>
 			                        <tr>
@@ -114,11 +114,11 @@
 			                        </tr>
 			                    </tbody></table>
 			                </div>
-			                <div id="withdraw_limit">
+			               <!--  <div id="withdraw_limit">
 			                    <p>
 			                      	  每月前0次提现免手续费，超过0次每笔2元。您本月剩余0次免费提现机会。<br>&nbsp;
 			                    </p>
-			                </div>
+			                </div> -->
 			                <div id="withdraw_list" class="_list f_right">
 			                    <span id="shrinkage" class="f_14_16 ff534f">提现记录&nbsp;<img src="${pageContext.request.contextPath }/statics/img/more.jpg"></span>
 			                    <table cellpadding="0" cellspacing="0">
@@ -130,7 +130,28 @@
 				                        </tr>
 			                        </thead>
 			                        <tbody id="div_log">
-			                        	<tr><td></td><td class="a_center f_14_16 b5b5b5">暂无数据</td><td></td></tr>
+			                        	<c:if test="${tradeRecords != null }">
+							                	<c:forEach items="${tradeRecords}" var="trade_record">
+								                	
+								                	<tr class="_666 f_14_16">
+									                	<td class="a_center f_14_16 _333">
+									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
+								                		<c:choose>
+								                			<c:when test="${trade_record.tradeStatus == 1 }">
+											                	<td class="a_center f_14_16 _333" style="color: red">提取中</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center f_14_16 _333">已提取</td>
+								                			</c:otherwise>
+								                		</c:choose>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${tradeRecords == null }">
+							               <tr><td colspan="3" class="a_center f_14_16 b5b5b5">暂无数据</td></tr>
+					                	</c:if>
 			                        </tbody>
 			                        <tfoot id="div_foot" style="display: none;">
 				                        <tr>

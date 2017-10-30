@@ -1,6 +1,6 @@
 /*
-SQLyog 企业版 - MySQL GUI v8.14 
-MySQL - 5.5.40 : Database - pocket_money
+SQLyog Ultimate v11.24 (32 bit)
+MySQL - 5.5.56 : Database - pocket_money
 *********************************************************************
 */
 
@@ -114,7 +114,7 @@ CREATE TABLE `invest_product` (
 
 /*Data for the table `invest_product` */
 
-insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,393000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,580000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,0.00,3),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,0.00,3),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,940000.00,2);
+insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,394000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,580000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,580000.00,2),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,480000.00,2),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,940000.00,2);
 
 /*Table structure for table `invest_type` */
 
@@ -143,12 +143,15 @@ CREATE TABLE `msg_push` (
   `content` varchar(250) NOT NULL COMMENT '内容',
   `releaseDate` datetime NOT NULL COMMENT '发送时间\n            ',
   `title` varchar(50) NOT NULL COMMENT '消息标题',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='消息推送表';
+  `userId` int(10) NOT NULL COMMENT '用户Id',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `msg_push_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='消息推送表';
 
 /*Data for the table `msg_push` */
 
-insert  into `msg_push`(`id`,`msgType`,`content`,`releaseDate`,`title`) values (1,4,'国庆期间运营公告','2017-09-29 00:00:00','国庆期间运营公告'),(2,3,'签到赚积分活动','2017-10-21 00:00:00','签到赚积分活动');
+insert  into `msg_push`(`id`,`msgType`,`content`,`releaseDate`,`title`,`userId`) values (6,1,'您在2017-10-29 14:52:15成功充值了50元！','2017-10-29 00:00:00','用户充值消息',2),(7,1,'您在2017-10-29 14:53:03成功充值了100元！','2017-10-29 00:00:00','用户充值消息',3),(8,1,'您在2017-10-29 19:37:12成功充值了120元！','2017-10-29 00:00:00','用户充值消息',2),(9,2,'您在2017-10-30 08:10:46成功提现了11.0元！','2017-10-30 00:00:00','用户提现消息',2),(10,2,'您在2017-10-30 08:26:24成功提现了1009.12元！','2017-10-30 00:00:00','用户提现消息',2),(11,2,'您在2017-10-30 08:30:12成功提现了1000.0元！','2017-10-30 00:00:00','用户提现消息',2);
 
 /*Table structure for table `news` */
 
@@ -224,11 +227,11 @@ CREATE TABLE `trade_record` (
   CONSTRAINT `FK_Reference_11` FOREIGN KEY (`tradeTypeId`) REFERENCES `trade_type` (`id`),
   CONSTRAINT `FK_Reference_4` FOREIGN KEY (`produceId`) REFERENCES `invest_product` (`id`),
   CONSTRAINT `FK_Reference_5` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
 
 /*Data for the table `trade_record` */
 
-insert  into `trade_record`(`id`,`userId`,`produceId`,`tradeMoney`,`tradeDate`,`tradeStatus`,`tradeTypeId`) values (1,2,1,1500.00,'2017-10-21 00:00:00',1,3),(2,3,2,2000.00,'2017-08-25 00:00:00',2,1),(3,2,3,1000.00,'2017-10-27 17:34:58',1,3),(4,2,1,1000.00,'2017-10-28 23:33:50',2,1);
+insert  into `trade_record`(`id`,`userId`,`produceId`,`tradeMoney`,`tradeDate`,`tradeStatus`,`tradeTypeId`) values (1,2,1,1500.00,'2017-10-21 00:00:00',1,3),(2,3,2,2000.00,'2017-08-25 00:00:00',2,1),(3,2,3,1000.00,'2017-10-27 17:34:58',1,3),(4,2,NULL,3450.00,'2017-10-28 17:06:27',2,2),(5,2,NULL,360.00,'2017-10-28 17:15:56',2,2),(6,2,NULL,1200.00,'2017-10-28 17:17:13',2,2),(7,2,NULL,1000.00,'2017-10-29 11:16:29',2,2),(8,2,NULL,1500.00,'2017-10-29 11:18:46',2,2),(9,2,NULL,120.00,'2017-10-29 13:42:03',2,2),(10,2,NULL,1230.00,'2017-10-29 14:41:17',2,2),(11,3,NULL,8000.00,'2017-10-29 14:46:12',2,2),(12,3,NULL,1200.00,'2017-10-29 14:48:45',2,2),(13,2,NULL,50.00,'2017-10-29 14:52:15',2,2),(14,3,NULL,100.00,'2017-10-29 14:53:03',2,2),(15,2,NULL,120.00,'2017-10-29 19:37:12',2,3),(16,2,NULL,11.00,'2017-10-30 08:10:46',2,3),(17,2,NULL,1009.12,'2017-10-30 08:26:24',2,3),(18,2,NULL,1000.00,'2017-10-30 08:30:12',2,3);
 
 /*Table structure for table `trade_type` */
 
@@ -291,7 +294,7 @@ DROP TABLE IF EXISTS `user_property`;
 
 CREATE TABLE `user_property` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `pocketId` int(10) DEFAULT NULL COMMENT '口袋券（外键）',
+  `pocketId` int(10) NOT NULL COMMENT '口袋券（外键）',
   `userId` int(10) NOT NULL COMMENT '用户编号（外键）',
   `balance` double(10,2) NOT NULL COMMENT '余额 ',
   `score` int(10) DEFAULT NULL COMMENT '积分',
@@ -306,7 +309,7 @@ CREATE TABLE `user_property` (
 
 /*Data for the table `user_property` */
 
-insert  into `user_property`(`id`,`pocketId`,`userId`,`balance`,`score`,`withdrawMoney`,`invProperty`) values (1,1,2,2000.12,86,10.12,4000.00),(2,1,3,2000.13,77,2000.00,5000.00);
+insert  into `user_property`(`id`,`pocketId`,`userId`,`balance`,`score`,`withdrawMoney`,`invProperty`) values (1,1,2,7000.00,86,10.12,3000.00),(2,1,3,11300.13,77,2000.00,5000.00);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

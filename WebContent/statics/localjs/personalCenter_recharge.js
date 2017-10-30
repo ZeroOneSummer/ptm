@@ -65,12 +65,12 @@ function userCharge() {
 	var bankName = $('#bank_code').val(); //银行名称
 	var pay_amount = $('#pay_amount').val();  //充值金额
 	
-	if ( bankName == "") {
+	if ( $.trim(bankName) == "") {
 		$('#notification').html('请选择银行');
 		return;
 	}
 
-	if (pay_amount == "") {
+	if ($.trim(pay_amount) == "") {
 		$('#notification').html('请输入金额');
 		return;
 	}

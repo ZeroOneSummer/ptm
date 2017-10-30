@@ -228,7 +228,7 @@ public class JumpController {
 				currentPageNo = totalPageCount;	
 			}//if
 			try {
-				msg =msgService.getMsgList(currentPageNo, pageSize);
+				msg =msgService.getMsgList(1,0,currentPageNo, pageSize);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

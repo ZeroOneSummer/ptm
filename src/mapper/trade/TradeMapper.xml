@@ -65,23 +65,23 @@
   
   
   <!-- 动态查询交易记录  （userId，produceId，tradeStatus，tradeTypeId）-->
-  <select id="getTradeRecords" parameterType="Trade_record" resultType="Trade_record">
+  <select id="getTradeRecords"  resultType="Trade_record">
    		select * from trade_record 
    		<where>
-   			<if test="userId != 0">
-                 and  userId = #{userId}
+   			<if test="tradeRecord.userId != 0">
+                 and  userId = #{tradeRecord.userId}
             </if>
-            <if test="produceId != 0">
-                and produceId = #{produceId}
+            <if test="tradeRecord.produceId != 0">
+                and produceId = #{tradeRecord.produceId}
             </if>
-            <if test="tradeStatus != 0">
-                  and tradeStatus = #{tradeStatus}
+            <if test="tradeRecord.tradeStatus != 0">
+                  and tradeStatus = #{tradeRecord.tradeStatus}
             </if>
-            <if test="tradeTypeId != 0">
-                 and tradeTypeId = #{tradeTypeId}
+            <if test="tradeRecord.tradeTypeId != 0">
+                 and tradeTypeId = #{tradeRecord.tradeTypeId}
             </if>
    		</where>
-           ORDER BY tradeDate DESC
+           ORDER BY tradeDate DESC limit #{from},#{pageSize}
   </select>
   
   
