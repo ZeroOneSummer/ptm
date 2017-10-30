@@ -173,8 +173,13 @@ public class UserController {
 				json = JSON.toJSON(flag);
 				out.print(json);
 			} else {
-				double updateBalance = user_property.getBalance() - pay_amount;
-				updateBalanceResult = userService.rechange(user.getId(), updateBalance);
+				double updateBalance = user_property.getBalance() - pay_amount - user_property.getWithdrawMoney();
+				if(updateBalance > 0){
+					updateBalanceResult = userService.rechange(user.getId(), updateBalance);
+				}else{
+					flag = false;
+					updateBalanceResult = -1;
+				}
 				flag = updateBalanceResult > 0 ? true : false;
 				if (updateBalanceResult > 0) {
 					// 用户余额已发生改变，一并添加提现记录以及消息记录
