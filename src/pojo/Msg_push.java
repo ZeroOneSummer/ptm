@@ -9,6 +9,7 @@ import java.util.Date;
 public class Msg_push {
 
 	private int id;//主键
+	private int userId;//用户编号
 	private int msgType;//类型(1:充值2:提现3:积分兑现4:公告)
 	private String content;//内容
 	private String title;//标题
@@ -18,6 +19,13 @@ public class Msg_push {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public int getMsgType() {
 		return msgType;
@@ -40,6 +48,7 @@ public class Msg_push {
 	public String getTitle() {
 		return title;
 	}
-	
-	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 }

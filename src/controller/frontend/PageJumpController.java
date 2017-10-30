@@ -136,7 +136,7 @@ public class PageJumpController {
 	@RequestMapping("/messageCenter.html")
 	public String toMessageCenter(){
 		
-		return "frontend/personalCenter/messageCenter";
+		return "redirect:jumpToMessageCenter.html";
 	}
 	
 	

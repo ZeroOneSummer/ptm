@@ -6,11 +6,24 @@
     <mapper namespace="mapper.news.Msg_pushMapper">
     
     <select id="getMsgList" resultType="Msg_push">
-  	select * from msg_push limit #{from},#{pageSize}
+  		select * from msg_push
+  	<where>
+  		<if test="msgType != 0">
+  			msgType = #{msgType}
+  		</if>
+  		<if test="userId != 0">
+  			userId = #{userId}
+  		</if>
+  	</where>
+  	 	limit #{from},#{pageSize}
   	</select>
   
   	<select id="count" resultType="Integer">
-  	select count(1) as count from msg_push
-  
+  		select count(1) as count from msg_push
   	</select>
+  	
+  	<insert id="addMsg_push" parameterType="Msg_push">
+  		 insert into msg_push (userId,msgType,content,releaseDate,title )
+  		 values(#{userId},#{msgType},#{content},#{releaseDate},#{title})
+  	</insert>
   </mapper>

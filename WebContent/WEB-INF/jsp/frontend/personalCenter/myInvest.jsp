@@ -218,6 +218,29 @@
 										</tr>
 									</tbody>
 									<tbody id="my_invest_log1">
+								<%-- 		<c:if test="${tradeRecords != null }">
+							                	<c:forEach items="${tradeRecords}" var="trade_record">
+								                	
+								                	<tr class="_666 f_14_16">
+									                	<td class="a_center f_14_16 _333">
+									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
+								                		<c:choose>
+								                			<c:when test="${trade_record.tradeStatus == 1 }">
+											                	<td class="a_center f_14_16 _333" style="color: red">未完成</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center f_14_16 _333">已完成</td>
+								                			</c:otherwise>
+								                		</c:choose>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${tradeRecords == null }">
+							               <tr><td colspan="3" class="a_center f_14_16 b5b5b5">暂无数据</td></tr>
+					                	</c:if> --%>
+									
 										<tr>
 											<td colspan="4" class="a_center f_14_16 _999">暂无数据</td>
 										</tr>

@@ -16,15 +16,21 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 	private Msg_pushMapper msg;
 	
 	@Override
-	public List<Msg_push> getMsgList(Integer currentPageNo, Integer pageSize) throws Exception {
+	public List<Msg_push> getMsgList(Integer userId,Integer msgType,Integer currentPageNo, Integer pageSize) throws Exception {
 		
-		return msg.getMsgList((currentPageNo-1)*pageSize, pageSize);
+		return msg.getMsgList(userId,msgType,(currentPageNo-1)*pageSize, pageSize);
 	}
 
 	@Override
 	public int count() throws Exception {
 		
 		return msg.count();
+	}
+
+	@Override
+	public int addMsg_push(Msg_push msg_push) throws Exception {
+		
+		return msg.addMsg_push(msg_push);
 	}
 
 }

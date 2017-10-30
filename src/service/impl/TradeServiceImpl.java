@@ -1,6 +1,8 @@
 package service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,8 +19,12 @@ public class TradeServiceImpl implements TradeService {
 	private TradeMapper tradeMapper;
 
 	@Override
-	public List<Trade_record> getTradeRecords(Trade_record tradeRecord) throws Exception {
-		return tradeMapper.getTradeRecords(tradeRecord);
+	public List<Trade_record> getTradeRecords(Trade_record tradeRecord,Integer currentPageNo,Integer pageSize) throws Exception {
+		Map<String, Object> tradeMap = new HashMap<String, Object>();
+		tradeMap.put("tradeRecord", tradeRecord);
+		tradeMap.put("from", (currentPageNo-1)*pageSize);
+		tradeMap.put("pageSize", pageSize);
+		return tradeMapper.getTradeRecords(tradeMap);
 	}
 	
 	@Override

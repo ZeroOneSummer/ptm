@@ -220,7 +220,29 @@
 										</tr>
 										</thead>
 										<tbody id="div_log">
-										<tr><td></td><td class="a_center f_14_16 b5b5b5">暂无数据</td><td></td></tr></tbody>
+										 	<c:if test="${tradeRecords != null }">
+							                	<c:forEach items="${tradeRecords}" var="trade_record">
+								                	
+								                	<tr class="_666 f_14_16">
+									                	<td class="a_center f_14_16 _333">
+									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
+								                		<c:choose>
+								                			<c:when test="${trade_record.tradeStatus == 1 }">
+											                	<td class="a_center f_14_16 _333" style="color: red">未完成</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center f_14_16 _333">已完成</td>
+								                			</c:otherwise>
+								                		</c:choose>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${tradeRecords == null }">
+							               <tr><td colspan="3" class="_666 f_14_16 a_center">暂无数据</td></tr>
+					                	</c:if>
+										</tbody>
 										<tfoot id="div_foot" style="display: none;">
 										<tr>
 											<td><!-- 留边距 --></td>
