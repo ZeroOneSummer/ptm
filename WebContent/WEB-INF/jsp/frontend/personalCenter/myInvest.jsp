@@ -45,6 +45,7 @@
 								$("#login").html(cname);
 							</script></span>
 						<div class="f_right">
+
 							<a href="recharge.html"> <span
 								class="btn_fd5353 f_14_35 fff a_center">充值</span>
 							</a> <a href="withdrawDeposit.html"> <span
@@ -183,8 +184,8 @@
 								<span>交易记录</span>
 								<form action="jumpToMyInvest.html" method="post">
 									<input type="hidden" name="invTypeId" value="${invTypeId}"/>
-									<input type="hidden" name="pageIndex" value="${page.currentPageNo}"/>
-									<input type="hidden" id="totalPageCount" value="${page.totalPageCount}"/>
+									<input type="hidden" name="currentPageNo" value="${page1.currentPageNo}"/>
+									<input type="hidden" id="totalPageCount" value="${page1.totalPageCount}"/>
 									<ul id="change_invest_log1">
 										<c:if test="${invTypeId == 1}">
 											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(1);">新手宝</li>										
@@ -259,13 +260,13 @@
 												<td colspan="4" id="Paging">
 													<ul class="pagination">
 														<li><a href="javascript:sendPage(document.forms[0],1)">首页</a></li>	
-														<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo-1})">上一页</a></li>							
-														<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo+1})">下一页</a></li>
-														<li><a href="javascript:sendPage(document.forms[0],${page.totalPageCount})">尾页</a></li>								
+														<li><a href="javascript:sendPage(document.forms[0],${page1.currentPageNo-1})">上一页</a></li>							
+														<li><a href="javascript:sendPage(document.forms[0],${page1.currentPageNo+1})">下一页</a></li>
+														<li><a href="javascript:sendPage(document.forms[0],${page1.totalPageCount})">尾页</a></li>								
 													</ul>
 													<br/><br/><br/>
 													<div>
-														第&nbsp;${page.currentPageNo}&nbsp;页/共&nbsp;${page.totalPageCount}&nbsp;页（共计&nbsp;${page.totalCount}&nbsp;条记录）&nbsp;
+														第&nbsp;${page1.currentPageNo}&nbsp;页/共&nbsp;${page1.totalPageCount}&nbsp;页（共计&nbsp;${page1.totalCount}&nbsp;条记录）&nbsp;
 														跳转到&nbsp;<input type="text" id="dumpPage" style="background-color: rgba(0,0,0,0.05);width: 40px;border: 1px rgba(0,0,0,0.2) solid;">&nbsp;页&nbsp;	
 														<input type="button" value="确&nbsp;定" onclick="dumpPage(document.forms[0])" style="width:50px;line-height:22px;font-size: 16px;background-color: rgba(0,0,0,0.08);"/>
 													</div>	

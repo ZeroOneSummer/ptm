@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import pojo.Info_statis;
 import pojo.Msg_push;
@@ -210,7 +210,7 @@ public class JumpController {
 			//总数量（表）
 			int totalCount = 0;
 			try {
-				totalCount = msgService.count();
+				totalCount = msgService.count(new Msg_push());
 			} catch (Exception e) {
 
 				e.printStackTrace();

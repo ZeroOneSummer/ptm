@@ -66,20 +66,27 @@
 		               <div class="my_pocket_content">
 							<div class="_title">
 			                    <span class="f_18_20 _333 f_left">修改登录密码</span>
-			                    <a href="account.jsp" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
+			                    <a href="account.html" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
 			                    <div class="clear"></div>
 			                </div>
 							<div class="_content a_right">
-								<div class="f_14_16 _333 a_center">188****6917</div>
+								<div class="f_14_16 _333 a_center"><i id="login">${user.loginName }</i>
+								<script type="text/javascript">
+			                    	var name=$("#login").html();
+			                    	var cname=name.substring(0,3)+"****"+name.substring(7);
+			                    	$("#login").html(cname);
+			                    </script></div>
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                    <input class="_hidden" type="text">
 			                    <input class="_hidden" type="password">
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
-								<span class="f_14_16 _333">当前密码</span><input type="password" autocomplete="off" id="old_pwd" class="_input"><br>
+			                    <input type="hidden" value="${user.id }" id="userId">
+								<span class="f_14_16 _333">当前密码</span><input type="password" autocomplete="off" id="old_pwd" class="_input" value="${user.password }"><br>
 								<span class="f_14_16 _333">新密码</span><input type="password" autocomplete="off" id="password" class="_input"><br>
 								<span class="f_14_16 _333">确认密码</span><input type="password" autocomplete="off" id="repassword" class="_input"><br>
 			                    <div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
-								<a href="javascript:changepwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">确认</a>
+								<a onclick="javascript:changepwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">确认</a>
+
 							</div>
 					  </div>
 					  <div class="clear"></div>

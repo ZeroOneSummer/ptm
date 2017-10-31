@@ -1,43 +1,32 @@
 package controller.frontend;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import service.BankTypeService;
 import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
 import service.backend.Msg_pushMapperService;
-
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSON;
-import com.mysql.jdbc.StringUtils;
-
 import pojo.Bank_Type;
 import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
 import pojo.view.Invest_msg;
-import service.UserService;
 import utils.Constants;
 import utils.DateUtils;
 import utils.H5Utils;
@@ -141,6 +130,91 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	/**
+	 * 修改登录密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateLoginPassword.html",method=RequestMethod.POST)
+	@ResponseBody
+    public void updateLoginPassword(@RequestParam int id,
+    		@RequestParam String password,
+    		HttpServletRequest request,
+    		HttpServletResponse response){
+		
+		String loginPassword= H5Utils.Hex5(password);
+    	User user=new User();
+    	user.setId(id);
+    	user.setPassword(loginPassword);
+    	int i=0;
+    	try {
+			i=userService.updatePassword(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	 try {
+			PrintWriter out= response.getWriter();
+			String str=JSON.toJSONString(i);
+			out.println(str);
+			System.out.println("str>>"+str);
+			out.flush();
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
+    	
+    }
+
+	/**
+	 * 设置/修改交易密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateExchangePassword.html",method=RequestMethod.POST)
+	@ResponseBody
+    public void updateExchangePassword(@RequestParam int id,
+    		@RequestParam String password,
+    		HttpServletRequest request,
+    		HttpServletResponse response){
+		
+		String exchangePassword= H5Utils.Hex5(password);
+		System.out.println("进入交易密码设置/修改方法>>>>>>>>>>>>>>"+exchangePassword);
+    	User user=new User();
+    	user.setId(id);
+    	user.setExchangePassword(exchangePassword);
+    	int i=0;
+    	try {
+			i=userService.updateExchangePassword(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	 try {
+			PrintWriter out= response.getWriter();
+			String str=JSON.toJSONString(i);
+			out.println(str);
+			System.out.println("str>>"+str);
+			out.flush();
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
+    	
+    }
 
 	/**
 	 * 用户提现（模拟提现，未调用外部接口） 关键点：余额减少，添加提现记录
@@ -221,37 +295,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/setExchangePassword.html", method = RequestMethod.POST)
-	@ResponseBody
-	public void setExchangePassword(@RequestParam int id, @RequestParam String password, HttpServletRequest request,
-			HttpServletResponse response) {
-
-		String exchangePassword = H5Utils.Hex5(password);
-		System.out.println("进入验证方法" + exchangePassword);
-		User user = new User();
-		user.setId(id);
-		user.setExchangePassword(exchangePassword);
-		int i = 0;
-		try {
-			i = userService.updateExchangePassword(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			PrintWriter out = response.getWriter();
-			String str = JSON.toJSONString(i);
-			out.println(str);
-			System.out.println("str>>" + str);
-			out.flush();
-			out.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	/**
 	 * 携带用户资产（余额）/ 充值记录 信息 在进入充值页面
 	 * 
@@ -262,8 +306,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/jumpToRecharge.html")
-	public String jumpToRecharge(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+	public String jumpToRecharge(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("jumpToRecharge.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(2); // 类别为充值
@@ -271,9 +316,9 @@ public class UserController {
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 		// 总数量（表）
 		int totalCount = 0;
@@ -284,20 +329,20 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
 		int totalPageCount = pages.getTotalPageCount();
 		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
+		if (pageIndex < 1) {
+			pageIndex = 1;
+		} else if (pageIndex > totalPageCount) {
+			pageIndex = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
-			this.getTradeRecords(tradeRecord, currentPageNo, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord, pageIndex, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户资产（余额）/ 充值记录 信息 在进入充值页面 发生异常！");
 		}
@@ -347,7 +392,7 @@ public class UserController {
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		
 		Bank_Type bank_Type = null;
 		try {
@@ -378,10 +423,11 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/jumpToMyInvest.html")
-	public String jumpToMyInvest(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+	public String jumpToMyInvest(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
 							@RequestParam(value = "invTypeId", required = false) Integer invTypeId,
 							HttpServletRequest request, HttpServletResponse response, Model model) {
 		System.out.println("携带用户资产（余额）/ 持有资产 信息在进入账户中心--我的投资页面>>>>>");
+		System.out.println("jumpToMyInvest.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(1); // 类别为投资
@@ -389,9 +435,9 @@ public class UserController {
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = pageIndex;
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 		// 总数量（表）
 		int totalCount = 0;
@@ -402,21 +448,14 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
-		}
-		model.addAttribute("pages", pages);
+		pages.setTotalPageCountByRs();
 		
 		//---------------------携带交易记录数据到个人中心---------------------
 		PageSupport page1=new PageSupport();
-		pageIndex=pageIndex==null?1:pageIndex;
+		pageIndex=currentPageNo==null?1:currentPageNo;
 		invTypeId=invTypeId==null?1:invTypeId;		
 		page1.setCurrentPageNo(pageIndex);
 		page1.setPageSize(3);
@@ -429,7 +468,7 @@ public class UserController {
 		}else {			
 			model.addAttribute(Constants.INVEST_MSG_LIST,list1);
 		}	
-		model.addAttribute(Constants.PAGE,page1);
+		model.addAttribute("page1",page1);
 		model.addAttribute("invTypeId",invTypeId);
 		//------------------------------------------------------------
 		try {
@@ -445,6 +484,7 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/myInvest";
 	}
 
@@ -460,15 +500,18 @@ public class UserController {
 	 */
 	@RequestMapping("/jumpToMessageCenter.html")
 	public String jumpToMessageCenter(@RequestParam(value = "msgType", required = false) Integer msgType,
-			@RequestParam(value = "pageIndex", required = false) Integer pageIndex, HttpServletRequest request,
+			@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		System.out.println("携带用户消息列表集合 信息在进入账户中心--消息>>>>>");
+		System.out.println("jumpToMessageCenter.html>>当前页--"+currentPageNo);
+		Msg_push msg_push = new Msg_push();
+		User user = this.updateUserSession(request, response);
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 
 		// 消息类型
@@ -476,28 +519,24 @@ public class UserController {
 		if (msgType != null) {
 			msgType1 = Integer.valueOf(msgType);
 		}
+		
+		msg_push.setMsgType(msgType1);   //消息类型
+		msg_push.setUserId(user.getId());   //当前用户Id
 		// 总数量（表）
 		int totalCount = 0;
 		try {
-			totalCount = msgService.count();
+			totalCount = msgService.count(msg_push);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
-		}
-		model.addAttribute("pages", pages);
+		pages.setTotalPageCountByRs();
 		try {
-			this.getMessageList(msgType1, currentPageNo, pageSize, request, response, model);
+			this.getMessageList(msgType1, pageIndex, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户消息列表集合 信息在进入账户中心--消息 发生异常");
 			try {
@@ -508,6 +547,7 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/messageCenter";
 	}
 

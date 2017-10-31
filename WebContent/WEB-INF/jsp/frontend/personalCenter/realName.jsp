@@ -71,7 +71,7 @@
 						<div class="my_pocket_content">
 							<div class="_title">
 								<span class="f_18_20 _333 f_left">实名认证</span> <a
-									href="account.jsp" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
+									href="account.html" class="f_14_16 ff534f f_right">&lt;&nbsp;返回</a>
 								<div class="clear"></div>
 							</div>
 							<div class="_content a_right">

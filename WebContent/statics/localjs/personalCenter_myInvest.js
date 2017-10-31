@@ -7,7 +7,8 @@
 		}else if(num>totalPageCount){
 			num=totalPageCount;
 		}
-		frm.pageIndex.value=num;		
+		frm.currentPageNo.value=num;
+		alert(frm.currentPageNo.value);
 		frm.submit();
 	}
 

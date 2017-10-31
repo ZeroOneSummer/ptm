@@ -1,4 +1,6 @@
 /build/
+<<<<<<< HEAD
+=======
 .settings/
 /css/
 /img/
@@ -10,3 +12,5 @@
 .classpath
 *.xml
 *.properties
+>>>>>>> branch 'master' of https://github.com/ZeroOneSummer/ptm.git
+/bin/
