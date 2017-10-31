@@ -71,11 +71,9 @@
 							<div
 								class="p_relative _btn bg_fd5353 a_center fff f_18 _b_radius">
 								注册领红包<a class="indie"
-									href="${pageContext.request.contextPath}/jsp/frontend/loginRegister/register.jsp"></a>
+									href="register"></a>
 							</div>
 							<p class="lh_em_2 a_right t_underline">
-								<a class="_000"
-									href="${pageContext.request.contextPath}/jsp/frontend/invest/Newfuli.jsp">新手福利</a>
 							</p>
 						</div>
 					</div>
@@ -304,7 +302,7 @@
 								<div class="f_right" style="width: 73%">
 									<p class="lh_em_2 a_left">
 										<a class="f_left _000 f_16 _ellipsis _hover"
-											href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/Meiti.jsp">口袋理财为青年圆梦，助力英雄再缔传奇</a><i
+											href="Meiti.html">口袋理财为青年圆梦，助力英雄再缔传奇</a><i
 											class="f_right f_14 _999">09-11</i>
 									</p>
 									<p class="clear _666 f_14 a_left">9月6日，由上海有人公益基金会、口袋理财联合主办的“英雄同行，点亮梦想”尼克·胡哲2017世界巡回演...</p>
@@ -319,7 +317,7 @@
 								<div class="f_right" style="width: 73%">
 									<p class="lh_em_2 a_left">
 										<a class="f_left _000 f_16 _ellipsis _hover"
-											href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/Meiti.jsp">“共话前沿金融科技”口袋理财受邀出席2017朗迪金融科技峰会</a><i
+											href="Meiti.html">“共话前沿金融科技”口袋理财受邀出席2017朗迪金融科技峰会</a><i
 											class="f_right f_14 _999">07-17</i>
 									</p>
 									<p class="clear _666 f_14 a_left">7月15日至16日，全球金融科技领域最受瞩目的朗迪峰会在上海浦东嘉里大酒店盛大开幕，这是朗迪峰会第三...</p>
@@ -334,7 +332,7 @@
 								<div class="f_right" style="width: 73%">
 									<p class="lh_em_2 a_left">
 										<a class="f_left _000 f_16 _ellipsis _hover"
-											href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/Meiti.jsp">“数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会</a><i
+											href="Meiti.html">“数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会</a><i
 											class="f_right f_14 _999">07-05</i>
 									</p>
 									<p class="clear _666 f_14 a_left">6月28日-30日，2017上海国际信息消费节拉开帷幕，作为本届信息消费节的重头戏。以“智“在必得为...</p>
@@ -345,55 +343,55 @@
 						<div class="column4_c1_right f_right">
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">9月22~23日银行维护通知</span></a><i
 									class="f_right f_14 _999">09-22</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">9月2日客服呼入电话线路进行检测维护</span></a><i
 									class="f_right f_14 _999">09-01</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">关于口袋理财撤销招商银行质量保障服务专款的通知</span></a><i
 									class="f_right f_14 _999">08-31</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">存管用户线下首次充值送抵扣红包</span></a><i
 									class="f_right f_14 _999">08-30</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">江西银行8月26~27日例行维护</span></a><i
 									class="f_right f_14 _999">08-25</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
 									class="f_right f_14 _999">08-25</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">8月25日推送异常通知</span></a><i
 									class="f_right f_14 _999">08-25</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">江西银行22~23日维护通知</span></a><i
 									class="f_right f_14 _999">08-21</i>
 							</p>
 							<p class="clear lh_em_2 a_left f_16 _333">
 								<a
-									href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/phoneNews.jsp"><span
+									href="phoneNews.html"><span
 									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
 									class="f_right f_14 _999">08-21</i>
 							</p>
@@ -415,55 +413,55 @@
 							<tbody>
 								<tr>
 									<td><a target="_blank"
-										href="http://www.jx-bank.com/nccbank/zh_CN/home/index.html"><img
+										href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/jxyh.jpg"></a>
 									</td>
-									<td><a target="_blank" href="https://www.xin.xin/#/home"><img
+									<td><a target="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/zmxy.jpg"></a>
 									</td>
-									<td><a target="_blank" href="http://www.wdzj.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/wdzj.png"></a>
 									</td>
-									<td><a target="_blank" href="http://www.p2peye.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/wdty.png"></a>
 									</td>
-									<td><a target="_blank" href="http://www.yeepay.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/ybzf.png"></a>
 									</td>
 									<td class="last-child"><a target="_blank"
-										href="http://www.umpay.com/umpayPublic/index.html"><img
+										href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/ld.png"></a>
 									</td>
 								</tr>
 								<tr>
-									<td><a target="_blank" href="http://www.ppdai.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/ppd.jpg"></a>
 									</td>
-									<td><a target="_blank" href="http://www.fenqile.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/fql.jpg"></a>
 									</td>
-									<td><a target="_blank" href="https://www.fadada.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/fdd.jpg"></a>
 									</td>
-									<td><a target="_blank" href="http://www.dailuopan.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/758058c9b284ca.jpg"></a>
 									</td>
-									<td><a target="_blank" href="http://www.lianlianpay.com/"><img
+									<td><a target="_blank" href="javascript:void(0);"><img
 											class="v_center" height="37px"
 											src="${pageContext.request.contextPath}/statics/img/llzf.png"></a>
 									</td>
 									<td class="last-child"><a target="_blank"
-										href="https://www.99bill.com/"><img class="v_center"
+										href="javascript:void(0);"><img class="v_center"
 											height="37px"
 											src="${pageContext.request.contextPath}/statics/img/kq.jpg"></a>
 									</td>

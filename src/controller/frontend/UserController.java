@@ -1,5 +1,6 @@
 package controller.frontend;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -136,6 +137,90 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	/**
+	 * 修改登录密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateLoginPassword.html",method=RequestMethod.POST)
+	@ResponseBody
+    public void updateLoginPassword(@RequestParam int id,
+    		@RequestParam String password,
+    		HttpServletRequest request,
+    		HttpServletResponse response){
+		
+		String loginPassword= H5Utils.Hex5(password);
+    	User user=new User();
+    	user.setId(id);
+    	user.setPassword(loginPassword);
+    	int i=0;
+    	try {
+			i=userService.updatePassword(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	 try {
+			PrintWriter out= response.getWriter();
+			String str=JSON.toJSONString(i);
+			out.println(str);
+			System.out.println("str>>"+str);
+			out.flush();
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
+    	
+    }
+
+	/**
+	 * 设置/修改交易密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateExchangePassword.html",method=RequestMethod.POST)
+	@ResponseBody
+    public void updateExchangePassword(@RequestParam int id,
+    		@RequestParam String password,
+    		HttpServletRequest request,
+    		HttpServletResponse response){
+		
+		String exchangePassword= H5Utils.Hex5(password);
+    	User user=new User();
+    	user.setId(id);
+    	user.setExchangePassword(exchangePassword);
+    	int i=0;
+    	try {
+			i=userService.updateExchangePassword(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	 try {
+			PrintWriter out= response.getWriter();
+			String str=JSON.toJSONString(i);
+			out.println(str);
+			System.out.println("str>>"+str);
+			out.flush();
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
+    	
+    }
 
 	/**
 	 * 用户提现（模拟提现，未调用外部接口） 关键点：余额减少，添加提现记录
@@ -216,37 +301,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/setExchangePassword.html", method = RequestMethod.POST)
-	@ResponseBody
-	public void setExchangePassword(@RequestParam int id, @RequestParam String password, HttpServletRequest request,
-			HttpServletResponse response) {
-
-		String exchangePassword = H5Utils.Hex5(password);
-		System.out.println("进入验证方法" + exchangePassword);
-		User user = new User();
-		user.setId(id);
-		user.setExchangePassword(exchangePassword);
-		int i = 0;
-		try {
-			i = userService.updateExchangePassword(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			PrintWriter out = response.getWriter();
-			String str = JSON.toJSONString(i);
-			out.println(str);
-			System.out.println("str>>" + str);
-			out.flush();
-			out.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	/**
 	 * 携带用户资产（余额）/ 充值记录 信息 在进入充值页面
 	 * 
