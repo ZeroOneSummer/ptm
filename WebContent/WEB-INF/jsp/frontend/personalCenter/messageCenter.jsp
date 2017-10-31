@@ -61,11 +61,11 @@
 			                <div class="my_pocket_content">
 			                <div id="msg_center_header">
 			                    <span class="_999 f_14_16">消息类型:</span>
-			                    <a msg_type="" href="" class="_333 f_14_16 btn_fd5353 fff">全部消息</a>
-			                    <a msg_type="充值" class="_333 f_14_16">充值</a>
-			                    <a msg_type="提现" class="_333 f_14_16">提现</a>
-			                    <a msg_type="积分兑换" class="_333 f_14_16">积分兑换</a>
-			                    <a msg_type="公告" class="_333 f_14_16">公告</a>
+			                    <a msg_type="0" href="javascript:sendType(document.forms[0],0);" class="_333 f_14_16 btn_fd5353 fff">全部消息</a>
+			                    <a msg_type="1" href="javascript:sendType(document.forms[0],1);" class="_333 f_14_16">充值</a>
+			                    <a msg_type="2" href="javascript:sendType(document.forms[0],2);" class="_333 f_14_16">提现</a>
+			                    <a msg_type="3" href="javascript:sendType(document.forms[0],3);" class="_333 f_14_16">积分兑换</a>
+			                    <a msg_type="4" href="javascript:sendType(document.forms[0],4);;" class="_333 f_14_16">公告</a>
 			                </div>
 			                <div id="notice_list">
 				                <table cellpadding="0" cellspacing="0">
@@ -111,6 +111,7 @@
 					<form action="jumpToMessageCenter.html" method="post">
 						<input type="hidden" value="${page.currentPageNo}" name="currentPageNo"/>
 						<input type="hidden" value="${page.totalPageCount}" id="totalPageCount"/>
+						<input type="hidden" id="msgType" name="msgType"/>
 					</form>
 					<div id="paging">
 						<ul class="pagination">
@@ -134,7 +135,7 @@
 			</div>
 		</div>
         <!-- 主体部分结束 -->
-		<script type="text/javascript" src="${pageContext.request.contextPath }/statics/localjs/personalCenter_BindBack.js"></script>
+        <script src="${pageContext.request.contextPath }/statics/localjs/personalCenter_messageCenter.js"></script>	
 		<!-- 尾部开始 -->
 		<%@include file="../common/footer.jsp" %>
 		<!-- 尾部结束 -->  

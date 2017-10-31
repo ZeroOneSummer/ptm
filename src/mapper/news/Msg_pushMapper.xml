@@ -9,10 +9,10 @@
   		select * from msg_push
   	<where>
   		<if test="msgType != 0">
-  			msgType = #{msgType}
+  			and	msgType = #{msgType}
   		</if>
   		<if test="userId != 0">
-  			userId = #{userId}
+  			and	userId = #{userId}
   		</if>
   	</where>
   	 	limit #{from},#{pageSize}
@@ -20,6 +20,14 @@
   
   	<select id="count" resultType="Integer">
   		select count(1) as count from msg_push
+  		<where>
+  		<if test="msgType != 0">
+  			and	msgType = #{msgType}
+  		</if>
+  		<if test="userId != 0">
+  			and	userId = #{userId}
+  		</if>
+  	</where>
   	</select>
   	
   	<insert id="addMsg_push" parameterType="Msg_push">

@@ -257,9 +257,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/jumpToRecharge.html")
-	public String jumpToRecharge(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+	public String jumpToRecharge(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println("jumpToRecharge.html>>当前页--"+pageIndex);
+		System.out.println("jumpToRecharge.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(2); // 类别为充值
@@ -267,9 +267,9 @@ public class UserController {
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 		// 总数量（表）
 		int totalCount = 0;
@@ -280,20 +280,20 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
 		int totalPageCount = pages.getTotalPageCount();
 		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
+		if (pageIndex < 1) {
+			pageIndex = 1;
+		} else if (pageIndex > totalPageCount) {
+			pageIndex = totalPageCount;
 		}
 		model.addAttribute(Constants.PAGE, pages);
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
-			this.getTradeRecords(tradeRecord, currentPageNo, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord, pageIndex, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户资产（余额）/ 充值记录 信息 在进入充值页面 发生异常！");
 		}
@@ -374,9 +374,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/jumpToMyInvest.html")
-	public String jumpToMyInvest(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+	public String jumpToMyInvest(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println("jumpToMyInvest.html>>当前页--"+pageIndex);
+		System.out.println("jumpToMyInvest.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(1); // 类别为投资
@@ -384,9 +384,9 @@ public class UserController {
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 		// 总数量（表）
 		int totalCount = 0;
@@ -397,17 +397,10 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
-		}
-		model.addAttribute(Constants.PAGE, pages);
+		pages.setTotalPageCountByRs();
 		
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
@@ -422,6 +415,7 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/myInvest";
 	}
 
@@ -437,16 +431,18 @@ public class UserController {
 	 */
 	@RequestMapping("/jumpToMessageCenter.html")
 	public String jumpToMessageCenter(@RequestParam(value = "msgType", required = false) Integer msgType,
-			@RequestParam(value = "pageIndex", required = false) Integer pageIndex, HttpServletRequest request,
+			@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		System.out.println("携带用户消息列表集合 信息在进入账户中心--消息>>>>>");
-		System.out.println("jumpToMessageCenter.html>>当前页--"+pageIndex);
+		System.out.println("jumpToMessageCenter.html>>当前页--"+currentPageNo);
+		Msg_push msg_push = new Msg_push();
+		User user = this.updateUserSession(request, response);
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
-		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+		Integer pageIndex = 1;
+		if (currentPageNo != null) {
+			pageIndex = Integer.valueOf(currentPageNo);
 		}
 
 		// 消息类型
@@ -454,28 +450,24 @@ public class UserController {
 		if (msgType != null) {
 			msgType1 = Integer.valueOf(msgType);
 		}
+		
+		msg_push.setMsgType(msgType1);   //消息类型
+		msg_push.setUserId(user.getId());   //当前用户Id
 		// 总数量（表）
 		int totalCount = 0;
 		try {
-			totalCount = msgService.count();
+			totalCount = msgService.count(msg_push);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(pageIndex);
 		pages.setPageSize(pageSize);
 		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
-		}
-		model.addAttribute(Constants.PAGE, pages);
+		pages.setTotalPageCountByRs();
 		try {
-			this.getMessageList(msgType1, currentPageNo, pageSize, request, response, model);
+			this.getMessageList(msgType1, pageIndex, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户消息列表集合 信息在进入账户中心--消息 发生异常");
 			try {
@@ -486,6 +478,7 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/messageCenter";
 	}
 

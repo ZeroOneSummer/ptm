@@ -23,11 +23,13 @@ public interface Msg_pushMapper {
 
 	/**
 	 * 统计消息推送总记录数
+	 * 封装数据有：msgType、userId
 	 * 
+	 * @param msg_push
 	 * @return
 	 * @throws Exception
 	 */
-	public int count() throws Exception;
+	public int count(Msg_push msg_push) throws Exception;
 
 	/**
 	 * 添加消息 封装数据有：msgType、content、releaseDate、title

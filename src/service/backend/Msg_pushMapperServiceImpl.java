@@ -22,9 +22,9 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 	}
 
 	@Override
-	public int count() throws Exception {
+	public int count(Msg_push msg_push) throws Exception {
 		
-		return msg.count();
+		return msg.count(msg_push);
 	}
 
 	@Override
