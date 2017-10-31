@@ -259,6 +259,7 @@ public class UserController {
 	@RequestMapping("/jumpToRecharge.html")
 	public String jumpToRecharge(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("jumpToRecharge.html>>当前页--"+pageIndex);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(2); // 类别为充值
@@ -289,7 +290,7 @@ public class UserController {
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			this.getTradeRecords(tradeRecord, currentPageNo, pageSize, request, response, model);
@@ -342,7 +343,7 @@ public class UserController {
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		
 		Bank_Type bank_Type = null;
 		try {
@@ -375,7 +376,7 @@ public class UserController {
 	@RequestMapping("/jumpToMyInvest.html")
 	public String jumpToMyInvest(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println("携带用户资产（余额）/ 持有资产 信息在进入账户中心--我的投资页面>>>>>");
+		System.out.println("jumpToMyInvest.html>>当前页--"+pageIndex);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(1); // 类别为投资
@@ -406,7 +407,7 @@ public class UserController {
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
@@ -439,6 +440,7 @@ public class UserController {
 			@RequestParam(value = "pageIndex", required = false) Integer pageIndex, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		System.out.println("携带用户消息列表集合 信息在进入账户中心--消息>>>>>");
+		System.out.println("jumpToMessageCenter.html>>当前页--"+pageIndex);
 		// 页面容量
 		int pageSize = Constants.pageSize;
 		// 当前页码
@@ -471,7 +473,7 @@ public class UserController {
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
 		}
-		model.addAttribute("pages", pages);
+		model.addAttribute(Constants.PAGE, pages);
 		try {
 			this.getMessageList(msgType1, currentPageNo, pageSize, request, response, model);
 		} catch (Exception e) {
