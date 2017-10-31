@@ -25,8 +25,9 @@ public interface UserMapper {
 	public int  addUser(User user) throws Exception;
 
 
+	
 	/**
-	 * 修改登录密码
+	 * 设置/修改登录密码
 	 * @param user
 	 * @return
 	 */

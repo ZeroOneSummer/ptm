@@ -6,15 +6,18 @@
 
   <!-- 根据用户名，登录密码（可选参数）查找用户 -->
   <select id="getUser" parameterType="User" resultType="User">
-  	select * from user where 
-  	<if test="loginName != null and loginName != ''"></if>
-  		loginName=#{loginName} 
-  	<if test="password != null and password != '' ">
-  		and password=#{password}  	
-  	</if>
-  	<if test="id != 0  ">
-  		and id=#{id}  	
-  	</if>
+  	select * from user 
+  	<where>
+	  	<if test="loginName != null and loginName != ''">
+	  		loginName=#{loginName}
+	  	</if>
+	  	<if test="password != null and password != '' ">
+	  		and password=#{password}  	
+	  	</if>
+	  	<if test="id != 0  ">
+	  		and id=#{id}  	
+	  	</if>
+  	</where>
   </select>
 	
 	<!-- 修改登录密码 -->
@@ -23,7 +26,7 @@
 	</update>
 	
 	
-	<!-- 修改交易密码 -->
+	<!-- 设置/修改交易密码 -->
 	<update id="updateExchangePassword" parameterType="User">
 		update user set exchangePassword=#{exchangePassword} where id=#{id}
 	</update>

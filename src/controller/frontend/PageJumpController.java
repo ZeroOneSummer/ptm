@@ -1,7 +1,18 @@
 package controller.frontend;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mysql.jdbc.StringUtils;
+
+import pojo.User;
+import service.UserService;
+import utils.Constants;
 
 /**
  * 跳转页面专用
@@ -10,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PageJumpController {
-	
+	@Resource
+	private UserService userService;
 	
 	/**
 	 * 跳转到首页
@@ -18,7 +30,6 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/index.html")
 	public String toIndex(){
-		System.out.println("跳转到firstPage.jsp++");
 		return "firstPage";
 	}
 	
@@ -123,7 +134,21 @@ public class PageJumpController {
 	 * @return
 	 */
 	@RequestMapping("/account.html")
-	public String toAccount(){
+	public String toAccount(@RequestParam(value="id",required=false) String id ,HttpServletRequest request,HttpServletResponse response){
+		if(!StringUtils.isNullOrEmpty(id)){
+			User user=new User();
+			int id1=Integer.parseInt(id);
+			user.setId(id1);
+			User user2=null;
+			try {
+				user2=userService.getUser(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				 request.getSession().setAttribute(Constants.USER_SESSION, user2);
+				 User userSession=(User)request.getSession().getAttribute(Constants.USER_SESSION);
+				 System.out.println("userSession>>>>>>>>>>>"+userSession.getExchangePassword());
+		}
 		
 		return "frontend/personalCenter/account";
 	}
@@ -190,10 +215,24 @@ public class PageJumpController {
 	 * @return
 	 */
 	@RequestMapping("/updatePassword.html")
-	public String toupdatePassword(){
+	public String toUpdatePassword(){
 		
 		return "frontend/personalCenter/updatePassword";
 
 
 	}
+	
+	
+	/**
+	 * 跳转到-修改登录密码-页面
+	 * @return
+	 */
+	@RequestMapping("/loginPassword.html")
+	public String toLoginPassword(){
+		
+		return "frontend/personalCenter/loginPassword";
+
+
+	}
+	
 }

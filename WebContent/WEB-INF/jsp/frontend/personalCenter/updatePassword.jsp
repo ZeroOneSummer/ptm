@@ -79,11 +79,12 @@
 			                    <input class="_hidden" type="text">
 			                    <input class="_hidden" type="password">
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
-								<span class="f_14_16 _333">当前密码</span><input type="password" autocomplete="off" class="_input" id="old_pwd"><br>
+			                    <input type="hidden" id="userId" value="${user.id }">
+								<span class="f_14_16 _333">当前密码</span><input type="password" autocomplete="off" class="_input" id="old_pwd" value="${user.exchangePassword}"><br>
 								<span class="f_14_16 _333">新密码</span><input type="password" autocomplete="off" class="_input" id="password"><br>
 								<span class="f_14_16 _333">确认密码</span><input type="password" autocomplete="off" class="_input" id="repassword"><br>
 			                    <div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
-								<a href="javascript:changePaypwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">确认</a>
+								<a onclick="javascript:changePaypwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">确认</a>
 							</div>
 						</div>
 						<div class="clear"></div>

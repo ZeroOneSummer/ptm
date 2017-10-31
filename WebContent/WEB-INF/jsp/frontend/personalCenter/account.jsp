@@ -77,7 +77,7 @@
 			                </div> -->
 			               <div class="_bar">
 			                    <span class="f_18_20 _333 f_left">实名认证</span><span class="f_14_16 b5b5b5 p_relative">保障账户安全,确认投资身份</span>
-			                                           <a href="realName.jsp" class="f_14_16 ff534f f_right">实名认证&nbsp;&nbsp;&gt;</a>  
+			                                           <a href="realName.html" class="f_14_16 ff534f f_right">实名认证&nbsp;&nbsp;&gt;</a>  
 			                                    <div class="clear"></div>
 			                </div>
 			               <!--  <div class="_bar">
@@ -87,16 +87,16 @@
 			                </div> -->
 			                <div class="_bar">
 			                                            <span class="f_18_20 _333 f_left">绑定银行卡</span><span class="f_14_16 b5b5b5 p_relative">您的购买和提现资金当且仅会返回至该卡</span>
-			                       <a href="BindBack.jsp" class="f_14_16 ff534f f_right">绑定&nbsp;&nbsp;&gt;</a>  
+			                       <a href="BindBack.html" class="f_14_16 ff534f f_right">绑定&nbsp;&nbsp;&gt;</a>  
 			                                    <div class="clear"></div>
 			                </div>
 			                <div class="_bar ">
 			                    <span class="f_18_20 _333 f_left">交易密码</span><span class="f_14_16 b5b5b5 p_relative">保障资金安全，提现投资等资金相关操作时使用</span>
-			                                            <c:if test="${user.exchangePassword == null and  user.exchangePassword == ''}">
+			                                            <c:if test="${user.exchangePassword == null}">
 			                                            	<a href="setPassword.html" class="f_14_16 ff534f f_right">设置&nbsp;&nbsp;&gt;</a>
 			                                            </c:if>
 			                                            
-			                                            <c:if test="${user.exchangePassword != null and  user.exchangePassword == ''}">
+			                                            <c:if test="${user.exchangePassword != null}">
 			                                            	<a href="updatePassword.html" class="f_14_16 ff534f f_right">修改&nbsp;&nbsp;&gt;</a>
 			                                            </c:if>
 			                                    <div class="clear"></div>

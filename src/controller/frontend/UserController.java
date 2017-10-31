@@ -56,22 +56,30 @@ public class UserController {
 		return "frontend/personalCenter/recharge";
 	}
 	
-	@RequestMapping(value="/setExchangePassword.html",method=RequestMethod.POST)
+	
+	
+	/**
+	 * 修改登录密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateLoginPassword.html",method=RequestMethod.POST)
 	@ResponseBody
-    public void setExchangePassword(@RequestParam int id,
+    public void updateLoginPassword(@RequestParam int id,
     		@RequestParam String password,
     		HttpServletRequest request,
     		HttpServletResponse response){
 		
-		String exchangePassword= H5Utils.Hex5(password);
-		System.out.println("进入验证方法"+exchangePassword);
+		String loginPassword= H5Utils.Hex5(password);
     	User user=new User();
     	user.setId(id);
-    	user.setExchangePassword(exchangePassword);
+    	user.setPassword(loginPassword);
     	int i=0;
     	try {
-			i=userService.updateExchangePassword(user);
-			/*request.getSession().setAttribute(Constants.USER_SESSION, userService.getUser(user));*/
+			i=userService.updatePassword(user);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,5 +99,44 @@ public class UserController {
     	
     }
 
-
+	/**
+	 * 设置/修改交易密码
+	 * @param id
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/updateExchangePassword.html",method=RequestMethod.POST)
+	@ResponseBody
+    public void updateExchangePassword(@RequestParam int id,
+    		@RequestParam String password,
+    		HttpServletRequest request,
+    		HttpServletResponse response){
+		
+		String exchangePassword= H5Utils.Hex5(password);
+    	User user=new User();
+    	user.setId(id);
+    	user.setExchangePassword(exchangePassword);
+    	int i=0;
+    	try {
+			i=userService.updateExchangePassword(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	 try {
+			PrintWriter out= response.getWriter();
+			String str=JSON.toJSONString(i);
+			out.println(str);
+			System.out.println("str>>"+str);
+			out.flush();
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
+    	
+    }
 }

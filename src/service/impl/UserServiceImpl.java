@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUser(user);
 	}
 	public int updatePassword(User user) throws Exception {
-		// TODO Auto-generated method stub
 		return userMapper.updatePassword(user);
 	}
 
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int updateExchangePassword(User user) throws Exception {
-		// TODO Auto-generated method stub
 		return userMapper.updateExchangePassword(user);
 	}
 
@@ -41,5 +39,7 @@ public class UserServiceImpl implements UserService {
 	public int rechange(int userId, int money) throws Exception {
 		return userMapper.rechange(userId, money);
 	}
+	
+	
 
 }

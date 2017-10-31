@@ -22,11 +22,12 @@ public interface UserService{
 	public int updatePassword(User user)throws Exception;
 	
 	/**
-	 * 修改交易密码
+	 * 设置/修改交易密码
 	 * @param user
 	 * @return
 	 */
 	public int updateExchangePassword(User user)throws Exception;
+	
 
 	
 	/**
