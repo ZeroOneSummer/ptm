@@ -11,13 +11,13 @@ function setpwd(){
     }else{
     	$.ajax({
 
-    		url:"user/setExchangePassword.html",
+    		url:"updateExchangePassword.html",
     		dateType:"json",
     		type:"post",
     		data:{"password":password,"id":id},
     		success:function(data){
     			if(data == 1){
-    				location.href="account.html";
+    				location.href="account.html?id="+id;
     			}else{
     				 $('#notification').html('设置失败！');
     			}

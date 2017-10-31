@@ -10,4 +10,5 @@ public class Constants {
 	public final static String USER_PROPERTY = "user_property";
 	public final static String USER_BANKNAME = "user_bankName";
 	public final static String MSGTYPE = "msgType";
+	public final static String INVEST_MSG_LIST = "invest_msg_list";
 }

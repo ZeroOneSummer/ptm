@@ -13,7 +13,7 @@ function changepwd(){
   }else{
 	  
 	  $.ajax({
-		   url:"user/updateLoginPassword.html",
+		   url:"updateLoginPassword.html",
 		   data:{"password":password,"id":id},
 		   type:"post",
 		   dateType:"json",

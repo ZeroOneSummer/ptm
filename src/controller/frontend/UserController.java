@@ -2,41 +2,31 @@ package controller.frontend;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import service.BankTypeService;
+import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
 import service.backend.Msg_pushMapperService;
-
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSON;
-import com.mysql.jdbc.StringUtils;
-
 import pojo.Bank_Type;
 import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
-import service.UserService;
+import pojo.view.Invest_msg;
 import utils.Constants;
 import utils.DateUtils;
 import utils.H5Utils;
@@ -63,6 +53,9 @@ public class UserController {
 
 	@Resource
 	private Msg_pushMapperService msgService;
+	
+	@Resource
+	private InvestProductService investProductService;
 
 	/**
 	 * 用户充值（模拟充值，未调用外部接口） 关键点：余额添加，添加充值记录
@@ -196,6 +189,7 @@ public class UserController {
     		HttpServletResponse response){
 		
 		String exchangePassword= H5Utils.Hex5(password);
+		System.out.println("进入交易密码设置/修改方法>>>>>>>>>>>>>>"+exchangePassword);
     	User user=new User();
     	user.setId(id);
     	user.setExchangePassword(exchangePassword);
@@ -431,7 +425,9 @@ public class UserController {
 	 */
 	@RequestMapping("/jumpToMyInvest.html")
 	public String jumpToMyInvest(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
-			HttpServletRequest request, HttpServletResponse response, Model model) {
+							@RequestParam(value = "invTypeId", required = false) Integer invTypeId,
+							HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("携带用户资产（余额）/ 持有资产 信息在进入账户中心--我的投资页面>>>>>");
 		System.out.println("jumpToMyInvest.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
@@ -458,6 +454,24 @@ public class UserController {
 		pages.setTotalCount(totalCount);
 		pages.setTotalPageCountByRs();
 		
+		//---------------------携带交易记录数据到个人中心---------------------
+		PageSupport page1=new PageSupport();
+		pageIndex=currentPageNo==null?1:currentPageNo;
+		invTypeId=invTypeId==null?1:invTypeId;		
+		page1.setCurrentPageNo(pageIndex);
+		page1.setPageSize(3);
+		int totalCount1 = investProductService.countInvest_msg(invTypeId);//交易表总记录数
+		page1.setTotalCount(totalCount1);
+		page1.setTotalPageCountByRs();
+		List<Invest_msg> list1=investProductService.getInvest_msgList(invTypeId,(pageIndex-1)*page1.getPageSize(),page1.getPageSize());
+		if (list1.size() == 0) {
+			model.addAttribute(Constants.INVEST_MSG_LIST,null);
+		}else {			
+			model.addAttribute(Constants.INVEST_MSG_LIST,list1);
+		}	
+		model.addAttribute("page1",page1);
+		model.addAttribute("invTypeId",invTypeId);
+		//------------------------------------------------------------
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			this.getNoFinishWithdrawDepositNum(request, response, model);
