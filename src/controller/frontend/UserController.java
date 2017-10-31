@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import service.BankTypeService;
+import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
 import service.backend.Msg_pushMapperService;
@@ -35,6 +36,7 @@ import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
+import pojo.view.Invest_msg;
 import service.UserService;
 import utils.Constants;
 import utils.DateUtils;
@@ -62,6 +64,9 @@ public class UserController {
 
 	@Resource
 	private Msg_pushMapperService msgService;
+	
+	@Resource
+	private InvestProductService investProductService;
 
 	/**
 	 * 用户充值（模拟充值，未调用外部接口） 关键点：余额添加，添加充值记录
@@ -374,7 +379,8 @@ public class UserController {
 	 */
 	@RequestMapping("/jumpToMyInvest.html")
 	public String jumpToMyInvest(@RequestParam(value = "pageIndex", required = false) Integer pageIndex,
-			HttpServletRequest request, HttpServletResponse response, Model model) {
+							@RequestParam(value = "invTypeId", required = false) Integer invTypeId,
+							HttpServletRequest request, HttpServletResponse response, Model model) {
 		System.out.println("携带用户资产（余额）/ 持有资产 信息在进入账户中心--我的投资页面>>>>>");
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
@@ -385,7 +391,7 @@ public class UserController {
 		// 当前页码
 		Integer currentPageNo = 1;
 		if (pageIndex != null) {
-			currentPageNo = Integer.valueOf(pageIndex);
+			currentPageNo = pageIndex;
 		}
 		// 总数量（表）
 		int totalCount = 0;
@@ -408,6 +414,24 @@ public class UserController {
 		}
 		model.addAttribute("pages", pages);
 		
+		//---------------------携带交易记录数据到个人中心---------------------
+		PageSupport page1=new PageSupport();
+		pageIndex=pageIndex==null?1:pageIndex;
+		invTypeId=invTypeId==null?1:invTypeId;		
+		page1.setCurrentPageNo(pageIndex);
+		page1.setPageSize(3);
+		int totalCount1 = investProductService.countInvest_msg(invTypeId);//交易表总记录数
+		page1.setTotalCount(totalCount1);
+		page1.setTotalPageCountByRs();
+		List<Invest_msg> list1=investProductService.getInvest_msgList(invTypeId,(pageIndex-1)*page1.getPageSize(),page1.getPageSize());
+		if (list1.size() == 0) {
+			model.addAttribute(Constants.INVEST_MSG_LIST,null);
+		}else {			
+			model.addAttribute(Constants.INVEST_MSG_LIST,list1);
+		}	
+		model.addAttribute(Constants.PAGE,page1);
+		model.addAttribute("invTypeId",invTypeId);
+		//------------------------------------------------------------
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			this.getNoFinishWithdrawDepositNum(request, response, model);

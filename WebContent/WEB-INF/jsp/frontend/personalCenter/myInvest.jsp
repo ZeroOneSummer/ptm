@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class=" ieundefined">
 <head>
@@ -33,25 +34,6 @@
 		<!-- 头部结束 -->
 		<!-- 主体部分开始  我的投资 -->
 		<div class="container">
-			<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/excanvas.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jquery.jqplot.js"></script> --%>
-
-			<!--折线图扩展JS-->
-			<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.canvasTextRenderer.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.canvasAxisLabelRenderer.js"></script> --%>
-
-			<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.barRenderer.min.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.categoryAxisRenderer.min.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.pointLabels.min.js"></script>
-			
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.highlighter.min.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.cursor.min.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.dateAxisRenderer.min.js"></script> --%>
-			<!--饼图JS-->
-			<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.pieRenderer.min.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.pointLabels.js"></script>
-			<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jqplot.donutRenderer.min.js"></script> --%>
-
 			<div class="my_pocket_wrap">
 				<div class="content">
 					<div class="my_pocket_header">
@@ -199,65 +181,97 @@
 							<div style="border-bottom: 1px solid #FD5353;"></div>
 							<div class="transaction_records">
 								<span>交易记录</span>
-								<ul id="change_invest_log1">
-									<li data="1" class="a_center bg_f7f7f7 _999">回&nbsp;&nbsp;款</li>
-									<li data="2" class="a_center bg_f7f7f7 _999">口袋宝</li>
-									<li data="3" class="a_center bg_f7f7f7 _999">定期宝</li>
-									<li data="4" class="a_center bg_fd5353 fff">预约项目</li>
-									<div class="clear"></div>
-								</ul>
+								<form action="jumpToMyInvest.html" method="post">
+									<input type="hidden" name="invTypeId" value="${invTypeId}"/>
+									<input type="hidden" name="pageIndex" value="${page.currentPageNo}"/>
+									<input type="hidden" id="totalPageCount" value="${page.totalPageCount}"/>
+									<ul id="change_invest_log1">
+										<c:if test="${invTypeId == 1}">
+											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(1);">新手宝</li>										
+										</c:if>
+										<c:if test="${invTypeId != 1}">
+											<li data="1" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(1);">新手宝</li>	
+										</c:if>
+										<c:if test="${invTypeId == 2}">
+											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(2);">月盈宝</li>										
+										</c:if>
+										<c:if test="${invTypeId != 2}">
+											<li data="1" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(2);">月盈宝</li>	
+										</c:if>
+										<c:if test="${invTypeId == 3}">
+											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(3);">季盈宝</li>										
+										</c:if>
+										<c:if test="${invTypeId != 3}">
+											<li data="1" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(3);">季盈宝</li>	
+										</c:if>
+										<c:if test="${invTypeId == 4}">
+											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(4);">双季盈</li>										
+										</c:if>
+										<c:if test="${invTypeId != 4}">
+											<li data="1" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(4);">双季盈</li>	
+										</c:if>
+										<c:if test="${invTypeId == 5}">
+											<li data="1" class="a_center bg_fd5353 fff" onclick="byInvTypeId(5);">年盈宝</li>										
+										</c:if>
+										<c:if test="${invTypeId != 5}">
+											<li data="1" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(5);">年盈宝</li>	
+										</c:if>
+										<!-- <li data="2" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(2);">月盈宝</li>
+										<li data="3" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(3);">季盈宝</li>
+										<li data="4" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(4);">双季盈</li>
+										<li data="5" class="a_center bg_f7f7f7 _999" onclick="byInvTypeId(5);">年盈宝</li> -->
+										<div class="clear"></div>
+									</ul>
+								</form>
 								<table cellpadding="0" cellspacing="0">
-									<tbody>
+									<thead>
 										<tr class="_666 f_14_16 a_center td-title">
 											<td>项目名称</td>
 											<td>金额(元)</td>
 											<td>时间</td>
-											<td>状态</td>
-											<td>电子合同</td>
-											<td>债权详情</td>
+											<td>状态</td>											
+											<td colspan="3">电子合同</td>
+											<td colspan="4">债权详情</td> 
 										</tr>
-									</tbody>
+									</thead>
 									<tbody id="my_invest_log1">
-								<%-- 		<c:if test="${tradeRecords != null }">
-							                	<c:forEach items="${tradeRecords}" var="trade_record">
-								                	
-								                	<tr class="_666 f_14_16">
-									                	<td class="a_center f_14_16 _333">
-									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
-									                	</td>
-									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
-								                		<c:choose>
-								                			<c:when test="${trade_record.tradeStatus == 1 }">
-											                	<td class="a_center f_14_16 _333" style="color: red">未完成</td>
-								                			</c:when>
-								                			<c:otherwise>
-											                	<td class="a_center f_14_16 _333">已完成</td>
-								                			</c:otherwise>
-								                		</c:choose>
-								                	</tr>
-							                	</c:forEach>
+										<c:if test="${invest_msg_list != null}">
+						                	<c:forEach items="${invest_msg_list}" var="invest_msg">					                	
+							                	<tr>
+								                	<td class="a_center f_14_16 _333">${invest_msg.produceName}</td>
+								                	<td class="a_center f_14_16 _333">${invest_msg.tradeMoney}</td>
+								                	<td class="a_center f_14_16 _333"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${invest_msg.tradeDate}"/></td>
+								                	<c:if test="${invest_msg.tradeStatus == 1}"><td class="a_center f_14_16 _333"><font color="red">未完成</font></td></c:if>
+							                		<c:if test="${invest_msg.tradeStatus == 2}"><td class="a_center f_14_16 _333">已完成</td></c:if>						                		
+								              	    <td colspan="3" class="a_center f_14_16 _999">无</td>
+													<td colspan="4" class="a_center f_14_16 _999">无</td> 
+							                	</tr>
+						                	</c:forEach>
 					                	</c:if>
-									    <c:if test="${tradeRecords == null }">
-							               <tr><td colspan="3" class="a_center f_14_16 b5b5b5">暂无数据</td></tr>
-					                	</c:if> --%>
-									
-										<tr>
-											<td colspan="4" class="a_center f_14_16 _999">暂无数据</td>
-										</tr>
+					                	<c:if test="${invest_msg_list == null}">
+					                			<tr><td colspan="10" class="a_center f_14_16 _999">暂无数据</td></tr>
+					                	</c:if>
 									</tbody>
 									<tfoot>
 										<!-- 分页 -->
-										<tr class="a_center">
-											<td colspan="4" id="Paging">
-												<ul class="pagination">
-													<li class="prev disabled"><span>«</span></li>
-													<li class="active"><a
-														href="javascript:accountTrustTrades(&#39;1&#39;)"
-														data-page="0">1</a></li>
-													<li class="next disabled"><span>»</span></li>
-												</ul>
-											</td>
-										</tr>
+										<c:if test="${invest_msg_list != null}">
+											<tr class="a_center">
+												<td colspan="4" id="Paging">
+													<ul class="pagination">
+														<li><a href="javascript:sendPage(document.forms[0],1)">首页</a></li>	
+														<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo-1})">上一页</a></li>							
+														<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo+1})">下一页</a></li>
+														<li><a href="javascript:sendPage(document.forms[0],${page.totalPageCount})">尾页</a></li>								
+													</ul>
+													<br/><br/><br/>
+													<div>
+														第&nbsp;${page.currentPageNo}&nbsp;页/共&nbsp;${page.totalPageCount}&nbsp;页（共计&nbsp;${page.totalCount}&nbsp;条记录）&nbsp;
+														跳转到&nbsp;<input type="text" id="dumpPage" style="background-color: rgba(0,0,0,0.05);width: 40px;border: 1px rgba(0,0,0,0.2) solid;">&nbsp;页&nbsp;	
+														<input type="button" value="确&nbsp;定" onclick="dumpPage(document.forms[0])" style="width:50px;line-height:22px;font-size: 16px;background-color: rgba(0,0,0,0.08);"/>
+													</div>	
+												</td>
+											</tr>
+										</c:if>
 									</tfoot>
 								</table>
 							</div>

@@ -1,4 +1,31 @@
- var _hmt = _hmt || [];
+
+//-----------------------------交易记录分页-----------------------------------------
+	function sendPage(frm,num){
+		var totalPageCount=$("#totalPageCount").val();		
+		if(num<1){
+			num=1;
+		}else if(num>totalPageCount){
+			num=totalPageCount;
+		}
+		frm.pageIndex.value=num;		
+		frm.submit();
+	}
+
+	function dumpPage(frm){
+		var num=$("#dumpPage").val();//跳转页码	
+		if(num != ""){				
+			sendPage(frm,num);
+		}		
+	}
+	
+	//按类型查找
+	function byInvTypeId(invTypeId){
+		location.href="jumpToMyInvest.html?invTypeId="+invTypeId;		
+	}
+//----------------------------------------------------------------------
+
+
+var _hmt = _hmt || [];
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?6938787281b59cbc7fcb6a9381463695";
@@ -2307,7 +2334,7 @@
   		});
   	}
 
-  	var page = 1;
+  	/*var page = 1;
   	var pageSize = 7;
   	function getFinish(page){
   	var url1 = "https://deposit.koudailc.com/account/finished-proj?clientType=pc";
@@ -2363,7 +2390,7 @@
   			}
   		}
   	});
-  	}
+  	}*/
 
   	function accountKdbTrades(page){
   	var url2 = "https://deposit.koudailc.com/account/kdb-trades?clientType=pc";
