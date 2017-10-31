@@ -17,8 +17,8 @@
     				dataType:"json",
     				success:function(data){
     					if(data){
-    						alert('投资成功,跳转至组长提供的to个人中心--我要投资页面（暂无）');
-    						//location.href='';
+    						//alert('投资成功,跳转至组长提供的to个人中心--我要投资页面（暂无）');
+    						location.href='jumpToMyInvest.html';
     					}else{
     						alert('投资失败，赶紧回滚事物');
     					}

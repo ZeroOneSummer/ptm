@@ -5,6 +5,7 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
     xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:task="http://www.springframework.org/schema/task"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
 					    http://www.springframework.org/schema/beans/spring-beans.xsd
 					    http://www.springframework.org/schema/context 
@@ -12,7 +13,9 @@
 					   	http://www.springframework.org/schema/tx
 					   	http://www.springframework.org/schema/tx/spring-tx.xsd
 					   	http://www.springframework.org/schema/aop
-					   	http://www.springframework.org/schema/aop/spring-aop.xsd">
+					   	http://www.springframework.org/schema/aop/spring-aop.xsd
+					   	http://www.springframework.org/schema/task
+					   	http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<!-- 引入database.properties配置文件 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -59,5 +62,12 @@
 		<aop:pointcut expression="execution(public * service.*.*(..))" id="pointcut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
 	</aop:config>
+	
+	<!-- 使用spring定时器实现任务调度配置方法 -->   
+    <!-- <bean id="myJob" class="job.MyJob"/>
+   	<task:scheduled-tasks>  
+    	<task:scheduled ref="myJob" method="doJob" cron="0/5 * * * * ?"/>  
+    	<task:scheduled ref="myJob" method="doJob2" cron="0/8 * * * * ?"/>  
+	</task:scheduled-tasks>   -->
 	
 </beans>
