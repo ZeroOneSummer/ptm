@@ -110,16 +110,16 @@
 								
 					<!-- 分页显示消息列表  -->
 					<form action="jumpToMessageCenter.html" method="post">
-						<input type="hidden" value="${page.currentPageNo}" name="currentPageNo"/>
+						<input type="hidden" value="${page.currentPageNo}" name="currentPageNo" id="currentPageNo"/>
 						<input type="hidden" value="${page.totalPageCount}" id="totalPageCount"/>
-						<input type="hidden" id="msgType" name="msgType"/>
+						<input type="hidden" id="msgType" name="msgType" value="${msgType }"/>
 					</form>
 					<div id="paging">
 						<ul class="pagination">
-							<li><a href="javascript:sendPage(document.forms[0],1)">首页</a></li>	
-							<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo-1})">上一页</a></li>							
-							<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo+1})">下一页</a></li>
-							<li><a href="javascript:sendPage(document.forms[0],${page.totalPageCount})">尾页</a></li><br/><br/>								
+							<li><a href="javascript:sendPage(document.forms[0],1,0)">首页</a></li>	
+							<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo-1},0)">上一页</a></li>							
+							<li><a href="javascript:sendPage(document.forms[0],${page.currentPageNo+1},0)">下一页</a></li>
+							<li><a href="javascript:sendPage(document.forms[0],${page.totalPageCount},0)">尾页</a></li><br/><br/>								
 							<li>
 								第&nbsp;${page.currentPageNo}&nbsp;页/共&nbsp;${page.totalPageCount}&nbsp;页（共计&nbsp;${page.totalCount}&nbsp;条记录）&nbsp;
 								跳转到&nbsp;<input type="text" id="dumpPage" style="background-color: rgba(0,0,0,0.05);width: 40px;border: 1px rgba(0,0,0,0.2) solid;">&nbsp;页&nbsp;	

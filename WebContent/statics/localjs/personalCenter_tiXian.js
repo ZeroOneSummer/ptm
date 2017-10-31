@@ -1,7 +1,7 @@
 var page = 1;
 var pageSize = 10;
 var bind_id = 0;
-
+var pageIndex = 0;
 $(document).ready(function() {
 	checkInput();
 	getAccountGet();
@@ -137,13 +137,10 @@ function callback(data) {
 /**
  * 获取提现记录
  */
-function getWithdrawLog() {
+function getWithdrawList() {
 	//var url = "https://deposit.koudailc.com/account/withdraw-log?clientType=pc";
-	var data = {
-		page : page,
-		pageSize : pageSize
-	};
-	
+	pageIndex += 5;
+	location.href="jumpToWithdrawDeposit.html?pageIndex="+pageIndex;
 }
 
 function AccountGet(data) {

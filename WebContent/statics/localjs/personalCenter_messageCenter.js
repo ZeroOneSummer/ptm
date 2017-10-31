@@ -7,8 +7,9 @@ function closeConfirm() {
 
 //-------------------分页展示数据-----------------------
 
-function sendPage(frm,num,type){
+function sendPage(frm,num,type1){
 	var totalPageCount=$("#totalPageCount").val();
+	var type = $("#msgType").val();
 	if(num<1){
 		num=1;
 	}else if(num>totalPageCount){
@@ -28,7 +29,9 @@ function dumpPage(frm){
 
 function sendType(frm,type){
   $("#msgType").val(type);
+  $("#currentPageNo").val(1);
   frm.submit();
+	
 }
 
 

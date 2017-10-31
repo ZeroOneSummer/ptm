@@ -319,13 +319,14 @@ public class UserController {
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(2); // 类别为充值
 		tradeRecord.setUserId(user.getId());
-		// 页面容量
-		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer pageIndex = 1;
+		Integer pageIndex = 0;
 		if (currentPageNo != null) {
 			pageIndex = Integer.valueOf(currentPageNo);
 		}
+		// 页面容量
+		int pageSize = Constants.pageSize+pageIndex;
+		
 		// 总数量（表）
 		int totalCount = 0;
 		try {
@@ -335,20 +336,20 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(pageIndex);
+		pages.setCurrentPageNo(1);
 		pages.setPageSize(pageSize);
-		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
+		//pages.setTotalCount(totalCount);
+		//int totalPageCount = pages.getTotalPageCount();
 		// 控制首页和尾页
-		if (pageIndex < 1) {
+	/*	if (pageIndex < 1) {
 			pageIndex = 1;
 		} else if (pageIndex > totalPageCount) {
 			pageIndex = totalPageCount;
-		}
+		}*/
 		model.addAttribute(Constants.PAGE, pages);
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
-			this.getTradeRecords(tradeRecord, pageIndex, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord, 1, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户资产（余额）/ 充值记录 信息 在进入充值页面 发生异常！");
 		}
@@ -372,13 +373,13 @@ public class UserController {
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(3); // 类别为提现
 		tradeRecord.setUserId(user.getId());
-		// 页面容量
-		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
+		Integer currentPageNo = 0;
 		if (pageIndex != null) {
 			currentPageNo = Integer.valueOf(pageIndex);
 		}
+		// 页面容量
+		int pageSize = Constants.pageSize + currentPageNo;
 		// 总数量（表）
 		int totalCount = 0;
 		try {
@@ -388,23 +389,23 @@ public class UserController {
 		}
 		// 总页数
 		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
+		pages.setCurrentPageNo(1);
 		pages.setPageSize(pageSize);
-		pages.setTotalCount(totalCount);
+		/*pages.setTotalCount(totalCount);
 		int totalPageCount = pages.getTotalPageCount();
 		// 控制首页和尾页
 		if (currentPageNo < 1) {
 			currentPageNo = 1;
 		} else if (currentPageNo > totalPageCount) {
 			currentPageNo = totalPageCount;
-		}
+		}*/
 		model.addAttribute(Constants.PAGE, pages);
 		
 		Bank_Type bank_Type = null;
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			bank_Type = this.getUserBankNameByUserId(request, response);
-			this.getTradeRecords(tradeRecord, currentPageNo, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord,1, pageSize, request, response, model);
 		} catch (Exception e1) {
 			System.out.println("携带用户资产（余额）/ 银行账户 / 提现记录 信息在进入提现页面 发生异常");
 			try {
@@ -533,6 +534,8 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.MSGTYPE, msg_push.getMsgType());
+		System.out.println("传送的消息类型"+msg_push.getMsgType());
 		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/messageCenter";
 	}
