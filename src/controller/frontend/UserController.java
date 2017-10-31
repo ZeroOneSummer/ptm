@@ -196,6 +196,7 @@ public class UserController {
     		HttpServletResponse response){
 		
 		String exchangePassword= H5Utils.Hex5(password);
+		System.out.println("进入交易密码设置/修改方法>>>>>>>>>>>>>>"+exchangePassword);
     	User user=new User();
     	user.setId(id);
     	user.setExchangePassword(exchangePassword);

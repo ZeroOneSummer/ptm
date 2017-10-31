@@ -11,7 +11,7 @@ function changePaypwd(){
 	           $('#notification').html('两次输入密码不一致'); 
 	       }else{
 	    	   $.ajax({
-	    		   url:"user/updateExchangePassword.html",
+	    		   url:"updateExchangePassword.html",
 	    		   data:{"password":password,"id":id},
 	    		   type:"post",
 	    		   dateType:"json",
