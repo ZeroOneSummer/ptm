@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="mapper.trade.TradeMapper">
+
+   <!-- `trade_record``id``userId``produceId``tradeMoney`
+   `tradeDate``tradeStatus``tradeTypeId` -->
+  
+    <sql id="tradeRecord">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="userId !=0">
+                userId,
+            </if>
+            <if test="produceId !=0">
+                produceId,
+            </if>
+            <if test="tradeMoney !=0">
+                tradeMoney,
+            </if>
+            <if test="tradeDate !=null">
+                tradeDate,
+            </if>
+            <if test="tradeStatus !=0">
+                tradeStatus,
+            </if>
+            <if test="tradeTypeId !=0">
+                tradeTypeId
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="tradeValue">
+         <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="userId !=0">
+                #{userId},
+            </if>
+            <if test="produceId !=0">
+                #{produceId},
+            </if>
+            <if test="tradeMoney !=0">
+                #{tradeMoney},
+            </if>
+            <if test="tradeDate !=null">
+                #{tradeDate},
+            </if>
+            <if test="tradeStatus !=0">
+                #{tradeStatus},
+            </if>
+            <if test="tradeTypeId !=0">
+                #{tradeTypeId}
+            </if>
+        </trim>
+    </sql>
+
+
+    <!-- <include refid="tradeRecord"/>和<include refid="tradeValue"/>表示引用上面定义的sql片段 -->
+    
+	<!-- 动态添加交易记录  -->  
+    <insert id="addTradeRecord" parameterType="Trade_record">
+        insert into trade_record(<include refid="tradeRecord"/>) values(<include refid="tradeValue"/>)
+    </insert>
+  
+  
+  <!-- 动态查询交易记录  （userId，produceId，tradeStatus，tradeTypeId）-->
+  <select id="getTradeRecords"  resultType="Trade_record">
+   		select * from trade_record 
+   		<where>
+   			<if test="tradeRecord.userId != 0">
+                 and  userId = #{tradeRecord.userId}
+            </if>
+            <if test="tradeRecord.produceId != 0">
+                and produceId = #{tradeRecord.produceId}
+            </if>
+            <if test="tradeRecord.tradeStatus != 0">
+                  and tradeStatus = #{tradeRecord.tradeStatus}
+            </if>
+            <if test="tradeRecord.tradeTypeId != 0">
+                 and tradeTypeId = #{tradeRecord.tradeTypeId}
+            </if>
+   		</where>
+           ORDER BY tradeDate DESC limit #{from},#{pageSize}
+  </select>
+  
+  
+  <!-- 动态查询交易记录数量  （userId，produceId，tradeStatus，tradeTypeId）-->
+  <select id="getTradeRecordNums" parameterType="Trade_record" resultType="Integer">
+   		select count(1) as count from trade_record 
+   		<where>
+   			<if test="userId != 0">
+                 and  userId = #{userId}
+            </if>
+            <if test="produceId != 0">
+                and produceId = #{produceId}
+            </if>
+            <if test="tradeStatus != 0">
+                  and tradeStatus = #{tradeStatus}
+            </if>
+            <if test="tradeTypeId != 0">
+                and tradeTypeId = #{tradeTypeId}
+            </if>
+   		</where>
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+
+</mapper>
