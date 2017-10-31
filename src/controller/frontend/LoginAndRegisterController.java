@@ -36,7 +36,8 @@ public class LoginAndRegisterController{
 	 */
 	@RequestMapping("/admin")
 	public String admin(){
-		return "backend/investorManager/UserList";
+
+		return "redirect:userList.html";
 	}
 	
 	/*
@@ -130,14 +131,8 @@ public class LoginAndRegisterController{
 					e.printStackTrace();
 				}
 				if (num>0) {
-					User user4=new User();
 					System.out.println("添加用户成功");
-					 try {
-						user4 = userService.getUser(user3);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					request.getSession().setAttribute(Constants.USER_SESSION,user4);				
+					request.getSession().setAttribute(Constants.USER_SESSION,user3);				
 				} else{
 					System.out.println("添加失败");
 				}

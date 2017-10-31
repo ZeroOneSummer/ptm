@@ -1,6 +1,8 @@
 ﻿package pojo;
 
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 /**
  * 个人交易记录实体类
  * @author Administrator
@@ -12,8 +14,9 @@ public class Trade_record {
 	private int userId;//用户ID
 	private int produceId;//产品ID
 	private double tradeMoney;//交易金额
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:MM:ss")
 	private Date tradeDate;//交易日期
-	private String tradeStatus;//交易状态(1:未完成2:已完成)
+	private int tradeStatus;//交易状态(1:未完成2:已完成)
 	private int tradeTypeId;//交易类别ID
 	public int getId() {
 		return id;
@@ -45,10 +48,10 @@ public class Trade_record {
 	public void setTradeDate(Date tradeDate) {
 		this.tradeDate = tradeDate;
 	}
-	public String getTradeStatus() {
+	public int getTradeStatus() {
 		return tradeStatus;
 	}
-	public void setTradeStatus(String tradeStatus) {
+	public void setTradeStatus(int tradeStatus) {
 		this.tradeStatus = tradeStatus;
 	}
 	public int getTradeTypeId() {

@@ -1,5 +1,6 @@
 package controller.frontend;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import utils.Constants;
  */
 @Controller
 public class PageJumpController {
+	
 	@Resource
 	private UserService userService;
 	
@@ -30,6 +32,7 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/index.html")
 	public String toIndex(){
+		System.out.println("跳转到firstPage.jsp++");
 		return "firstPage";
 	}
 	
@@ -41,7 +44,7 @@ public class PageJumpController {
 	@RequestMapping("/toInvest.html")
 	public String toInvest(){
 		
-		return "frontend/invest/investList";
+		return "redirect:myInvest";
 	}
 	
 	
@@ -124,8 +127,7 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/myInvest.html")
 	public String toMyInvest(){
-		
-		return "frontend/personalCenter/myInvest";
+		return "redirect:jumpToMyInvest.html";
 	}
 	
 	
@@ -153,8 +155,6 @@ public class PageJumpController {
 		return "frontend/personalCenter/account";
 	}
 	
-	
-	
 	/**
 	 * 跳转到-消息中心-页面
 	 * @return
@@ -162,7 +162,7 @@ public class PageJumpController {
 	@RequestMapping("/messageCenter.html")
 	public String toMessageCenter(){
 		
-		return "frontend/personalCenter/messageCenter";
+		return "redirect:jumpToMessageCenter.html";
 	}
 	
 	
@@ -185,17 +185,17 @@ public class PageJumpController {
 	@RequestMapping("/recharge.html")
 	public String toRecharge(){
 		
-		return "frontend/personalCenter/recharge";
+		return "redirect: jumpToRecharge.html";
 	}
 	
 	/**
 	 * 跳转到-账户中心-提现页面
 	 * @return
 	 */
-//	@RequestMapping("/withdrawDeposit.html")
+	@RequestMapping("/withdrawDeposit.html")
 	public String toWithdrawDeposit(){
 		
-		return "frontend/personalCenter/withdrawDeposit";
+		return "redirect: jumpToWithdrawDeposit.html";
 
 	}
 	/**
@@ -215,7 +215,7 @@ public class PageJumpController {
 	 * @return
 	 */
 	@RequestMapping("/updatePassword.html")
-	public String toUpdatePassword(){
+	public String toupdatePassword(){
 		
 		return "frontend/personalCenter/updatePassword";
 
@@ -288,7 +288,4 @@ public class PageJumpController {
 		
 		return "frontend/personalCenter/BindBack";
 	}
-	
-	
-	
 }

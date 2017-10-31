@@ -1,13 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   				<title>用户中心-用户列表</title>
 
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/style_1.css">
- <%--  <script src="${ctx}/statics/js/backend/backend.js"></script> --%>
+
+<script type="text/javascript">
+	function _go() {
+		var pageIndex = $("#pageIndex").val();
+		location.href = "userList.html?pageIndex=" + pageIndex;
+	};
+</script>
+
 </head>
+
 <body>
 
 <div class="i_bg bg_color">
@@ -26,66 +35,32 @@
           <td width="10%">姓&nbsp;名</td>
           <td width="10%">用户类型</td>
         </tr> 
-        <tr>
-         	<td>1</td>
-         	<td>admin</td>
-         	<td>系统管理员-小花</td>
-         	<td>管理员用户</td>
-         </tr> 
-         <tr>
-         	<td>2</td>
-         	<td>13612345678</td>
-         	<td>张三</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>3</td>
-         	<td>13212345679</td>
-         	<td>李四</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>4</td>
-         	<td>13512345680</td>
-         	<td>麻子</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>5</td>
-         	<td>13812345681</td>
-         	<td>王二</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>6</td>
-         	<td>13812345681</td>
-         	<td>王二</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>7</td>
-         	<td>13812345681</td>
-         	<td>王二</td>
-         	<td>普通用户</td>
-         </tr>
-          <tr>
-         	<td>8</td>
-         	<td>13812345681</td>
-         	<td>王二</td>
-         	<td>普通用户</td>
-         </tr>
+        <c:forEach var="userList" items="${userList}" varStatus="status">
+			<tr>
+				<td>${userList.id}</td>
+				<td>${userList.loginName}</td>
+				<td>${userList.userName }</td>
+				<td>${userList.userType}</td>	
+			</tr>
+		</c:forEach>
         </tbody>
       </table>
-       <div style="margin-left: 30px;">
-        	<a href="">首&nbsp;页</a>&nbsp;
-        	<a href="">上一页</a>&nbsp;
-        	<a href="">下一页</a>&nbsp;
-        	<a href="">末&nbsp;页</a>&nbsp;
-        </div>
+  
+   <div style="margin-left: 30px;">
+      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;${pages.currentPageNo }&nbsp;|&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
+      		&nbsp;&nbsp;&nbsp;
+        	<a href="userList.html?pageIndex=1">首&nbsp;页</a>&nbsp;
+        	<a href="userList.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;
+        	<a href="userList.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;
+        	<a href="userList.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a href="javascript:_go();" > go </a>
+      </div>
+   
+   
+   
+  
     </div>
-  </div>
+ </div>
 </div>
 </body>
 </html>
-
-

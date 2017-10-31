@@ -715,6 +715,7 @@
                                         <div class="partner">
                         <div class="fl partner-img">
                             <a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/statics/img/kq.jpg" width="150"></a>
+
                         </div>
                         <div class="fl partner-content">快钱公司是中国领先的互联网金融平台，2004年成立至今，快钱已覆盖逾4.3亿个人用户，以及500余万商业合作伙伴，对接的金融机构超过100家。公司总部位于上海，在北京、广州、深圳等40多地设有分公司，并在南京设立了全国首家创新型金融服务研发中心。基于十年在电子支付领域的积累，快钱充分整合数据信息，结合各类应用场景，为消费者和企业提供丰富的支付工具、稳健的投资理财、便捷的融资信贷以及丰富的应用，使客户能够随时随地畅享便利、智慧的互联网金融服务。</div>
                         <div class="clear"></div>

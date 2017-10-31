@@ -39,10 +39,10 @@
 	                    	$("#login").html(cname);
 	                    </script></span>
 					<div class="f_right">
-			        		<a href="user/recharge.html">
+			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="user/withdrawDeposit.html">
+			        		<a href="withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        </div>
@@ -86,6 +86,7 @@
 								<span class="f_14_16 _333">确认密码</span><input type="password" autocomplete="off" id="repassword" class="_input"><br>
 			                    <div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
 								<a onclick="javascript:changepwd();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="red_btn">确认</a>
+
 							</div>
 					  </div>
 					  <div class="clear"></div>

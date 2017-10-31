@@ -1,9 +1,9 @@
-/*閫氱敤CSS css鏉冮噸锛歩mportant > 鍐呰仈 > ID > 绫�> 鏍囩 | 浼被 | 灞炴�閫夋嫨 > 浼璞�> 缁ф壙 > 閫氶厤绗�閫氶厤绗�> 缁ф壙*/
-/*涔﹀啓椤哄簭瑙勫垯
-  瀹氫綅灞炴�锛堟瘮濡傦細display锛�position锛�float锛�clear锛�visibility锛�table-layout绛夛級
-  鑷韩灞炴�锛堟瘮濡傦細width锛�height锛�margin锛�padding锛�border绛夛級
-  鏂囨湰灞炴�锛堟瘮濡傦細font锛�line-height锛�text-align锛�text-indent锛�vertical-align绛夛級
-  鍏朵粬灞炴�锛堟瘮濡傦細color锛�background锛�opacity锛�cursor锛宑ontent锛�list-style锛�quotes绛夛級*/
+/*通用CSS css权重：important > 内联 > ID > 类 > 标签 | 伪类 | 属性选择 > 伪对象 > 继承 > 通配符 通配符 > 继承*/
+/*书写顺序规则
+  定位属性（比如：display， position， float， clear， visibility， table-layout等）
+  自身属性（比如：width， height， margin， padding， border等）
+  文本属性（比如：font， line-height， text-align， text-indent， vertical-align等）
+  其他属性（比如：color， background， opacity， cursor，content， list-style， quotes等）*/
 *{
     padding:0;
     margin: 0;
@@ -20,16 +20,16 @@ html, body, div, span, h1, h2, h3, p, em, img, dl, dt, dd, ol, ul, li, table, tr
     overflow:auto;
 }
 * html frameset,.o_hidden{
-    /*IE7--涓嬪吋瀹筼verflow:hidden鍔爌osition*/
+    /*IE7--下兼容overflow:hidden加position*/
     position: relative;
     overflow: hidden;
 }
-/*瑙ｅ喅鐢�webkit-overflow-scrolling: touch 寮曡捣鐨勬粴鍔ㄦ潯*/
+/*解决由-webkit-overflow-scrolling: touch 引起的滚动条*/
 ::-webkit-scrollbar {
   display: none;
 }
 body{
-    /*鍘婚櫎寰俊娓歌鍣╝鏍囩鍏冪礌鐐瑰嚮鐨勬椂鍊欏嚭鐜拌摑鑹茬殑杈规*/
+    /*去除微信游览器a标签元素点击的时候出现蓝色的边框*/
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 body {
@@ -50,21 +50,21 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* 淇IE5.x鍜孖E6鐨勬枩浣撴孩鍑篵ug缁�*/
+/* 修正IE5.x和IE6的斜体溢出bug终 */
 a,*[onclick],._cursor{
     cursor: pointer;
 }
-/* 鍘绘帀閾炬帴鐨勮櫄绾挎 */
+/* 去掉链接的虚线框 */
 a,input,textarea{
     outline:none;
 }
-/* 浣跨洅瀛愯绠楀楂樹笉鍖呭惈padding */
+/* 使盒子计算宽高不包含padding */
 ._box_sizing, ._box_sizing:before, ._box_sizing:after {
     box-sizing:border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
 }
-/*閫傜敤textarea*/
+/*适用textarea*/
 ._textarea{
     display: block;
     height: auto;
@@ -72,7 +72,7 @@ a,input,textarea{
     resize: none;
     overflow: auto;
 }
-/*缁撴瀯锛歞iv._select>div>select*/
+/*结构：div._select>div>select*/
 ._select{ 
     width: 100%;
     padding: .6em 0 .6em .6em;
@@ -98,13 +98,13 @@ a,input,textarea{
 ._select div select::-ms-expand{
     display: none;
 }
-/*閫傜敤input[file]*/
+/*适用input[file]*/
 ._upload_file{
     position: relative;
     overflow: hidden;
 }
 ._upload_file input[type="file"]{
-    /*浣挎寜閽冻澶熷ぇ*/
+    /*使按钮足够大*/
     font-size: 10em; 
     height: 10em;
     position: absolute;
@@ -205,7 +205,7 @@ text-align-last:justify;/* ie9*/
     float: left;
 }
 .clear_inline_block{
-    /*娑堥櫎inline-block鍏冪礌闂撮棿璺�/
+    /*消除inline-block元素间间距*/
     font-size: 0;
 }
 ._hidden{
@@ -215,7 +215,7 @@ text-align-last:justify;/* ie9*/
     visibility: hidden;
 }
 .o_hidden{
-    /*IE7--涓嬪吋瀹筼verflow:hidden鍔爌osition*/
+    /*IE7--下兼容overflow:hidden加position*/
     position: relative;
     overflow: hidden;
 }
@@ -249,7 +249,7 @@ text-align-last:justify;/* ie9*/
     -khtml-opacity: 0;
     /* IE */
     filter: alpha(opacity=0);
-    /* 鏃х増IE */
+    /* 旧版IE */
     -ms-filter:"alpha(opacity=0)";
 }
 .full_opacity{
@@ -269,18 +269,18 @@ text-align-last:justify;/* ie9*/
     -moz-border-radius: 999999px 999999px 999999px 999999px;
     -webkit-border-radius: 999999px;
 }
-/*寮哄埗鎹㈣*/
+/*强制换行*/
 ._word_wrap{
-    /*鎴柇鍗曡瘝*/
+    /*截断单词*/
     word-break:break-all; 
-    /*涓嶆埅鏂崟璇�/
+    /*不截断单词*/
     word-wrap:break-word;
 }
 ._word_wrap_no{
     word-break:keep-all; 
     word-wrap:normal;
 }
-/*閿氱偣鍚戜笂鍋忕Щ浣嶇疆 淇濈暀*/
+/*锚点向上偏移位置 保留*/
 .anchor_offset{
     padding-top: 250px;
     margin-top: -250px;
@@ -292,16 +292,16 @@ text-align-last:justify;/* ie9*/
     text-decoration: line-through;
 }
 ._shadow{
-    /*box-shadow锛歯one | <shadow> [ , <shadow> ]*
+    /*box-shadow：none | <shadow> [ , <shadow> ]*
     <shadow> = inset? && [ <length>{2,4} && <color>? ]
-    鍙栧�锛�
-    none锛�鏃犻槾褰�
-    <length>鈶狅細 绗�涓暱搴﹀�鐢ㄦ潵璁剧疆瀵硅薄鐨勯槾褰辨按骞冲亸绉诲�銆傚彲浠ヤ负璐熷� 
-    <length>鈶★細 绗�涓暱搴﹀�鐢ㄦ潵璁剧疆瀵硅薄鐨勯槾褰卞瀭鐩村亸绉诲�銆傚彲浠ヤ负璐熷� 
-    <length>鈶細 濡傛灉鎻愪緵浜嗙3涓暱搴﹀�鍒欑敤鏉ヨ缃璞＄殑闃村奖妯＄硦鍊笺�涓嶅厑璁歌礋鍊�
-    <length>鈶ｏ細 濡傛灉鎻愪緵浜嗙4涓暱搴﹀�鍒欑敤鏉ヨ缃璞＄殑闃村奖澶栧欢鍊笺�鍙互涓鸿礋鍊�
-    <color>锛�璁剧疆瀵硅薄鐨勯槾褰辩殑棰滆壊銆�
-    inset锛�璁剧疆瀵硅薄鐨勯槾褰辩被鍨嬩负鍐呴槾褰便�璇ュ�涓虹┖鏃讹紝鍒欏璞＄殑闃村奖绫诲瀷涓哄闃村奖 */
+    取值：
+    none： 无阴影 
+    <length>①： 第1个长度值用来设置对象的阴影水平偏移值。可以为负值 
+    <length>②： 第2个长度值用来设置对象的阴影垂直偏移值。可以为负值 
+    <length>③： 如果提供了第3个长度值则用来设置对象的阴影模糊值。不允许负值 
+    <length>④： 如果提供了第4个长度值则用来设置对象的阴影外延值。可以为负值 
+    <color>： 设置对象的阴影的颜色。 
+    inset： 设置对象的阴影类型为内阴影。该值为空时，则对象的阴影类型为外阴影 */
     /*  -webkit-box-shadow:3px 3px 10px #9edeff inset;
         box-shadow:3px 3px 10px #9edeff inset;*/
 }
@@ -322,10 +322,10 @@ text-align-last:justify;/* ie9*/
     writing-mode: vertical-rl;
 }
 ._ellipsis{
-    display:block;/*鍐呰仈瀵硅薄闇�姞*/
-    width:21em; /*鏍规嵁鎯呭喌閲嶆柊瀹氫箟*/
-    word-break:keep-all;/* 涓嶆崲琛�*/
-    white-space:nowrap;/* 涓嶆崲琛�*/
+    display:block;/*内联对象需加*/
+    width:21em; /*根据情况重新定义*/
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
     text-overflow: ellipsis;
     -o-text-overflow:ellipsis; 
     overflow: hidden;
@@ -336,8 +336,8 @@ text-align-last:justify;/* ie9*/
 }
 ._text_justify_x_y{
     /*letter-spacing: 2em; */
-    /*margin-right: -2em;*/ /*鍘婚櫎鏈�悗涓�釜鏂囧瓧鐨勭┖鏍�/
-    /*濡傛灉闇�y涓瓧涓巟涓枃瀛椾袱绔榻愶紝鍒欎负(x-y)/(y-1),杩欓噷鏄紙4-2锛�(2-1)=2em */
+    /*margin-right: -2em;*/ /*去除最后一个文字的空格*/
+    /*如果需要y个字与x个文字两端对齐，则为(x-y)/(y-1),这里是（4-2）/(2-1)=2em */
 }
 table.gridtable {
     width: 100%;
@@ -354,14 +354,14 @@ table.gridtable td {
     padding: .5em;
     background-color: #ffffff;
 }
-/* 瑕嗙洊 cover */
+/* 覆盖 cover */
 .bg_img_cover {
     /* size matters */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
 }
-/* 鍖呭惈 contain */
+/* 包含 contain */
 .bg_img_contain {
     /* size matters */
     -webkit-background-size: contain;

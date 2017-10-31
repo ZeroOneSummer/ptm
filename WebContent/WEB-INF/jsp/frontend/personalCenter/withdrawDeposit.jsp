@@ -38,19 +38,62 @@
 			                    <table cellpadding="0" cellspacing="0">
 			                        <tbody><tr>
 			                            <td class="f_18_20 _333">可提取余额：</td>
-			                            <td class="f_18_20 _333"><span id="usable_money">0.00</span>元</td>
+			                            <td class="f_18_20 _333">
+			                            <c:choose>
+												<c:when test="${user_property == null}">
+													<script type="text/javascript">
+														location.href="user/jumpToWithdrawDeposit.html";
+													</script>
+												</c:when>
+												<c:otherwise>
+					                                <span>${user_property.balance} &nbsp;</span>元
+												</c:otherwise>
+										</c:choose>
+			                            </td>
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">持卡人：</td>
-			                            <td class="f_18_20 _333">*国才</td>
+			                            <c:choose>
+			                            	<c:when test="${user !=null }">
+						                          <td class="f_18_20 _333"><i id="userName">${user.userName}</i></td>
+								                    <script type="text/javascript">
+								                    	var name=$("#userName").html();
+								                    	var cname="*"+name.substring(1,name.length);
+								                    	$("#userName").html(cname);
+								                    </script>		
+			                            	</c:when>
+			                            	<c:otherwise>
+					                               <script type="text/javascript">
+														location.href="login";
+													</script>
+												</c:otherwise>
+			                            </c:choose>
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">提现至银行卡：</td>
-			                            <td class="f_18_20 _333"><span id="bank">中国工商银行  &nbsp;*9433</span></td>
+				                         <c:choose>
+					                            <c:when test="${user_bankName !=null }">
+			                            <td class="f_18_20 _333"><span id="bank">${user_bankName.bankName }</span>
+			                            	<input type="hidden" id="bankNumber" value="${user.bankNumber}">
+			                            </td>
+										                    <script type="text/javascript">
+										                    	var bankName=$("#bank").html();
+										                    	var bankNumber=$("#bankNumber").val();
+										                    	var bank=bankName+"&nbsp;&nbsp;*"+bankNumber.substring(bankNumber.length-4,bankNumber.length);
+										                    	$("#bank").html(bank);
+										                    </script>		
+					                            	</c:when>
+					                            	<c:otherwise>
+						                               <script type="text/javascript">
+															location.href="user/jumpToWithdrawDeposit.html";
+														</script>
+													</c:otherwise>
+				                          </c:choose>
+			                            
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">提取金额：</td>
-			                            <td class="f_18_20 _333"><input id="money" class="_input" type="text" placeholder="请输入您的提现金额"><span class="f_24_45 _999 _unit">元</span></td>
+			                            <td class="f_18_20 _333"><input id="amount" class="_input" type="text" placeholder="请输入您的提现金额"><span class="f_24_45 _999 _unit">元</span></td>
 			                        </tr>
 			                        <tr>
 			                            <td class="f_18_20 _333">交易密码：</td>
@@ -59,8 +102,8 @@
 			                                <input class="_hidden" type="text">
 			                                <input class="_hidden" type="password">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
-			                                <input id="password" class="_input" type="password" autocomplete="off" placeholder="请输入您的交易密码">
-			                                <a href="ForgotPassword.jsp" class="f_14_16 ff534f">忘记密码?</a>
+			                                <input id="exchangePassword" class="_input" type="password" autocomplete="off" placeholder="请输入您的交易密码">
+			                                <a href="ForgotPassword" class="f_14_16 ff534f">忘记密码?</a>
 			                            </td>
 			                        </tr>
 			                        <tr>
@@ -71,11 +114,11 @@
 			                        </tr>
 			                    </tbody></table>
 			                </div>
-			                <div id="withdraw_limit">
+			               <!--  <div id="withdraw_limit">
 			                    <p>
 			                      	  每月前0次提现免手续费，超过0次每笔2元。您本月剩余0次免费提现机会。<br>&nbsp;
 			                    </p>
-			                </div>
+			                </div> -->
 			                <div id="withdraw_list" class="_list f_right">
 			                    <span id="shrinkage" class="f_14_16 ff534f">提现记录&nbsp;<img src="${pageContext.request.contextPath }/statics/img/more.jpg"></span>
 			                    <table cellpadding="0" cellspacing="0">
@@ -87,7 +130,28 @@
 				                        </tr>
 			                        </thead>
 			                        <tbody id="div_log">
-			                        	<tr><td></td><td class="a_center f_14_16 b5b5b5">暂无数据</td><td></td></tr>
+			                        	<c:if test="${tradeRecords != null }">
+							                	<c:forEach items="${tradeRecords}" var="trade_record">
+								                	
+								                	<tr class="_666 f_14_16">
+									                	<td class="a_center f_14_16 _333">
+									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
+								                		<c:choose>
+								                			<c:when test="${trade_record.tradeStatus == 1 }">
+											                	<td class="a_center f_14_16 _333" style="color: red">提取中</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center f_14_16 _333">已提取</td>
+								                			</c:otherwise>
+								                		</c:choose>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${tradeRecords == null }">
+							               <tr><td colspan="3" class="a_center f_14_16 b5b5b5">暂无数据</td></tr>
+					                	</c:if>
 			                        </tbody>
 			                        <tfoot id="div_foot" style="display: none;">
 				                        <tr>

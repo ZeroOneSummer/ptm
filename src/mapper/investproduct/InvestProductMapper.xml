@@ -6,4 +6,72 @@
  	<select id="geInvest_types" resultType="Invest_type">
   		select * from invest_type 
     </select>
+    
+    <select id="getInvest_products" parameterType="Invest_product" resultMap="investList">
+    	select * from invest_product p,invest_type t where p.invTypeId=t.id
+    	<if test="id != 0">
+    		and p.id=#{id}
+    	</if>
+    	<if test="invTypeId != 0 ">
+    		and p.invTypeId=#{invTypeId}
+    	</if>
+    </select>
+    <resultMap type="Invest_product" id="investList">
+    	<id property="id" column="id"/>
+    	<result property="produceName" column="produceName"/>
+    	<result property="invTypeId" column="invTypeId"/>
+    	<result property="investor" column="investor"/>
+    	<result property="totalAmount" column="totalAmount"/>
+    	<result property="residueAmount" column="residueAmount"/>
+    	<result property="invStatus" column="invStatus"/>
+    	
+    	<association property="invest_type" javaType="Invest_type">
+    		<id property="id" column="id"/>
+    		<result property="invTypeName" column="invTypeName"/>
+    		<result property="annualYield" column="annualYield"/>
+    		<result property="purchaseMoney" column="purchaseMoney"/>
+    		<result property="deadline" column="deadline"/>
+    	</association>
+    </resultMap>
+   
+   
+    <select id="countInvest_product" resultType="int">
+    	select count(1) from invest_product   	
+    </select>
+    
+    
+    <select id="getInvest_productsByPage" parameterType="utils.PageSupport" resultMap="investList1">
+    	select * from invest_product p,invest_type t where p.invTypeId=t.id limit #{start},#{size}   	
+    </select>
+    <resultMap type="Invest_product" id="investList1">
+    	<id property="id" column="id"/>
+    	<result property="produceName" column="produceName"/>
+    	<result property="invTypeId" column="invTypeId"/>
+    	<result property="investor" column="investor"/>
+    	<result property="totalAmount" column="totalAmount"/>
+    	<result property="residueAmount" column="residueAmount"/>
+    	<result property="invStatus" column="invStatus"/>
+    	
+    	<association property="invest_type" javaType="Invest_type">
+    		<id property="id" column="id"/>
+    		<result property="invTypeName" column="invTypeName"/>
+    		<result property="annualYield" column="annualYield"/>
+    		<result property="purchaseMoney" column="purchaseMoney"/>
+    		<result property="deadline" column="deadline"/>
+    	</association>
+    </resultMap>   
+    
+    <update id="updateInvest_product" parameterType="Invest_product">
+    	update invest_product
+    	<set>
+    		<if test="residueAmount != 0">
+    			residueAmount=#{residueAmount},
+    		</if>
+    		<if test="invStatus != 0">
+    			invStatus=#{invStatus},
+    		</if>
+    	</set>
+    	where id=#{id}
+    </update>
+    
 </mapper>

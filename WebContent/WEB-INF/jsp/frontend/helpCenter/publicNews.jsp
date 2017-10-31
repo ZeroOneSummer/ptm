@@ -29,9 +29,9 @@
 			        </ul>
 			        <div id="about_content">
 			            <!-- 公告中心 -->
-			                <a href="phoneNews.jsp">
+			                <a href="phoneNews.html">
 			                    <div style="padding:10px;">
-			                        <div class="f_left f_18_20 _333 _l_item" style="list-style-type:circle">9月22~23日银行维护通知&nbsp;<img src="./公告中心-口袋理财_files/top_icon.png" width="18"></div>
+			                        <div class="f_left f_18_20 _333 _l_item" style="list-style-type:circle">9月22~23日银行维护通知&nbsp;<img src="${pageContext.request.contextPath}/statics/img/top_icon.png" width="18"></div>
 			                        <div class="f_right f_14_16 _666">发布时间：2017-09-22</div>
 			                        <div class="clear"></div>
 			                    </div>

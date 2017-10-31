@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>统计中心-累计统计表</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/style_1.css"/>
+
+<script type="text/javascript">
+	function _go() {
+		var pageIndex = $("#pageIndex").val();
+		location.href = "statistics.html?pageIndex=" + pageIndex;
+	};
+</script>
 
 </head>
 <body>
@@ -27,40 +35,28 @@
 	          <td width="8%">累计用户数</td>
 	          <td width="8%">累计收益（元）</td>
         	</tr> 
-	        <tr>
-	          <td>1</td>
-	          <td>2017-01</td>
-	          <td>360,000.00</td>
-	          <td>17220,000.00</td>
-	          <td>245,000</td>
-	          <td>6210,000.00</td>
-	        </tr>
-	        <tr>
-	          <td>2</td>
-	          <td>2017-02</td>
-	          <td>360,000.00</td>
-	          <td>17220,000.00</td>
-	          <td>245,000</td>
-	          <td>6210,000.00</td>
-	        </tr>
-	        <tr>
-	          <td>3</td>
-	          <td>2017-03</td>
-	          <td>360,000.00</td>
-	          <td>17220,000.00</td>
-	          <td>245,000</td>
-	          <td>6210,000.00</td>
-	        </tr>	        
+	        
+	        <c:forEach var="info" items="${info}" varStatus="status">
+			<tr>
+				<td>${info.id}</td>
+				<td>${info.monthStatis}</td>
+				<td>${info.tradeAmount }</td>
+				<td>${info.totalAmount}</td>	
+				<td>${info.userAmount }</td>
+				<td>${info.totalIncome}</td>	
+			</tr>
+			</c:forEach>
+	         
         </tbody>       
       </table>
       <div style="margin-left: 30px;">
-      		共&nbsp;<span>20</span>&nbsp;条&nbsp;
-      		第&nbsp;<span>1</span>/<span>3</span>&nbsp;页&nbsp;&nbsp;&nbsp;
-        	<a href="">首&nbsp;页</a>&nbsp;
-        	<a href="">上一页</a>&nbsp;
-        	<a href="">下一页</a>&nbsp;
-        	<a href="">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        	跳转到&nbsp;<input size="1"/>&nbsp;页&nbsp;&nbsp;&nbsp;<input type="button" value="跳转"/>
+      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;${pages.currentPageNo }&nbsp;|&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
+      		&nbsp;&nbsp;&nbsp;
+        	<a href="statistics.html?pageIndex=1">首&nbsp;页</a>&nbsp;
+        	<a href="statistics.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;
+        	<a href="statistics.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;
+        	<a href="statistics.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a href="javascript:_go();" > go </a>
       </div>
     </div>
   </div>

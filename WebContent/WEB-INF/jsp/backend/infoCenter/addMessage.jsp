@@ -26,39 +26,41 @@
 				<br>
 					<div
 						style="width: 540px; height: 350px; margin: auto; background-color: lightcoral;">
-						<div style="text-align: center;"></br>
-							<h2>添加消息</h2>
-							</br>
-						</div>
-						<form action="">
-							<table style="margin: auto;">
-								<tr>
-									<td>标题：</td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr>
-									<td>类别：</td>
-									<td><select>
-											<option>选择类别</option>
-											<option>充值类</option>
-											<option>提现类</option>
-											<option>活动推广类</option>
-											<option>公告类</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td>内容：</td>
-									<td><textarea rows="8" cols="40"></textarea></td>
-								</tr>
-								<tr>
-									<td colspan="2" style="text-align: center;"><input
-										type="submit" value="提 交" /><input type="button" value="返 回" onclick="history.go(-1)"/></td>
-								</tr>
-							</table>
-						</form>
-					</div>
+						<div style="text-align: center;">
+				</br>
+				<h2>添加消息</h2>
+				</br>
 			</div>
+			<form action="">
+				<table style="margin: auto;">
+					<tr>
+						<td>标题：</td>
+						<td><input type="text" /></td>
+					</tr>
+					<tr>
+						<td>类别：</td>
+						<td><select>
+								<option>选择类别</option>
+								<option>充值类</option>
+								<option>提现类</option>
+								<option>活动推广类</option>
+								<option>公告类</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>内容：</td>
+						<td><textarea rows="8" cols="40"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: center;"><input
+							type="submit" value="提 交" /><input type="button" value="返 回"
+							onclick="history.go(-1)" /></td>
+					</tr>
+				</table>
+			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

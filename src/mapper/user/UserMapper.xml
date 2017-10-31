@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.user.UserMapper">
 
-  <!-- 根据用户名，登录密码（可选参数）查找用户 -->
-  <select id="getUser" parameterType="User" resultType="User">
-  	select * from user 
-  	<where>
-	  	<if test="loginName != null and loginName != ''">
-	  		loginName=#{loginName}
-	  	</if>
-	  	<if test="password != null and password != '' ">
-	  		and password=#{password}  	
-	  	</if>
-	  	<if test="id != 0  ">
-	  		and id=#{id}  	
-	  	</if>
-  	</where>
-  </select>
-	
+	<!-- 根据用户名，登录密码（可选参数）查找用户 -->
+	<select id="getUser" parameterType="User" resultType="User">
+		select * from user 
+		<where>
+		<if test="loginName != null and loginName != ''">
+			loginName=#{loginName}
+		</if>
+		<if test="password != null and password != '' ">
+			and password=#{password}
+		</if>
+		<if test="id != 0  ">
+			and id=#{id}
+		</if>
+		</where>
+	</select>
+
 	<!-- 修改登录密码 -->
 	<update id="updatePassword" parameterType="User">
-		update user set password=#{password} where id=#{id}
+		update user set
+		password=#{password} where id=#{id}
 	</update>
-	
-	
-	<!-- 设置/修改交易密码 -->
+
+
+	<!-- 修改交易密码 -->
 	<update id="updateExchangePassword" parameterType="User">
-		update user set exchangePassword=#{exchangePassword} where id=#{id}
+		update user
+		set exchangePassword=#{exchangePassword} where id=#{id}
 	</update>
-   
-  <!-- 添加用户，添加属性（登录名，登录密码，用户类别） -->
-  <insert id="addUser" parameterType="User" >
-  		insert into user(loginName,password,userType) values(#{loginName},#{password},#{userType})
-  </insert>
-  
-  <update id="rechange" parameterType="int" >
-        update user_property set balance=#{money} where userId=#{userId}
-  </update>
-  
+
+	<!-- 添加用户，添加属性（登录名，登录密码，用户类别） -->
+	<insert id="addUser" parameterType="User">
+		insert into user(loginName,password,userType)
+		values(#{loginName},#{password},#{userType})
+	</insert>
+
+	
 </mapper>

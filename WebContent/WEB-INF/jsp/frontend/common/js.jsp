@@ -9,8 +9,8 @@
     <script src="${pageContext.request.contextPath}/statics/js/hm.js"></script>
 
     <script src="${pageContext.request.contextPath}/statics/js/cookie.js"></script>
-    
-    <script type="text/javascript">document.domain='koudailc.com';</script>
+    <!-- 
+    <script type="text/javascript">document.domain='koudailc.com';</script> -->
     
     <script src="${pageContext.request.contextPath}/statics/localjs/header.js"></script>
      

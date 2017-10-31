@@ -30,7 +30,7 @@
 		<div class="container">
 			<!--连连网银支付 <form id="user_charge_form" method="post" target="_blank" action="https://deposit.koudailc.com/user/web-charge?clientType=pc">-->
 			<!--宝付网银支付 -->
-			<form id="user_charge_form" method="post" target="_blank" action="https://www.koudailc.com/account/web-charge">
+			<form id="user_charge_form" method="post"  action="doRecharge">
 			<div class="operation_wrap">
 				<div class="content">
 					<div>
@@ -42,7 +42,18 @@
 									<tbody><tr>
 										<td class="usable-left">可用余额：</td>
 										<td class="usable-right">
-			                                <p id="use-money"><i>￥</i><span>0.00</span></p>
+			                                <p id="use-money"><i>￥</i>
+											<c:choose>
+												<c:when test="${user_property == null}">
+													<script type="text/javascript">
+														location.href="jumpToRecharge.html";
+													</script>
+												</c:when>
+												<c:otherwise>
+					                                <span>${user_property.balance - user_property.withdrawMoney}</span>
+												</c:otherwise>
+											</c:choose>
+			                                </p>
 			                            </td>
 									</tr>
 									<tr>
@@ -182,10 +193,10 @@
 										<td class="cash-left">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                                <input class="_hidden" type="text">
-			                                <input class="_hidden" type="password">
+			                                <input class="_hidden" type="exchangePassword" >
 			                                <input class="_hidden" name="platform" value="pc">
 			                                <!-- //用于阻止 chrome表单自动填充的占位符 -->
-			                                <input id="order_char_id" name="order_char_id" style="display: none" type="password" autocomplete="off" placeholder="">
+			                                <input id="order_char_id" name="order_char_id" style="display: none" type="exchangePassword" autocomplete="off" placeholder="">
 										</td>
 										<td class="cash-right">
 			                                <div id="notification" class="f_14_16 ff534f">&nbsp;</div>
@@ -209,7 +220,29 @@
 										</tr>
 										</thead>
 										<tbody id="div_log">
-										<tr><td></td><td class="a_center f_14_16 b5b5b5">暂无数据</td><td></td></tr></tbody>
+										 	<c:if test="${tradeRecords != null }">
+							                	<c:forEach items="${tradeRecords}" var="trade_record">
+								                	
+								                	<tr class="_666 f_14_16">
+									                	<td class="a_center f_14_16 _333">
+									                	<fmt:formatDate value="${trade_record.tradeDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+									                	<td class="a_center f_14_16 _333"> ${trade_record.tradeMoney } 元</td>
+								                		<c:choose>
+								                			<c:when test="${trade_record.tradeStatus == 1 }">
+											                	<td class="a_center f_14_16 _333" style="color: red">未完成</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center f_14_16 _333">已完成</td>
+								                			</c:otherwise>
+								                		</c:choose>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${tradeRecords == null }">
+							               <tr><td colspan="3" class="_666 f_14_16 a_center">暂无数据</td></tr>
+					                	</c:if>
+										</tbody>
 										<tfoot id="div_foot" style="display: none;">
 										<tr>
 											<td><!-- 留边距 --></td>

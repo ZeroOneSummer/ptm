@@ -4,14 +4,15 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>500</title>
+    <link href="${pageContext.request.contextPath}/statics/css/style500.css" rel="stylesheet" type="text/css">
 </head>
-<body >
-  	<h1>【500】页面出现了意想不到的错误。。。</h1>
+<body class="notfound">
+  	<!-- <h1>【500】页面出现了意想不到的错误。。。</h1> -->
+	<div class="wrapper">
+	   <!--  <div class="big">页面不见了！</div>
+	    <div>ta可能已飞往火星去了。。。</div> -->
+	</div>
 </body>
 </html>				
 			

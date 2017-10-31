@@ -33,13 +33,12 @@
 	                    	var cname=name.substring(0,3)+"****"+name.substring(7);
 	                    	$("#login").html(cname);
 	                    </script></span>
-			        	<div class="f_right">
-			        		<a href="user/recharge.html">
+
 	                    <div class="f_right">
-			        		<a href="recharge.jsp">
+			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>
-			        		<a href="user/withdrawDeposit.html">
+			        		<a href="withdrawDeposit.html">
 			        			<span class="btn_fd5353 bg_fff f_14_35 fd5353 a_center">提现</span>
 			        		</a>
 			        	</div>
@@ -64,12 +63,50 @@
 			                <div id="msg_center_header">
 			                    <span class="_999 f_14_16">消息类型:</span>
 			                    <a msg_type="" class="_333 f_14_16 btn_fd5353 fff">全部消息</a>
-			                    <a msg_type="债权转让" class="_333 f_14_16">债权转让</a>
-			                    <a msg_type="充值提现" class="_333 f_14_16">充值提现</a>
-			                    <a msg_type="项目消息" class="_333 f_14_16">项目消息</a>
-			                    <a msg_type="其他" class="_333 f_14_16">其他</a>
+			                    <a msg_type="充值" class="_333 f_14_16">充值</a>
+			                    <a msg_type="提现" class="_333 f_14_16">提现</a>
+			                    <a msg_type="积分兑换" class="_333 f_14_16">积分兑换</a>
+			                    <a msg_type="公告" class="_333 f_14_16">公告</a>
 			                </div>
-			                <div id="notice_list"><table cellpadding="0" cellspacing="0"><tbody><tr class="_666 f_14_16"><td class="a_center">消息类型</td><td>消息内容</td><td class="a_center">接收时间</td></tr><tr><td colspan="3" class="_666 f_14_16 a_center">暂无数据</td></tr></tbody></table></div>
+			                <div id="notice_list">
+				                <table cellpadding="0" cellspacing="0">
+					                <tbody>
+					                	<tr class="_666 f_14_16">
+						                	<td class="a_center">消息类型</td>
+						                	<td>消息内容</td>
+						                	<td class="a_center">接收时间</td>
+					                	</tr>
+					                	<c:if test="${msgList != null }">
+							                	<c:forEach items="${msgList}" var="msg_push"  varStatus="status">
+								                	
+								                	<tr class="_666 f_14_16">
+								                		<c:choose>
+								                			<c:when test="${msg_push.msgType == 1 }">
+											                	<td class="a_center">充值消息</td>
+								                			</c:when>
+								                			<c:when test="${msg_push.msgType == 2 }">
+											                	<td class="a_center">提现消息</td>
+								                			</c:when>
+								                			<c:when test="${msg_push.msgType == 3 }">
+											                	<td class="a_center">积分兑换消息</td>
+								                			</c:when>
+								                			<c:otherwise>
+											                	<td class="a_center">公告消息</td>
+								                			</c:otherwise>
+								                		</c:choose>
+									                	<td> ${msg_push.content } </td>
+									                	<td class="a_center">
+									                	<fmt:formatDate value="${msg_push.releaseDate }" pattern="yyyy-MM-dd"/>
+									                	</td>
+								                	</tr>
+							                	</c:forEach>
+					                	</c:if>
+									    <c:if test="${msgList == null }">
+							               <tr><td colspan="3" class="_666 f_14_16 a_center">暂无数据</td></tr>
+					                	</c:if>
+					                </tbody>
+				                </table>
+			                </div>
 			
 			                <div id="notice_list_page" class="a_center"></div>
 			            </div>

@@ -13,6 +13,7 @@ public class Invest_product {
 	private double totalAmount;//本期可投总金额
 	private double residueAmount;//剩余可投金额
 	private int invStatus;//产品投资状态(1:未发布2:可投3:已投满)
+	private Invest_type invest_type;
 	
 	public int getId() {
 		return id;
@@ -57,7 +58,11 @@ public class Invest_product {
 	public void setInvStatus(int invStatus) {
 		this.invStatus = invStatus;
 	}
-    
-	
+	public Invest_type getInvest_type() {
+		return invest_type;
+	}
+	public void setInvest_type(Invest_type invest_type) {
+		this.invest_type = invest_type;
+	}
     
 }

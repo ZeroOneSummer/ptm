@@ -210,7 +210,7 @@ public class JumpController {
 			//总数量（表）
 			int totalCount = 0;
 			try {
-				totalCount = msgService.count();
+				totalCount = msgService.count(new Msg_push());
 			} catch (Exception e) {
 
 				e.printStackTrace();

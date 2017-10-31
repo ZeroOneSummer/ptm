@@ -74,8 +74,6 @@
 									href="register"></a>
 							</div>
 							<p class="lh_em_2 a_right t_underline">
-								<!-- <a class="_000"
-									href="newfuli">新手福利</a> -->
 							</p>
 						</div>
 					</div>
@@ -126,7 +124,7 @@
 							<div class="_border"></div>
 						</div>
 						<div class="column2_c1">
-							
+							<!-- 遍历投资产品类型列表 -->
 							<c:forEach items="${type_list}" var="Invest_type" varStatus="i">
 								<c:if test="${i.index<4}">
 									<div class="f_left bg_fff zfy_hover">
@@ -138,7 +136,7 @@
 											<div class="clear"></div>
 										</div>
 										<a class="go-invest bg_fd5353 fff _b_radius"
-											href="product">立即投资</a>									
+											href="product?invTypeId=${Invest_type.id}">立即投资</a>									
 									</div>
 								</c:if>							
 							</c:forEach>
