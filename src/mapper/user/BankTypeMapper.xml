@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.user.BankTypeMapper">
+
+	<!--  获取当前用户绑定银行卡的名称-->
+	<select id="getUserBankNameByUserId" parameterType="Bank_Type" resultType="Bank_Type">
+		select * from bank_type 
+		<where>
+			<if test="bankCode != 0">
+				bankCode = #{bankCode}
+			</if>
+		</where>
+	</select>
+
+</mapper>

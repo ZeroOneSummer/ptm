@@ -1,10 +1,5 @@
 /build/
-/css/
-/img/
-/js/
 /pdf/
 *.jar
 /META-INF/
-*.xml
-*.properties
 /bin/

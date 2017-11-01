@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="mapper.investproduct.InvestProductMapper">
+ 	<select id="geInvest_types" resultType="Invest_type">
+  		select * from invest_type 
+    </select>
+    
+    <select id="getInvest_products" parameterType="Invest_product" resultMap="investList">
+    	select * from invest_product p,invest_type t where p.invTypeId=t.id
+    	<if test="id != 0">
+    		and p.id=#{id}
+    	</if>
+    	<if test="invTypeId != 0 ">
+    		and p.invTypeId=#{invTypeId}
+    	</if>
+    </select>
+    <resultMap type="Invest_product" id="investList">
+    	<id property="id" column="id"/>
+    	<result property="produceName" column="produceName"/>
+    	<result property="invTypeId" column="invTypeId"/>
+    	<result property="investor" column="investor"/>
+    	<result property="totalAmount" column="totalAmount"/>
+    	<result property="residueAmount" column="residueAmount"/>
+    	<result property="invStatus" column="invStatus"/>
+    	
+    	<association property="invest_type" javaType="Invest_type">
+    		<id property="id" column="id"/>
+    		<result property="invTypeName" column="invTypeName"/>
+    		<result property="annualYield" column="annualYield"/>
+    		<result property="purchaseMoney" column="purchaseMoney"/>
+    		<result property="deadline" column="deadline"/>
+    	</association>
+    </resultMap>
+   
+   
+    <select id="countInvest_product" resultType="int">
+    	select count(1) from invest_product   	
+    </select>
+    
+    
+    <select id="getInvest_productsByPage" parameterType="utils.PageSupport" resultMap="investList1">
+    	select * from invest_product p,invest_type t where p.invTypeId=t.id limit #{start},#{size}   	
+    </select>
+    <resultMap type="Invest_product" id="investList1">
+    	<id property="id" column="id"/>
+    	<result property="produceName" column="produceName"/>
+    	<result property="invTypeId" column="invTypeId"/>
+    	<result property="investor" column="investor"/>
+    	<result property="totalAmount" column="totalAmount"/>
+    	<result property="residueAmount" column="residueAmount"/>
+    	<result property="invStatus" column="invStatus"/>
+    	
+    	<association property="invest_type" javaType="Invest_type">
+    		<id property="id" column="id"/>
+    		<result property="invTypeName" column="invTypeName"/>
+    		<result property="annualYield" column="annualYield"/>
+    		<result property="purchaseMoney" column="purchaseMoney"/>
+    		<result property="deadline" column="deadline"/>
+    	</association>
+    </resultMap>   
+    
+    <update id="updateInvest_product" parameterType="Invest_product">
+    	update invest_product
+    	<set>
+    		<if test="residueAmount != 0">
+    			residueAmount=#{residueAmount},
+    		</if>
+    		<if test="invStatus != 0">
+    			invStatus=#{invStatus},
+    		</if>
+    	</set>
+    	where id=#{id}
+    </update>
+    
+    <delete id="deleteInvest_productById" parameterType="Integer">
+  		delete from invest_product where id = #{id}	
+  	</delete>
+  	
+  	
+  	<insert id="addMsg_push" parameterType="Invest_product">
+		insert into invest_product (userId,title,msgType,content,releaseDate)
+				values(#{userId},#{title},#{msgType},#{content},#{releaseDate})
+	</insert>
+	
+	<update id="modify" parameterType="Invest_product">
+		update invest_product
+		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+			<if test="title != null">title=#{title},</if>
+			<if test="msgType != null">msgType=#{msgType},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
+		</trim>
+	</update>
+    
+    
+    
+    
+    
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+    <mapper namespace="mapper.Invest_type.Invest_typeMapper">
+    
+    <select id="getInvest_typeList" resultType="Invest_type">
+  	select * from Invest_type limit #{from},#{pageSize}
+  </select>
+  
+  <select id="count" resultType="Integer">
+  	select count(1) as count from Invest_type
+  
+  </select>
+    
+   <delete id="deleteInvest_typeById" parameterType="Integer">
+  		delete from invest_type where id = #{id}	
+  	</delete>
+  	
+    <update id="modifyInvest_type" parameterType="Invest_type">
+		update invest_type
+		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+			<if test="id != null">id=#{id},</if>
+			<if test="invTypeName != null">invTypeName=#{invTypeName},</if>
+			<if test="annualYield != null">annualYield=#{annualYield},</if>
+			<if test="purchaseMoney != null">purchaseMoney=#{purchaseMoney},</if>
+			<if test="deadline != null">deadline=#{deadline},</if>
+		</trim>
+	</update>
+    <insert id="addInvest_type" parameterType="Invest_type">
+		insert into invest_type (invTypeName,annualYield,purchaseMoney,deadline)
+				values(#{invTypeName},#{annualYield},#{purchaseMoney},#{deadline})
+	</insert>
+    
+   </mapper>
