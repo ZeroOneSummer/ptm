@@ -71,4 +71,23 @@ public interface UserService{
 	 */
 	public int doInvest(User_property user_property);
 	
+	
+	/**
+	 * 实名认证
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addIdNumber(User user) throws Exception;
+	
+	
+
+	/**
+	 * 绑定银行卡
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addBackNumber(User user)throws Exception;
+	
 }

@@ -81,9 +81,10 @@
 									class="f_14_16 _333">身份证</span><input type="text" id="idcard"
 									class="_input"><br>
 								<div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
-								<a href="javascript:id_verify();"
+								<a href="javascript:idNumber();"
 									class="_input _border btn_fd5353 a_center f_20_50 fff"
 									id="red_btn">马上认证</a>
+									<input type="hidden" id="userId" value="${user.id }">
 							</div>
 						</div>
 						<div class="clear"></div>

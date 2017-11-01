@@ -65,27 +65,21 @@
 							</div>
 							<div class="_content a_right clear_inline_block">
 								<div class="f_14_16 ff534f a_center">为保障您的资金安全，请绑定您的银行卡，你的购买和提现资金当且仅会返回至该卡</div>
-								<div class="f_14_16 _333 a_center"><i id="exchangePassword">${user.loginName }</i>
+								<div class="f_14_16 _333 a_center"><i id="backNumber">${user.loginName }</i>
 									<script type="text/javascript">
-				                    	var name=$("#exchangePassword").html();
+				                    	var name=$("#backNumber").html();
 				                    	var cname=name.substring(0,3)+"****"+name.substring(7);
-				                    	$("#exchangePassword").html(cname);
+				                    	$("#backNumber").html(cname);
 				                 	</script>
 								</div>
-								<!-- <span class="f_14_16 _333">姓名</span><input type="text" class="_input" placeholder="请输入您的真实姓名" /><br> -->
-								<!-- <span class="f_14_16 _333">身份证</span><input type="text" class="_input" placeholder="请输入您的身份证号码"/><br> -->
 								<div>
 									<label class="f_14_16 _333">银行卡卡号</label>
 									<input type="text" class="_input" name="bank_card" id="bank_card">
 								</div>
 								<div id="bank_name"></div>
-								<!-- <div>
-									<span class="f_14_16 _333">平台交易密码</span>
-									<input type="text" class="_input" name="pay_password" id="pay_password" />
-								</div> -->
-								<!-- <a class="_input _getcode btn_fd5353 a_center f_14_47 fff f_right">点击获取</a><br> -->
 			                    <div id="notification" class="f_14_16 ff534f a_center">&nbsp;</div>
-								<a class="_input _border btn_fd5353 a_center f_20_50 fff" id="submit">确认</a>
+								<a href="javascript:back();" class="_input _border btn_fd5353 a_center f_20_50 fff" id="submit">确认</a>
+								<input type="hidden" id="userId" value="${user.id }">
 							</div>
 						</div>
 						<div class="clear"></div>

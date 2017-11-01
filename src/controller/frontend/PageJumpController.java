@@ -149,7 +149,6 @@ public class PageJumpController {
 			}
 				 request.getSession().setAttribute(Constants.USER_SESSION, user2);
 				 User userSession=(User)request.getSession().getAttribute(Constants.USER_SESSION);
-				 System.out.println("userSession>>>>>>>>>>>"+userSession.getExchangePassword());
 		}
 		
 		return "frontend/personalCenter/account";

@@ -70,11 +70,11 @@
 			                    <div class="clear"></div>
 			                </div>
 							<div class="_content a_right">
-								<div class="f_14_16 _333 a_center"><i id="login">${user.loginName }</i>
+								<div class="f_14_16 _333 a_center"><i id="login1">${user.loginName }</i>
 								<script type="text/javascript">
-			                    	var name=$("#login").html();
+			                    	var name=$("#login1").html();
 			                    	var cname=name.substring(0,3)+"****"+name.substring(7);
-			                    	$("#login").html(cname);
+			                    	$("#login1").html(cname);
 			                    </script></div>
 			                    <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                    <input class="_hidden" type="text">

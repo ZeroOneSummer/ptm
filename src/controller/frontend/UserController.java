@@ -715,4 +715,75 @@ public class UserController {
 		}
 		return user;
 	}
+	
+	/**
+	 * 实名认证（模拟认证）
+	 * @param idNumber
+	 * @param userName
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/addIdNumber.html")
+	public void addIdNumber(@RequestParam(value="id")int id,
+			@RequestParam(value="idNumber")String idNumber,
+			@RequestParam(value="userName")String userName,
+			HttpServletRequest request,HttpServletResponse response){
+		System.out.println("进入实名认证方法>>>>"+idNumber+">>>"+id);
+		User user=new User();
+		user.setId(id);
+		user.setIdNumber(idNumber);
+		user.setUserName(userName);
+		int number=0;
+		PrintWriter out=null;
+		User user2=null;
+		try {
+			number=userService.addIdNumber(user);
+			
+			out=response.getWriter();
+			String str=JSON.toJSONString(number);
+			out.println(str);
+			out.flush();
+			out.close();
+			System.out.println("验证结果：>>>>>>>>>>>"+number);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("实名认证错误！");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * 模拟绑定银行卡
+	 * @param id
+	 * @param backNumber
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/addBackNumber.html")
+	public void addBackNumber(@RequestParam(value="id")int id,
+			@RequestParam(value="backNumber")String bankNumber,
+			HttpServletRequest request,HttpServletResponse response){
+			//模拟设定银行编号-招商银行
+			int backName=3001;
+			User user=new User();
+			user.setBankName(backName);
+			user.setId(id);
+			user.setBankNumber(bankNumber);
+			int num=0;
+			PrintWriter out=null;
+			try {
+				num=userService.addBackNumber(user);
+				
+				out=response.getWriter();
+				String str=JSON.toJSONString(num);
+				out.println(str);
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 }

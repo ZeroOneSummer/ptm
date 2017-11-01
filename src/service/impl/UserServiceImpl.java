@@ -61,4 +61,16 @@ public class UserServiceImpl implements UserService {
 		return userPropertyMapper.doInvest(user_property);
 	}
 
+	@Override
+	public int addIdNumber(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.addIdNumber(user);
+	}
+
+	@Override
+	public int addBackNumber(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.addBackNumber(user);
+	}
+
 }

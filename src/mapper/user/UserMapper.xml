@@ -39,5 +39,19 @@
 		values(#{loginName},#{password},#{userType})
 	</insert>
 
+	<!-- 实名认证 -->
+	<update id="addIdNumber" parameterType="User" >
+		update user set idNumber=#{idNumber},userName=#{userName}
+		<where>
+			id=#{id}
+		</where>
+	</update>
 	
+	<!-- 绑定银行卡 -->
+	<update id="addBackNumber" parameterType="User">
+		update user set bankNumber=#{bankNumber},bankName=#{bankName}
+		<where>
+			id=#{id}
+		</where>
+	</update>
 </mapper>

@@ -77,17 +77,36 @@
 			                </div> -->
 			               <div class="_bar">
 			                    <span class="f_18_20 _333 f_left">实名认证</span><span class="f_14_16 b5b5b5 p_relative">保障账户安全,确认投资身份</span>
-			                                           <a href="realName.html" class="f_14_16 ff534f f_right">实名认证&nbsp;&nbsp;&gt;</a>  
-			                                    <div class="clear"></div>
+			                          <c:if test="${user.idNumber == null }">
+			                        		<a href="realName.html" class="f_14_16 ff534f f_right">实名认证&nbsp;&nbsp;&gt;</a>  
+			                          </c:if>
+			                          <c:if test="${user.idNumber != null }">
+			                          		<span class="f_14_16 _333 f_right"><i>√</i>&nbsp;&nbsp;已实名认证</span>
+			                          </c:if>
+			                          <input type="hidden" id="idNumber" value="${user.idNumber }">
+			                          <div class="clear"></div>
 			                </div>
-			               <!--  <div class="_bar">
-			                                            <span class="f_18_20 _333 f_left">绑定银行卡</span><span class="f_14_16 b5b5b5 p_relative">您的购买和提现资金当且仅会返回至该卡</span>
-			                        <span class="f_14_16 _333 f_right"><i>√</i>&nbsp;&nbsp;银行卡已绑定</span>
-			                                    <div class="clear"></div>
-			                </div> -->
+			                <script type="text/javascript">
+				                function BindBack(){
+				                	var _idNumber=$("#idNumber").val();
+				                	if('' == $.trim(_idNumber)){
+				                		alert("请先进行实名认证！");
+				                	}else{
+				                		location.href="BindBack.html";
+				                	}
+				                }
+			                
+			                </script>
+			              
 			                <div class="_bar">
-			                                            <span class="f_18_20 _333 f_left">绑定银行卡</span><span class="f_14_16 b5b5b5 p_relative">您的购买和提现资金当且仅会返回至该卡</span>
-			                       <a href="BindBack.html" class="f_14_16 ff534f f_right">绑定&nbsp;&nbsp;&gt;</a>  
+			                <input type="hidden" id="idNumber" value="${user.idNumber }">
+			                       <span class="f_18_20 _333 f_left">绑定银行卡</span><span class="f_14_16 b5b5b5 p_relative">您的购买和提现资金当且仅会返回至该卡</span>
+			                       <c:if test="${user.bankNumber == null }">
+			                       		<a href="javascript:BindBack();" class="f_14_16 ff534f f_right">绑定&nbsp;&nbsp;&gt;</a>  
+			                       </c:if>
+			                       <c:if test="${user.bankNumber != null }">
+			                       		<span class="f_14_16 _333 f_right"><i>√</i>&nbsp;&nbsp;银行卡已绑定</span>
+			                       </c:if>
 			                                    <div class="clear"></div>
 			                </div>
 			                <div class="_bar ">
