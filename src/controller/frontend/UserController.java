@@ -2,32 +2,25 @@ package controller.frontend;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import service.BankTypeService;
+import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
 import service.backend.Msg_pushMapperService;
-
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSON;
 import com.mysql.jdbc.StringUtils;
 
@@ -36,7 +29,7 @@ import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
-import service.UserService;
+import pojo.view.Invest_msg;
 import utils.Constants;
 import utils.DateUtils;
 import utils.H5Utils;
@@ -63,6 +56,9 @@ public class UserController {
 
 	@Resource
 	private Msg_pushMapperService msgService;
+	
+	@Resource
+	private InvestProductService investProductService;
 
 	/**
 	 * 用户充值（模拟充值，未调用外部接口） 关键点：余额添加，添加充值记录
@@ -81,60 +77,59 @@ public class UserController {
 			@RequestParam(value = "exchangePassword", required = false) String exchangePassword,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("进入充值业务方法，传入参数:pay_amount>>" + pay_amount + ">>" + bankName);
-		User user = this.updateUserSession(request, response);
-		User_property user_property = null;
-		try {
-			user_property = userService.getUserProperty(user.getId());
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
 		boolean flag = false; // 用来判断充值成功标志
 		PrintWriter out = null;
 		Object json = null;
-		int updateBalanceResult = -1; // 更新余额判断
-		int addResult = -1; // 添加充值记录判断
 		try {
 			out = response.getWriter();
-			if (user.getBankName() != bankName || user_property == null) {
-				json = JSON.toJSON(flag);
-				out.print(json);
+			// 用户余额已发生改变，一并添加充值记录以及消息记录
+			int addResult = -1; // 添加充值记录判断
+			User user = this.updateUserSession(request, response);
+			if(pay_amount <= 0 || bankName <=0){
+				flag = false;
 			} else {
-				double updateBalance = user_property.getBalance() + pay_amount;
-				updateBalanceResult = userService.rechange(user.getId(), updateBalance);
-				flag = updateBalanceResult > 0 ? true : false;
-				if (updateBalanceResult > 0) {
-					// 用户余额已发生改变，一并添加充值记录以及消息记录
+				//当参数不为空的时候，赋值给对象
+				User_property user_property = userService.getUserProperty(user.getId());
+				
+				if (user.getBankName() != bankName || user_property == null) {
+					flag = false;
+				} else {
+					double updateBalance = user_property.getBalance() + pay_amount;
+					user_property.setBalance(updateBalance);
+					String dateTime = DateUtils.dateTimeFormat(new Date());
+					Date date = DateUtils.fDateTime(new Date());
+					
 					// 添加交易记录
 					Trade_record trade_record = new Trade_record();
 					trade_record.setUserId(user.getId());
-					trade_record.setTradeDate(new Date());
+					trade_record.setTradeDate(date);
 					trade_record.setTradeMoney(pay_amount);
 					trade_record.setTradeStatus(2); //交易状态(1:未完成2:已完成)
 					trade_record.setTradeTypeId(2); //交易类型(1:投资2:充值3:提现)
-					addResult = tradeService.addTradeRecord(trade_record);
-					flag = addResult > 0 ? true : false;
-
+					
 					// 添加消息
 					Msg_push msg_push = new Msg_push();
-					String dateTime = DateUtils.dateTimeFormat(new Date());
-					Date releaseDate = DateUtils.fDateTime(new Date());
 					msg_push.setContent("您在" + dateTime + "成功充值了" + pay_amount + "元！");
 					msg_push.setMsgType(1); // msgType 类型(1:充值2:提现3:积分兑现4:公告)
-					msg_push.setReleaseDate(releaseDate);
+					msg_push.setReleaseDate(date);
 					msg_push.setTitle("用户充值消息");
 					msg_push.setUserId(user.getId());
-					addResult = msgService.addMsg_push(msg_push);
+					
+					addResult = userService.addRechangeAndWithdrawDeposit(user_property, msg_push, trade_record);
 					flag = addResult > 0 ? true : false;
+					
 				}
-				json = JSON.toJSON(flag);
-				out.print(json);
 			}
-			System.out.println("用户余额更改情况(1为成功)>>" + updateBalanceResult + ">>用户交易记录添加情况(1为成功)>>" + addResult);
+			System.out.println("充值最后执行结果flag>>"+flag);
+			
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}finally {
+			System.out.println("（模拟充值，未调用外部接口）发生异常");
+			json = JSON.toJSON(flag);
+			out.print(json);
 			out.flush();
 			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -177,8 +172,6 @@ public class UserController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	 
-    	
     }
 
 	/**
@@ -219,8 +212,6 @@ public class UserController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	 
-    	
     }
 
 	/**
@@ -240,66 +231,60 @@ public class UserController {
 			@RequestParam(value = "exchangePassword", required = false) String exchangePassword,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
 		System.out.println("进入模拟提现方法，传入参数:pay_amount>>" + pay_amount + ">>exchangePassword>>" + exchangePassword);
-		User user = this.updateUserSession(request, response);
-		User_property user_property = null;
-		try {
-			user_property = userService.getUserProperty(user.getId());
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
 		boolean flag = false; // 用来判断提现成功标志
 		PrintWriter out = null;
 		Object json = null;
-		int updateBalanceResult = -1; // 更新余额判断
-		int addResult = -1; // 添加提现记录判断
 		try {
 			out = response.getWriter();
-			if (!user.getExchangePassword().equals(exchangePassword) || user_property.getBalance()<pay_amount) {
-				json = JSON.toJSON(flag);
-				out.print(json);
+			// 用户余额已发生改变，一并添加提现记录以及消息记录
+			int addResult = -1; // 添加提现记录判断
+			User user = this.updateUserSession(request, response);   //获取当前用户
+			if(pay_amount <= 0 || StringUtils.isNullOrEmpty(exchangePassword)){
+				flag = false;
 			} else {
-				double updateBalance = user_property.getBalance() - pay_amount - user_property.getWithdrawMoney();
-				if(updateBalance > 0){
-					updateBalanceResult = userService.rechange(user.getId(), updateBalance);
-				}else{
+				//当参数不为空的时候，赋值给对象
+				User_property user_property = userService.getUserProperty(user.getId());
+				if (!user.getExchangePassword().equals(exchangePassword) || user_property.getBalance()<pay_amount) {
 					flag = false;
-					updateBalanceResult = -1;
-				}
-				flag = updateBalanceResult > 0 ? true : false;
-				if (updateBalanceResult > 0) {
-					// 用户余额已发生改变，一并添加提现记录以及消息记录
+				} else {
+					double updateBalance = user_property.getBalance() - pay_amount;
+					user_property.setBalance(updateBalance);
+					String dateTime = DateUtils.dateTimeFormat(new Date());
+					Date date = DateUtils.fDateTime(new Date());
+					
 					// 添加交易记录
 					Trade_record trade_record = new Trade_record();
 					trade_record.setUserId(user.getId());
-					trade_record.setTradeDate(new Date());
+					trade_record.setTradeDate(date);
 					trade_record.setTradeMoney(pay_amount);
 					trade_record.setTradeStatus(2); //交易状态(1:未完成2:已完成)
 					trade_record.setTradeTypeId(3); //交易类型(1:投资2:充值3:提现)
-					addResult = tradeService.addTradeRecord(trade_record);
-					flag = addResult > 0 ? true : false;
-					System.out.println("用户余额更改情况(1为成功)>>" + updateBalanceResult +"用户交易记录添加情况(1为成功)>>" + addResult);
+					
 					// 添加消息
 					Msg_push msg_push = new Msg_push();
-					String dateTime = DateUtils.dateTimeFormat(new Date());
-					Date releaseDate = DateUtils.fDateTime(new Date());
 					msg_push.setContent("您在" + dateTime + "成功提现了" + pay_amount + "元！");
 					msg_push.setMsgType(2); // msgType 类型(1:充值2:提现3:积分兑现4:公告)
-					msg_push.setReleaseDate(releaseDate);
+					msg_push.setReleaseDate(date);
 					msg_push.setTitle("用户提现消息");
 					msg_push.setUserId(user.getId());
-					addResult = msgService.addMsg_push(msg_push);
+					
+					addResult = userService.addRechangeAndWithdrawDeposit(user_property, msg_push, trade_record);
 					flag = addResult > 0 ? true : false;
+					
 				}
-				json = JSON.toJSON(flag);
-				out.print(json);
 			}
-			System.out.println("用户提现消息添加情况(1为成功)>>" + addResult);
+			System.out.println("提现最后执行结果flag>>"+flag);
+		} catch (Exception e2) {
+			e2.printStackTrace();
+			
+		}finally {
+			System.out.println("（模拟提现，未调用外部接口）发生异常");
+			json = JSON.toJSON(flag);
+			out.print(json);
 			out.flush();
 			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+		
 	}
 
 	
@@ -320,36 +305,16 @@ public class UserController {
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(2); // 类别为充值
 		tradeRecord.setUserId(user.getId());
-		// 页面容量
-		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer pageIndex = 1;
+		Integer pageIndex = 0;
 		if (currentPageNo != null) {
 			pageIndex = Integer.valueOf(currentPageNo);
 		}
-		// 总数量（表）
-		int totalCount = 0;
-		try {
-			totalCount = tradeService.getTradeRecordNums(tradeRecord);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 总页数
-		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(pageIndex);
-		pages.setPageSize(pageSize);
-		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (pageIndex < 1) {
-			pageIndex = 1;
-		} else if (pageIndex > totalPageCount) {
-			pageIndex = totalPageCount;
-		}
-		model.addAttribute(Constants.PAGE, pages);
+		// 页面容量
+		int pageSize = Constants.pageSize+pageIndex;
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
-			this.getTradeRecords(tradeRecord, pageIndex, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord, 1, pageSize, request, response, model);
 		} catch (Exception e) {
 			System.out.println("携带用户资产（余额）/ 充值记录 信息 在进入充值页面 发生异常！");
 		}
@@ -373,39 +338,18 @@ public class UserController {
 		Trade_record tradeRecord = new Trade_record();
 		tradeRecord.setTradeTypeId(3); // 类别为提现
 		tradeRecord.setUserId(user.getId());
-		// 页面容量
-		int pageSize = Constants.pageSize;
 		// 当前页码
-		Integer currentPageNo = 1;
+		Integer currentPageNo = 0;
 		if (pageIndex != null) {
 			currentPageNo = Integer.valueOf(pageIndex);
 		}
-		// 总数量（表）
-		int totalCount = 0;
-		try {
-			totalCount = tradeService.getTradeRecordNums(tradeRecord);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 总页数
-		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(currentPageNo);
-		pages.setPageSize(pageSize);
-		pages.setTotalCount(totalCount);
-		int totalPageCount = pages.getTotalPageCount();
-		// 控制首页和尾页
-		if (currentPageNo < 1) {
-			currentPageNo = 1;
-		} else if (currentPageNo > totalPageCount) {
-			currentPageNo = totalPageCount;
-		}
-		model.addAttribute(Constants.PAGE, pages);
-		
+		// 页面容量
+		int pageSize = Constants.pageSize + currentPageNo;
 		Bank_Type bank_Type = null;
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			bank_Type = this.getUserBankNameByUserId(request, response);
-			this.getTradeRecords(tradeRecord, currentPageNo, pageSize, request, response, model);
+			this.getTradeRecords(tradeRecord,1, pageSize, request, response, model);
 		} catch (Exception e1) {
 			System.out.println("携带用户资产（余额）/ 银行账户 / 提现记录 信息在进入提现页面 发生异常");
 			try {
@@ -431,7 +375,9 @@ public class UserController {
 	 */
 	@RequestMapping("/jumpToMyInvest.html")
 	public String jumpToMyInvest(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
-			HttpServletRequest request, HttpServletResponse response, Model model) {
+							@RequestParam(value = "invTypeId", required = false) Integer invTypeId,
+							HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("携带用户资产（余额）/ 持有资产 信息在进入账户中心--我的投资页面>>>>>");
 		System.out.println("jumpToMyInvest.html>>当前页--"+currentPageNo);
 		User user = this.updateUserSession(request, response);
 		Trade_record tradeRecord = new Trade_record();
@@ -444,20 +390,25 @@ public class UserController {
 		if (currentPageNo != null) {
 			pageIndex = Integer.valueOf(currentPageNo);
 		}
-		// 总数量（表）
-		int totalCount = 0;
-		try {
-			totalCount = tradeService.getTradeRecordNums(tradeRecord);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 总页数
-		PageSupport pages = new PageSupport();
-		pages.setCurrentPageNo(pageIndex);
-		pages.setPageSize(pageSize);
-		pages.setTotalCount(totalCount);
-		pages.setTotalPageCountByRs();
 		
+		//---------------------携带交易记录数据到个人中心---------------------
+		PageSupport page1=new PageSupport();
+		pageIndex=currentPageNo==null?1:currentPageNo;
+		invTypeId=invTypeId==null?1:invTypeId;		
+		page1.setCurrentPageNo(pageIndex);
+		page1.setPageSize(3);
+		int totalCount1 = investProductService.countInvest_msg(invTypeId);//交易表总记录数
+		page1.setTotalCount(totalCount1);
+		page1.setTotalPageCountByRs();
+		List<Invest_msg> list1=investProductService.getInvest_msgList(invTypeId,(pageIndex-1)*page1.getPageSize(),page1.getPageSize());
+		if (list1.size() == 0) {
+			model.addAttribute(Constants.INVEST_MSG_LIST,null);
+		}else {			
+			model.addAttribute(Constants.INVEST_MSG_LIST,list1);
+		}	
+		model.addAttribute("page1",page1);
+		model.addAttribute("invTypeId",invTypeId);
+		//------------------------------------------------------------
 		try {
 			this.getUserPropertyBeforeJump(request, response, model);
 			this.getNoFinishWithdrawDepositNum(request, response, model);
@@ -471,7 +422,6 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
-		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/myInvest";
 	}
 
@@ -534,6 +484,8 @@ public class UserController {
 				e1.printStackTrace();
 			}
 		}
+		model.addAttribute(Constants.MSGTYPE, msg_push.getMsgType());
+		System.out.println("传送的消息类型"+msg_push.getMsgType());
 		model.addAttribute(Constants.PAGE, pages);
 		return "frontend/personalCenter/messageCenter";
 	}

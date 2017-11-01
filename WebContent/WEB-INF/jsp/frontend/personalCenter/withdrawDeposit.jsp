@@ -148,17 +148,22 @@
 								                		</c:choose>
 								                	</tr>
 							                	</c:forEach>
+							                        <tr>
+							                            <td><!-- 留边距 --></td>
+							                            <td class="a_center"><a href="javascript:getWithdrawList()" class="f_14_16 ff534f">更&nbsp;&nbsp;多</a></td>
+							                            <td><!-- 留边距 --></td>
+							                        </tr>
 					                	</c:if>
 									    <c:if test="${tradeRecords == null }">
 							               <tr><td colspan="3" class="a_center f_14_16 b5b5b5">暂无数据</td></tr>
 					                	</c:if>
 			                        </tbody>
 			                        <tfoot id="div_foot" style="display: none;">
-				                        <tr>
-				                            <td><!-- 留边距 --></td>
+				                      <!--   <tr>
+				                            <td>留边距</td>
 				                            <td class="a_center"><a href="javascript:getWithdrawLog()" class="f_14_16 ff534f">更&nbsp;&nbsp;多</a></td>
-				                            <td><!-- 留边距 --></td>
-				                        </tr>
+				                            <td>留边距</td>
+				                        </tr> -->
 			                        </tfoot>
 			                    </table>
 			                </div>

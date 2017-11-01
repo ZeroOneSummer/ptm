@@ -110,11 +110,11 @@ CREATE TABLE `invest_product` (
   PRIMARY KEY (`id`),
   KEY `FK_Reference_3` (`invTypeId`),
   CONSTRAINT `FK_Reference_3` FOREIGN KEY (`invTypeId`) REFERENCES `invest_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
 
 /*Data for the table `invest_product` */
 
-insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,394000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,580000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,0.00,3),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,0.00,3),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,940000.00,2);
+insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,393000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,580000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,0.00,3),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,0.00,3),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,940000.00,2),(11,'新手宝-信17JQO5期',1,40,1000000.00,463000.00,2),(12,'新手宝-信17JQO3期',1,52,1000000.00,531000.00,3);
 
 /*Table structure for table `invest_type` */
 
@@ -227,11 +227,11 @@ CREATE TABLE `trade_record` (
   CONSTRAINT `FK_Reference_11` FOREIGN KEY (`tradeTypeId`) REFERENCES `trade_type` (`id`),
   CONSTRAINT `FK_Reference_4` FOREIGN KEY (`produceId`) REFERENCES `invest_product` (`id`),
   CONSTRAINT `FK_Reference_5` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
 
 /*Data for the table `trade_record` */
 
-insert  into `trade_record`(`id`,`userId`,`produceId`,`tradeMoney`,`tradeDate`,`tradeStatus`,`tradeTypeId`) values (1,2,1,1500.00,'2017-10-21 00:00:00',1,3),(2,3,2,2000.00,'2017-08-25 00:00:00',2,1),(3,2,3,1000.00,'2017-10-27 17:34:58',1,3),(4,2,NULL,3450.00,'2017-10-28 17:06:27',2,2),(5,2,NULL,360.00,'2017-10-28 17:15:56',2,2),(6,2,NULL,1200.00,'2017-10-28 17:17:13',2,2),(7,2,NULL,1000.00,'2017-10-29 11:16:29',2,2),(8,2,NULL,1500.00,'2017-10-29 11:18:46',2,2),(9,2,NULL,120.00,'2017-10-29 13:42:03',2,2),(10,2,NULL,1230.00,'2017-10-29 14:41:17',2,2),(11,3,NULL,8000.00,'2017-10-29 14:46:12',2,2),(12,3,NULL,1200.00,'2017-10-29 14:48:45',2,2),(13,2,NULL,50.00,'2017-10-29 14:52:15',2,2),(14,3,NULL,100.00,'2017-10-29 14:53:03',2,2),(15,2,NULL,120.00,'2017-10-29 19:37:12',2,3),(16,2,NULL,11.00,'2017-10-30 08:10:46',2,3),(17,2,NULL,1009.12,'2017-10-30 08:26:24',2,3),(18,2,NULL,1000.00,'2017-10-30 08:30:12',2,3);
+insert  into `trade_record`(`id`,`userId`,`produceId`,`tradeMoney`,`tradeDate`,`tradeStatus`,`tradeTypeId`) values (1,2,1,1500.00,'2017-10-21 00:00:00',1,3),(2,3,2,2000.00,'2017-08-25 00:00:00',2,1),(3,2,3,1000.00,'2017-10-27 17:34:58',1,3),(4,2,NULL,3450.00,'2017-10-28 17:06:27',2,2),(5,2,NULL,360.00,'2017-10-28 17:15:56',2,2),(6,2,NULL,1200.00,'2017-10-28 17:17:13',2,2),(7,2,NULL,1000.00,'2017-10-29 11:16:29',2,2),(8,2,NULL,1500.00,'2017-10-29 11:18:46',2,2),(9,2,NULL,120.00,'2017-10-29 13:42:03',2,2),(10,2,NULL,1230.00,'2017-10-29 14:41:17',2,2),(11,3,NULL,8000.00,'2017-10-29 14:46:12',2,2),(12,3,NULL,1200.00,'2017-10-29 14:48:45',2,2),(13,2,NULL,50.00,'2017-10-29 14:52:15',2,2),(14,3,NULL,100.00,'2017-10-29 14:53:03',2,2),(15,2,NULL,120.00,'2017-10-29 19:37:12',2,3),(16,2,NULL,11.00,'2017-10-30 08:10:46',2,3),(17,2,NULL,1009.12,'2017-10-30 08:26:24',2,3),(18,2,NULL,1000.00,'2017-10-30 08:30:12',2,3),(19,2,1,1000.00,'2017-10-30 15:40:44',2,1);
 
 /*Table structure for table `trade_type` */
 
@@ -309,7 +309,29 @@ CREATE TABLE `user_property` (
 
 /*Data for the table `user_property` */
 
-insert  into `user_property`(`id`,`pocketId`,`userId`,`balance`,`score`,`withdrawMoney`,`invProperty`) values (1,1,2,7000.00,86,10.12,3000.00),(2,1,3,11300.13,77,2000.00,5000.00);
+insert  into `user_property`(`id`,`pocketId`,`userId`,`balance`,`score`,`withdrawMoney`,`invProperty`) values (1,1,2,16000.00,86,10.12,4000.00),(2,1,3,11300.13,77,2000.00,5000.00);
+
+/*Table structure for table `invest_msg` */
+
+DROP TABLE IF EXISTS `invest_msg`;
+
+/*!50001 DROP VIEW IF EXISTS `invest_msg` */;
+/*!50001 DROP TABLE IF EXISTS `invest_msg` */;
+
+/*!50001 CREATE TABLE  `invest_msg`(
+ `produceName` varchar(50) NOT NULL ,
+ `invTypeId` int(10) NOT NULL ,
+ `tradeMoney` double(10,2) NOT NULL ,
+ `tradeDate` datetime NOT NULL ,
+ `tradeStatus` int(10) NOT NULL 
+)*/;
+
+/*View structure for view invest_msg */
+
+/*!50001 DROP TABLE IF EXISTS `invest_msg` */;
+/*!50001 DROP VIEW IF EXISTS `invest_msg` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `invest_msg` AS (select `p`.`produceName` AS `produceName`,`p`.`invTypeId` AS `invTypeId`,`r`.`tradeMoney` AS `tradeMoney`,`r`.`tradeDate` AS `tradeDate`,`r`.`tradeStatus` AS `tradeStatus` from ((`invest_product` `p` join `invest_type` `t`) join `trade_record` `r`) where ((`r`.`produceId` = `p`.`id`) and (`p`.`invTypeId` = `t`.`id`))) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

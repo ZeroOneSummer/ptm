@@ -14,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mapper.trade.TradeMapper;
-import mapper.user.UserPropertyMapper;
 import pojo.Invest_product;
 import pojo.Invest_type;
 import pojo.Trade_record;
@@ -202,4 +200,5 @@ public class InvestProductController {
 		writer.flush();
 		writer.close();		
 	}
+		
 }

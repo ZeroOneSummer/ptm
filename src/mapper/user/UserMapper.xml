@@ -35,7 +35,7 @@
 
 	<!-- 添加用户，添加属性（登录名，登录密码，用户类别） -->
 	<insert id="addUser" parameterType="User">
-		insert into user(loginName,password,userType)
+		insert into user (loginName,password,userType)
 		values(#{loginName},#{password},#{userType})
 	</insert>
 

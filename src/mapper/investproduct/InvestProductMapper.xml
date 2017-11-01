@@ -74,4 +74,11 @@
     	where id=#{id}
     </update>
     
+    <select id="getInvest_msgList" resultType="Invest_msg">
+    	select * from invest_msg where invTypeId=#{invTypeId} limit #{start},#{size}
+    </select>
+    
+    <select id="countInvest_msg" resultType="int">
+    	select count(1) from invest_msg where invTypeId=#{invTypeId} 
+    </select>
 </mapper>
