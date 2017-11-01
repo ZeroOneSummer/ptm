@@ -10,3 +10,4 @@
 .classpath
 *.xml
 *.properties
+/bin/
