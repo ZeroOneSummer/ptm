@@ -6,7 +6,6 @@
 /pdf/
 *.jar
 /META-INF/
-.project
 *.xml
 *.properties
 /bin/
