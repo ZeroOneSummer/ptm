@@ -37,5 +37,23 @@ public interface UserMapper {
 	 */
 	public int updateExchangePassword(User user) throws Exception;
 
+
+	/**
+	 * 实名认证
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addIdNumber(User user) throws Exception;
+	
+	
+	/**
+	 * 绑定银行卡
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addBackNumber(User user)throws Exception;
+	
 	
 }

@@ -1,9 +1,7 @@
 package mapper.news;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
 import pojo.Invest_product;
 import pojo.News;
 
@@ -23,5 +21,4 @@ public interface NewsMapper {
 		//修改
 		public int modifyNews(News news)throws Exception;
 	
-
 }

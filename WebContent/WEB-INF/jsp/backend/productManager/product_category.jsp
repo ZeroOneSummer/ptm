@@ -88,7 +88,6 @@
 				跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;
 				<a href="javascript:_go();"> go </a>
 			</div>
-
     </div>
   </div>
 </div>

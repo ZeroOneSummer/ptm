@@ -5,13 +5,8 @@
     
     <mapper namespace="mapper.news.Msg_pushMapper">
     
-    <select id="getMsgList" resultType="Msg_push">
-  	select * from msg_push limit #{from},#{pageSize}
-  	</select>
-  
-  	<select id="count" resultType="Integer">
-  	select count(1) as count from msg_push
-
+  	<select id="count1" resultType="Integer">
+  		select count(1) as count from msg_push
   	</select>
   	
   	<delete id="deleteMsg_pushById" parameterType="Integer">
@@ -36,5 +31,44 @@
   	
   	
   	
-  	
+  	 <select id="getMsgList" resultType="Msg_push">
+  		select * from msg_push
+  	<where>
+  		<choose>
+  			<when test="msgType == 0">
+	  			and	userId in (1,#{userId})
+  			</when>
+  			<when test="msgType == 4">
+	  			and	userId = 1
+  			</when>
+  			<otherwise>
+		  		<if test="userId != 0">
+		  			and	msgType = #{msgType} and userId = #{userId}
+		  		</if>
+  			</otherwise>
+  		</choose>
+  	</where>
+  	 	ORDER BY releaseDate DESC	 	
+  	 	limit #{from},#{pageSize}
+  	</select>
+  
+  	<select id="count" resultType="Integer">
+  		select count(1) as count from msg_push
+  		<where>
+  		<choose>
+  			<when test="msgType == 0">
+	  			and	userId in (1,#{userId})
+  			</when>
+  			<when test="msgType == 4">
+	  			and	userId = 1
+  			</when>
+  			<otherwise>
+		  		<if test="userId != 0">
+		  			and	msgType = #{msgType} and userId = #{userId}
+		  		</if>
+  			</otherwise>
+  		</choose>
+  	</where>
+  	</select>
+  		
   </mapper>

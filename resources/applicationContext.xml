@@ -16,6 +16,8 @@
 					   	http://www.springframework.org/schema/aop/spring-aop.xsd
 					   	http://www.springframework.org/schema/task
 					   	http://www.springframework.org/schema/task/spring-task.xsd">
+					   	
+	<context:component-scan base-package="service"/>
 
 	<!-- 引入database.properties配置文件 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -49,7 +51,7 @@
 	<!-- 定义事务规则 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
 			<tx:method name="udpate*" propagation="REQUIRED"/>
 			<tx:method name="delte*" propagation="REQUIRED"/>
 			<tx:method name="get*" read-only="true"/>

@@ -1,1 +1,14 @@
 /build/
+.settings/
+/css/
+/img/
+/js/
+/pdf/
+*.jar
+/META-INF/
+.project
+.classpath
+*.xml
+*.properties
+
+

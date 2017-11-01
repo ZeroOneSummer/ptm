@@ -26,7 +26,6 @@ public class NewsServiceImpl implements NewsService{
 		return newsMapper.count();
 	}
 
-
 	@Override
 	public boolean deleteNewsById(Integer delId) throws Exception {
 		boolean flag = false;
@@ -47,7 +46,5 @@ public class NewsServiceImpl implements NewsService{
 		
 		return newsMapper.findNewsById(id);
 	}
-
-	
 
 }

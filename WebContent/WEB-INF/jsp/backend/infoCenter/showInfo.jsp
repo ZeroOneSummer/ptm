@@ -63,7 +63,6 @@
 									<td colspan="2" style="text-align: left;"><input type="button" value="返 回" onclick="javascript:history.back(-1);" style="margin-left: 450px"/></td>
 								</tr>
 						</table>
-		
 					</div>
 			</div>
 		</div>

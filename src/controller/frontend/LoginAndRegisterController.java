@@ -68,6 +68,7 @@ public class LoginAndRegisterController{
 				e.printStackTrace();
 			}
 			if (user2!=null) {
+				
 				request.getSession().setAttribute(Constants.USER_SESSION,user2);				
 			}
 			Object json=JSON.toJSON(user2);
@@ -123,15 +124,18 @@ public class LoginAndRegisterController{
 				user3.setPassword(pwd);
 				user3.setUserType(2);//默认普通用户
 				user3.setIdNumber("");
+				User user4=null;
 				int num = 0;
 				try {
 					num = userService.addUser(user3);
+					user4=userService.getUser(user3);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 				if (num>0) {
 					System.out.println("添加用户成功");
-					request.getSession().setAttribute(Constants.USER_SESSION,user3);				
+					request.getSession().setAttribute(Constants.USER_SESSION,user4);				
 				} else{
 					System.out.println("添加失败");
 				}

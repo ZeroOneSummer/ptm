@@ -1,8 +1,8 @@
 ﻿package pojo;
 
 import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 公告、媒体报道实体类
  * @author Administrator

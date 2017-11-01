@@ -191,69 +191,40 @@
 						</ul>
 					</div>
 					<div class="f_left floor3-evt2 mb30">
-						<h3>
-							<span>口袋资讯</span>
-						</h3>
+						<h3><span>口袋资讯</span></h3>
 						<ul>
 							<li class="clearfix">
-								<div class="news-image f_left">
-									<img
-										src="${pageContext.request.contextPath}/statics/img/1505125087178656.jpg"
-										alt="" width="92" height="62">
-								</div>
+								<div class="news-image f_left"><img src="${pageContext.request.contextPath}/statics/img/1505125087178656.jpg" alt="" width="92" height="62"></div>
 								<div class="news-info f_left">
-									<h4 class="font16 _333">
-										<a href="../infoCenter/Meiti.jsp">口袋理财为青年圆梦，助力英雄再缔传奇</a>
-									</h4>
-									<p class="font14 _666">
-										9月6日，由上海有人公益基金会、口袋理财...<span class="db _999">2017-09-11</span>
-									</p>
+									<h4 class="font16 _333"><a href="Meiti.html">口袋理财为青年圆梦，助力英雄再缔传奇</a></h4>
+									<p class="font14 _666">9月6日，由上海有人公益基金会、口袋理财...<span class="db _999">2017-09-11</span></p>
 								</div>
 							</li>
 							<li class="clearfix">
-								<div class="news-image f_left">
-									<img
-										src="${pageContext.request.contextPath}/statics/img/1500285298550248.jpg"
-										alt="" width="92" height="62">
-								</div>
+								<div class="news-image f_left"><img src="${pageContext.request.contextPath}/statics/img/1500285298550248.jpg" alt="" width="92" height="62"></div>
 								<div class="news-info f_left">
-									<h4 class="font16 _333">
-										<a href="../infoCenter/Meiti.jsp">“共话前沿金融科技”口袋理财受邀出席2017朗迪金融科技峰会</a>
-									</h4>
-									<p class="font14 _666">
-										7月15日至16日，全球金融科技领域最受...<span class="db _999">2017-07-17</span>
-									</p>
+									<h4 class="font16 _333"><a href="Meiti.html">“共话前沿金融科技”口袋理财受邀出席2017朗迪金融科技峰会</a></h4>
+									<p class="font14 _666">7月15日至16日，全球金融科技领域最受...<span class="db _999">2017-07-17</span></p>
 								</div>
 							</li>
 							<li class="clearfix">
-								<div class="news-image f_left">
-									<img
-										src="${pageContext.request.contextPath}/statics/img/1499243640374593.png"
-										alt="" width="92" height="62">
-								</div>
+								<div class="news-image f_left"><img src="${pageContext.request.contextPath}/statics/img/1499243640374593.png" alt="" width="92" height="62"></div>
 								<div class="news-info f_left">
-									<h4 class="font16 _333">
-										<a href="../infoCenter/Meiti.jsp">“数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会</a>
-									</h4>
-									<p class="font14 _666">
-										6月28日-30日，2017上海国际信息...<span class="db _999">2017-07-05</span>
-									</p>
+									<h4 class="font16 _333"><a href="Meiti.html">“数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会</a></h4>
+									<p class="font14 _666">6月28日-30日，2017上海国际信息...<span class="db _999">2017-07-05</span></p>
 								</div>
 							</li>
 						</ul>
 					</div>
-					<div class="f_left floor3-evt4 mb30">
-						<h3>
-							<span>常见问题</span>
-							<!-- <a href="#">更多</a> -->
-						</h3>
+			        <div class="f_left floor3-evt4 mb30">
+						<h3><span>常见问题</span><!-- <a href="#">更多</a> --></h3>
 						<ul class="font16 _666">
-							<li><a href="../helpCenter/packageProject.jsp">提现多久能够到账？</a></li>
-							<li><a href="../helpCenter/packageProject.jsp">提现需要手续费吗？</a></li>
-							<li><a href="../helpCenter/moneyInfo.jsp">什么是转让专区？</a></li>
-							<li><a href="../helpCenter/productDesc.jsp">关于“即生息”服务说明</a></li>
-							<li><a href="../helpCenter/productDesc.jsp">口袋券一次能用多张吗？</a></li>
-							<li><a href="../helpCenter/security.jsp">绑定银行卡规则说明</a></li>
+			                <li><a href="packageProject.html">提现多久能够到账？</a></li>
+			                <li><a href="packageProject.html">提现需要手续费吗？</a></li>
+			                <li><a href="moneyInfo.html">什么是转让专区？</a></li>
+			                <li><a href="productDesc.html">关于“即生息”服务说明</a></li>
+			                <li><a href="productDesc.html">口袋券一次能用多张吗？</a></li>
+			                <li><a href="security.html">绑定银行卡规则说明</a></li>
 						</ul>
 					</div>
 				</div>

@@ -93,7 +93,6 @@
 						href="javascript:_go();"> go </a>
 				</div>
       
-      
     </div>
   </div>
 </div>

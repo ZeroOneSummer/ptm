@@ -4,23 +4,21 @@
          <div class="footer-left f_14 f_left">
              <dl>
                  <dt class="font18" style="font-size: 18px;font-weight: bold;">关于我们</dt>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">公司简介</a></dd>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">管理团队</a></dd>
-                 <!-- <dd><a class="_999" href="https://www.koudailc.com/site/security" target="_blank">安全保障</a></dd> -->
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">法律顾问</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">公司简介</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">管理团队</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">法律顾问</a></dd>
              </dl>
              <dl>
                  <dt class="font18" style="font-size: 18px;font-weight: bold;">帮助中心</dt>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/personalCenter/exchangeShop.jsp" target="_blank">积分商城</a></dd>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/packageProject.jsp" target="_blank">帮助中心</a></dd>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/helpCenter/publicNews.jsp" target="_blank">公告中心</a></dd>
+                 <dd><a class="_999" href="exchangeShop.html" target="_blank">积分商城</a></dd>
+                 <dd><a class="_999" href="packageProject.html" target="_blank">帮助中心</a></dd>
+                 <dd><a class="_999" href="publicNews.html" target="_blank">公告中心</a></dd>
              </dl>
              <dl>
                  <dt class="font18 " style="font-size: 18px;font-weight: bold;">其他</dt>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">合作伙伴</a></dd>
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">媒体报道</a></dd>
-                 <!-- <dd><a class="_999" href="https://www.koudailc.com/site/sitemap" target="_blank">网站地图</a></dd> -->
-                 <dd><a class="_999" href="${pageContext.request.contextPath}/jsp/frontend/infoCenter/infoList.jsp" target="_blank">加入我们</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">合作伙伴</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">媒体报道</a></dd>
+                 <dd><a class="_999" href="infoList.html" target="_blank">加入我们</a></dd>
              </dl>
          </div>        
          <div class="footer-right f_left"> 
@@ -38,39 +36,39 @@
     <div class="site-info f_14 a_center">
         <p>
             <!--360认证开始-->
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.koudailc.com" target="_blank">
-                <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/1.png" title="口袋理财-360认证">
+            <a href="javascript:void(0);" target="_blank">
+                <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/1.png" title="口袋理财-360认证"> 
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/1-1.png" title="口袋理财-360认证">
             </a>
             <!--360认证结束-->
             <!--可信网站图片LOGO安装开始-->
-            <a href="https://ss.knet.cn/verifyseal.dll?sn=e15032431011558053ondd000000&ct=df&a=1&pa=0.18989034043624997" target="_blank">
+            <a href="javascript:void(0);"  target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/2.png" title="口袋理财-可信网站许可">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/2-1.png" title="口袋理财-可信网站许可">
             </a>
             <!--可信网站图片LOGO安装结束-->
-            <a href="https://search.szfw.org/cert/l/CX20150117006830006530" target="_blank">
+            <a href="javascript:void(0);" target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/3.png" title="口袋理财-诚信网站认证">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/3-1.png" title="口袋理财-诚信网站认证">
             </a>
             <!--认证开始-->
-            <a href="http://www.anquan.org/authenticate/cert/?site=koudailc.com&at=business" target="_blank">
+            <a href="javascript:void(0);" target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/4.png" title="口袋理财-安全联盟行业验证">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/4-1.png" title="口袋理财-安全联盟行业验证">
             </a>
             <!--认证结束-->
             <!--工商局认证开始-->
-            <a href="https://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=1atr5hendjiu232trv8vb6qred7d9yn01mg1nbicbvm8kwoc2f" target="_blank">
+            <a href="javascript:void(0);" target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/5.png">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/5-1.png">
             </a>
             <!--工商局认证结束-->
-            <a href="http://www.miibeian.gov.cn/" target="_blank">
+            <a href="javascript:void(0);" target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/6.png">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/6-1.png">
             </a>
 
-            <a href="http://www.shjbzx.cn/" target="_blank">
+            <a href="javascript:void(0);" target="_blank">
                 <img class="logo _hidden" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/7.png">
                 <img class="logo_hover" width="102" height="38" src="${pageContext.request.contextPath}/statics/img/7-1.png">
             </a>

@@ -16,28 +16,14 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 	private Msg_pushMapper msg;
 	
 	@Override
-	public List<Msg_push> getMsgList(Integer userId, Integer msgType,Integer currentPageNo, Integer pageSize) throws Exception {
-		
-		return msg.getMsgList(userId,msgType,(currentPageNo-1)*pageSize, pageSize);
+	public int count1() throws Exception {		
+		return msg.count1();
 	}
-
-	@Override
-	public int count() throws Exception {
-		
-		return msg.count();
-	}
-
 	
-//添加
-	@Override
-	public int addMsg_push(Msg_push msg_push) throws Exception {		  
-        return msg.addMsg_push(msg_push);  
-	}
-//修改
+	//修改
 	@Override
 	public int modify(Msg_push msg_push) throws Exception {		
-        return msg.modify(msg_push);  
-		
+        return msg.modify(msg_push);  		
 	}
 
 	
@@ -51,6 +37,21 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 		return flag;
 	}
 
+	@Override
+	public List<Msg_push> getMsgList(Integer userId,Integer msgType,Integer currentPageNo, Integer pageSize) throws Exception {		
+		return msg.getMsgList(userId,msgType,(currentPageNo-1)*pageSize, pageSize);
+	}
 
-	
+	@Override
+	public int count(Msg_push msg_push) throws Exception {
+		
+		return msg.count(msg_push);
+	}
+
+	@Override
+	public int addMsg_push(Msg_push msg_push) throws Exception {
+		
+		return msg.addMsg_push(msg_push);
+	}
+
 }

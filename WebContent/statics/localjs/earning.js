@@ -59,13 +59,13 @@
 	myChart.setTooltip([7, '0.70']);	
 	
 	/*x坐标对应显示的值*/
-	myChart.setLabelX([1, '10/1']);
-	myChart.setLabelX([2, '10/2']);
-	myChart.setLabelX([3, '10/3']);
-	myChart.setLabelX([4, '10/4']);
-	myChart.setLabelX([5, '10/5']);
-	myChart.setLabelX([6, '10/6']);
-	myChart.setLabelX([7, '10/7']);	
+	myChart.setLabelX([1, '11/4']);
+	myChart.setLabelX([2, '11/5']);
+	myChart.setLabelX([3, '11/6']);
+	myChart.setLabelX([4, '11/7']);
+	myChart.setLabelX([5, '11/8']);
+	myChart.setLabelX([6, '11/9']);
+	myChart.setLabelX([7, '11/10']);	
 	
 	/*图表大小*/
 	myChart.setSize(616, 321);

@@ -1,7 +1,8 @@
 package service;
 
 import org.apache.ibatis.annotations.Param;
-
+import pojo.Msg_push;
+import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
 
@@ -39,22 +40,15 @@ public interface UserService{
 	public int addUser(User user) throws Exception;
 	
 	/**
-	 * 用户充值
-	 * @param userId 用户编号
-	 * @param money  充值金额
+	 * 用户充值 / 提现方法
+	 * @param user_property 用户编号/充值金额
+	 * @param msg_push 用户编号/消息类型/创建时间/消息标题/消息内容
+	 * @param trade_record 交易金额/交易时间/用户编号/交易类别
 	 * @return
 	 * @throws Exception
 	 */
-	public int rechange(@Param("userId") int userId,@Param("money") double money) throws Exception;
+	public int addRechangeAndWithdrawDeposit(User_property user_property,Msg_push msg_push,Trade_record trade_record) throws Exception;
 	
-	/**
-	 * 用户提现
-	 * @param userId 用户编号
-	 * @param balance 提现后用户的余额
-	 * @return
-	 * @throws Exception
-	 */
-	public int withdrawDeposit(@Param("userId") int userId,@Param("balance") double balance,@Param("withdrawMoney") double withdrawMoney) throws Exception;
 	
 	/**
 	 * 根据用户id 获取用户财富
@@ -70,5 +64,24 @@ public interface UserService{
 	 * @return
 	 */
 	public int doInvest(User_property user_property);
+	
+	
+	/**
+	 * 实名认证
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addIdNumber(User user) throws Exception;
+	
+	
+
+	/**
+	 * 绑定银行卡
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int addBackNumber(User user)throws Exception;
 	
 }

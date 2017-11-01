@@ -74,11 +74,19 @@
     	where id=#{id}
     </update>
     
-    <delete id="deleteInvest_productById" parameterType="Integer">
+    <select id="getInvest_msgList" resultType="Invest_msg">
+    	select * from invest_msg where invTypeId=#{invTypeId} limit #{start},#{size}
+    </select>
+    
+    <select id="countInvest_msg" resultType="int">
+    	select count(1) from invest_msg where invTypeId=#{invTypeId} 
+    </select>
+
+
+	<delete id="deleteInvest_productById" parameterType="Integer">
   		delete from invest_product where id = #{id}	
   	</delete>
-  	
-  	
+  	 	
   	<insert id="addMsg_push" parameterType="Invest_product">
 		insert into invest_product (userId,title,msgType,content,releaseDate)
 				values(#{userId},#{title},#{msgType},#{content},#{releaseDate})
@@ -93,9 +101,5 @@
 			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
 		</trim>
 	</update>
-    
-    
-    
-    
-    
+	
 </mapper>

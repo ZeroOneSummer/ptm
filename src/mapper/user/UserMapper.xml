@@ -35,9 +35,24 @@
 
 	<!-- 添加用户，添加属性（登录名，登录密码，用户类别） -->
 	<insert id="addUser" parameterType="User">
-		insert into user(loginName,password,userType)
+		insert into user (loginName,password,userType)
 		values(#{loginName},#{password},#{userType})
 	</insert>
 
+	<!-- 实名认证 -->
+	<update id="addIdNumber" parameterType="User" >
+		update user set idNumber=#{idNumber},userName=#{userName}
+		<where>
+			id=#{id}
+		</where>
+	</update>
 	
+	<!-- 绑定银行卡 -->
+	<update id="addBackNumber" parameterType="User">
+		update user set bankNumber=#{bankNumber},bankName=#{bankName}
+		<where>
+			id=#{id}
+		</where>
+	</update>
+
 </mapper>

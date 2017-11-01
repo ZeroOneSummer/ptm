@@ -15,7 +15,6 @@
   <!--Begin 用户中心 Begin -->
   <div class="m_content">
     <%@include file="../common/left.jsp" %>
-    
     <script type="text/javascript">
 		function update(frm){
 			var title = frm.title.value;

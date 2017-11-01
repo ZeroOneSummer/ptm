@@ -16,14 +16,9 @@
 	   </where>
 	</select>
 
-	<!-- 模拟用户充值 -->
-	<update id="rechange" >
+	<!-- 模拟用户充值 | 提现 -->
+	<update id="doRechangeAndWithdrawDeposit" >
 		update user_property set balance=#{balance} where userId=#{userId}
-	</update>
-	
-	<!-- 模拟用户提现 -->
-	<update id="withdrawDeposit" >
-		update user_property set balance=#{balance},withdrawMoney=#{withdrawMoney} where userId=#{userId}
 	</update>
 	
 	<!-- 模拟用户投资-->
