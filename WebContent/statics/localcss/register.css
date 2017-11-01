@@ -1,0 +1,11 @@
+
+.checked_box{
+    background: #fff;
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    margin-left: 113px;
+    margin-right: 10px;
+    border: 1px solid #e5e5e5;
+    background: #fff url(https://www.koudailc.com/image/site/gou.png) no-repeat center center;
+}

@@ -1,0 +1,134 @@
+
+.acc-page-title {
+    font-weight: normal;
+    font-size: 23px;
+    color: #414141;
+    margin-left: 50px;
+    padding-top: 35px;
+    margin-bottom: 40px;
+}
+
+.cash-left {
+    float: left;
+    display: inline;
+    width: 110px;
+    text-align: left;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    height: 30px;
+}
+
+.cash-right {
+    float: left;
+    display: inline;
+    margin-left: 28px;
+    padding-bottom: 30px;
+
+}
+
+.cash-detail{
+    padding-left: 55px;
+    margin-top: 25px;
+}
+
+.cash-detail ._input {
+    display: inline-block;
+    padding: 15px 0 15px 10px;
+    margin-right: 20px;
+    width: 320px;
+    height: 15px;
+    line-height: 15px;
+    border: 2px solid #EEEEEE;
+}
+.cash-detail ._border{
+    width: 334px;
+    border: none;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    /*padding-left: 15px;*/
+    margin-top: 5px;
+}
+.cash-left-pay {
+    float: left;
+    display: inline;
+    width: 110px;
+    text-align: left;
+    padding-bottom: 30px;
+    height: 30px;
+}
+
+.p-pay {
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+#the-wangyin:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ".";
+    clear: both;
+    height: 0;
+}
+.bank-list {
+    width: 580px;
+    margin-left: -20px;
+    margin-top: -12px;
+}
+
+.bank-list li {
+    float: left;
+    display: inline;
+    cursor: pointer;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.bank-list .icon-bank {
+    display: block;
+    width: 148px;
+    height: 40px;
+    border: 1px #d3d8dc solid;
+}
+
+.bank-list .icon-bank-selected {
+    display: block;
+    width: 148px;
+    height: 40px;
+    border: 1px #FF9935 solid;
+}
+
+#use-money {
+    font-size: 24px;
+    color: #fa5c5b;
+    margin-top: -7px;
+    height: 24px;
+}
+
+#use-money i {
+    font-style: normal;
+    font-size: 18px;
+    margin-right: 2px;
+    color: #414141;
+    margin-left: -3px;
+}
+
+.usable-left {
+    float: left;
+    display: inline;
+    width: 110px;
+    text-align: left;
+    padding-bottom: 30px;
+    height: 30px;
+}
+
+.usable-right {
+    float: left;
+    display: inline;
+    margin-left: 28px;
+    padding-bottom: 30px;
+
+}

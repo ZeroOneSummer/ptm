@@ -1,0 +1,50 @@
+/* 口袋理财-报喜鸟上市系投资的专业移动理财平台 */
+/*-------------1------------- */
+#main-nav{
+    border-bottom: 1px solid #e5e5e5;
+}
+.small_size_8_8{
+    font-size:.5em;
+}
+
+/*-------------2------------- */
+#sitemap_wrap{
+	width: 100%;
+}
+#sitemap_wrap .content{
+	margin-top: 30px;
+	min-height: 400px;
+	background-color: #fff;
+}
+#sitemap_wrap .content > div{
+	padding: 50px 20px;
+}
+#sitemap_wrap h4{
+	color: #4f4f4f;
+}
+#sitemap_wrap .content .type_title{
+	margin-left: 25px;
+	margin-right: 25px;
+	padding: .6em 0;
+	color: #5f92be;
+	font-size: 1.2em;
+}
+#sitemap_wrap .content .odd{
+	padding: .6em 0;
+	margin-top: 20px;
+	background-color: #e8eff5;
+}
+#sitemap_wrap .content .even{
+	padding: .6em 0;
+	margin-top: 20px;
+	background-color: #fff;
+}
+#sitemap_wrap .content .odd a,
+#sitemap_wrap .content .even a{
+	margin: 0 10px;
+	color: #4f4f4f;
+}
+#sitemap_wrap .content .odd a:hover,
+#sitemap_wrap .content .even a:hover{
+	color: #fd5353;
+}
