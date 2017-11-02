@@ -30,7 +30,7 @@ public interface UserPropertyMapper {
 	 * @throws Exception
 	 */
 	public int doRechangeAndWithdrawDeposit(@Param("userId") int userId,@Param("balance") double money) throws Exception;
-	
+
 	/**
 	 * 用户投资后个人资产更新
 	 * @param user_property

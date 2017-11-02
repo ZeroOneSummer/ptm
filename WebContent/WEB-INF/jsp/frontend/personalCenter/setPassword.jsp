@@ -37,7 +37,6 @@
 	                    	$("#login").html(cname);
 	                    </script></span>
 					<div class="f_right">
-
 			        		<a href="recharge.html">
 			        			<span class="btn_fd5353 f_14_35 fff a_center">充值</span>
 			        		</a>

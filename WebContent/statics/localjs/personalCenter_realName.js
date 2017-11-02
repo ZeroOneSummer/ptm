@@ -1,3 +1,4 @@
+
 function idNumber(){
 	var userName=$("#username").val();
 	var idNumber=$("#idcard").val();
@@ -24,5 +25,3 @@ function idNumber(){
 		})
 	}
 }
-
-

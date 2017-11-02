@@ -24,10 +24,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/base.css">
     <link rel="shortcut icon" href="https://www.koudailc.com/image/site/ico.ico">
        
-       <script src="${pageContext.request.contextPath}/statics/js/mask.js" ></script>
-		<script src="${pageContext.request.contextPath}/statics/js/jquery.colorbox.js" ></script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/Object.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/Meiti.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/mask.js" ></script>
+	<script src="${pageContext.request.contextPath}/statics/js/jquery.colorbox.js" ></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/Object.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/Meiti.js"></script>
 <style type="text/css" abt="234"></style><style type="text/css" adt="123"></style>
 
 

@@ -1,3 +1,4 @@
+
 function setpwd(){
 	var id=$("#userId").val();
 	var password=$("#password").val();
@@ -10,7 +11,6 @@ function setpwd(){
         $('#notification').html('两次输入密码不一致'); 
     }else{
     	$.ajax({
-
     		url:"updateExchangePassword.html",
     		dateType:"json",
     		type:"post",

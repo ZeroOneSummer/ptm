@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,43 +24,47 @@
         <tbody>   	
 	        <tr>
 	          <td width="10%">产品ID</td>	 
-	          <td width="15%">1</td>	          
+	          <td width="15%">${invest_product.id }</td>	          
 	        </tr>
 	        <tr>
 	          <td>产品名称</td>	 
-	          <td>新手宝2期</td>	          
+	          <td>${invest_product.produceName }</td>	          
 	        </tr>
 	        <tr>
 	          <td>产品类别</td><!--format判断  -->	 
-	          <td>新手宝</td>	          
+	          <td>${invest_product.invest_type.invTypeName }</td>	          
 	        </tr>
 	        <tr>
 	          <td>年化收益率</td>	 
-	          <td>2%-4%</td>	          
+	          <td>${invest_product.invest_type.annualYield}</td>	          
 	        </tr>
 	        <tr>
 	          <td>起购金额（元）</td>	 
-	          <td>1000</td>	          
+	          <td>${invest_product.invest_type.purchaseMoney }</td>	          
 	        </tr>
 	        <tr>
 	          <td>期限（天）</td>	 
-	          <td>30</td>	          
+	          <td>${invest_product.invest_type.deadline }</td>	          
 	        </tr>
 	        <tr>
 	          <td>本期可投总金额（元）</td>	 
-	          <td>3,654,564.00</td>	          
+	          <td>${invest_product.totalAmount}</td>	          
 	        </tr>
 	        <tr>
 	          <td>剩余可投金额（元）</td>	 
-	          <td>4,564.00</td>	          
+	          <td>${invest_product.residueAmount }</td>	          
 	        </tr>
 	        <tr>
 	          <td>产品投资状态</td>	 
-	          <td>可投</td>	          
+	          <td>	<c:if test="${invest_product.invStatus==1}">未发布</c:if> 
+					<c:if test="${invest_product.invStatus==2}">可投</c:if> 
+					<c:if test="${invest_product.invStatus==3}">已投满</c:if> 
+			 </td>	          
 	        </tr>
         </tbody>       
       </table> 
-      <a href="product_list.jsp"><input type="button" value="返回" style="margin-left: 400px"/></a>    
+      <td colspan="2" style="text-align: left;"><input type="button" value="返 回" onclick="javascript:history.back(-1);" style="margin-left: 450px"/></td>
+      <!-- <a href="product_list.jsp"><input type="button" value="返回" style="margin-left: 400px"/></a>     -->
     </div>
   </div>
 </div>

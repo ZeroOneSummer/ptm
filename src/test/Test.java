@@ -1,20 +1,9 @@
 package test;
 
-
-import java.util.Date;
-
 import org.apache.ibatis.session.SqlSession;
-import org.apache.tomcat.util.net.SecureNioChannel.ApplicationBufferHandler;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import mapper.user.UserMapper;
-import pojo.Msg_push;
-import pojo.Trade_record;
 import pojo.User;
-import pojo.User_property;
-import service.UserService;
-import utils.H5Utils;
 import utils.MyBatisUtil;
 
 public class Test {
@@ -50,7 +39,6 @@ public class Test {
 		}*/
 		
 		
-		int num=(int) ((Math.random()*9+1)*100000);
-		System.out.println(num);
 	}
+
 }

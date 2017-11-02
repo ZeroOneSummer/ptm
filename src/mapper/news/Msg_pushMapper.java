@@ -7,6 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import pojo.Msg_push;
 
 public interface Msg_pushMapper {
+	
+	public int count1() throws Exception;
+	
+	//删除
+	public int deleteMsg_pushById(@Param(value="id")Integer delId)throws Exception;
+	//修改消息推送	
+	public int modify(Msg_push msg_push)throws Exception;
+	
 
 	/**
 	 * 消息推送集合
@@ -39,4 +47,5 @@ public interface Msg_pushMapper {
 	 * @throws Exception
 	 */
 	public int addMsg_push(Msg_push msg_push) throws Exception;
+
 }

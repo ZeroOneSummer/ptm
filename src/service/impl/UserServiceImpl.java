@@ -1,10 +1,8 @@
 package service.impl;
 
 import javax.annotation.Resource;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
-
 import mapper.news.Msg_pushMapper;
 import mapper.trade.TradeMapper;
 import mapper.user.BankTypeMapper;

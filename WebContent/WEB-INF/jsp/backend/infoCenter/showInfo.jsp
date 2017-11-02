@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,8 +8,13 @@
 <title>信息中心-信息详情</title>
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/statics/css/style_1.css">
+	href="${pageContext.request.contextPath }/statics/css/style_1.css"/>
 	<%--  <script src="${ctx}/statics/js/backend/backend.js"></script> --%>
+	
+	
+	
+	
+	
 </head>
 <body>
 
@@ -19,42 +25,42 @@
 		<!--Begin 用户中心 Begin -->
 		<div class="m_content">
 			<%@include file="../common/left.jsp"%>
+			
+			
 			<div class="m_right" id="content">
 				<div class="mem_tit">信息详情展示</div>
-				<br>
+				<br/>
+				
 					<div style="width: 850px; margin: auto;">
 						<div style="text-align: center;">
 							<h2>信息详情展示</h2>
 						</div>
-						<table style="margin: auto;">
+						
+						<table style="margin: auto ; ">
 							<tr>
 								<td width="30%">信息ID：</td>
-								<td>1</td>
+								<td>${news.id}</td>
 							</tr>
 
 							<tr>
 								<td>标&nbsp;&nbsp;题：</td>
-								<td>9月22~23日银行维护通知</td>
+								<td>${news.title}</td>
 							</tr>
 
 
 							<tr>
 								<td>发布日期：</td>
-								<td>2017-02-17</td>
+								<td>
+								<fmt:formatDate value="${news.releaseDate}" pattern="yyyy-MM-dd"/>
+								</td>
 							</tr>
 
 							<tr>
 								<td>内容：</td>
-								<td><textarea cols="60" rows="20">
-									1、央行将于9月22日 23:00~9月23日 9:00 进行维护，期间平台所有提现业务暂停。部分存管用户的大额充值和线下转账充值暂停，其余用户充值不受影响。
-								
-									2、工商银行将于9月22日 19:30~9月23日 0:30 进行维护，期间开户、提现业务暂停。
-								
-									感谢各位袋王的理解与支持。。
-									</textarea></td>
+								<td><textarea cols="60" rows="10">${news.contentPath }</textarea></td>
 							</tr><tr></tr>
 							<tr>
-									<td colspan="2" style="text-align: left;"><input type="button" value="返 回" onclick="javascript:history.back(-1);"/></td>
+									<td colspan="2" style="text-align: left;"><input type="button" value="返 回" onclick="javascript:history.back(-1);" style="margin-left: 450px"/></td>
 								</tr>
 						</table>
 					</div>

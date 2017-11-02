@@ -1,6 +1,5 @@
 package controller.frontend;
 
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -283,8 +282,7 @@ public class PageJumpController {
 	 * @return
 	 */
 	@RequestMapping("/BindBack.html")
-	public String toBindBack(){
-		
+	public String toBindBack(){		
 		return "frontend/personalCenter/BindBack";
 	}
 }

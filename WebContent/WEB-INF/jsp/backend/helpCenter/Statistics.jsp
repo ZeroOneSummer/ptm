@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -39,23 +40,24 @@
 	        <c:forEach var="info" items="${info}" varStatus="status">
 			<tr>
 				<td>${info.id}</td>
-				<td>${info.monthStatis}</td>
-				<td>${info.tradeAmount }</td>
-				<td>${info.totalAmount}</td>	
-				<td>${info.userAmount }</td>
-				<td>${info.totalIncome}</td>	
+				<td><fmt:formatDate pattern="yyyy-MM" value="${info.monthStatis}"></fmt:formatDate>
+				</td>				
+				<td><fmt:formatNumber value="${info.tradeAmount }"></fmt:formatNumber></td>
+				<td><fmt:formatNumber value="${info.totalAmount}"></fmt:formatNumber></td>
+				<td><fmt:formatNumber value="${info.userAmount }"></fmt:formatNumber></td>
+				<td><fmt:formatNumber value="${info.totalIncome}"></fmt:formatNumber></td>				
 			</tr>
 			</c:forEach>
 	         
         </tbody>       
       </table>
-      <div style="margin-left: 30px;">
-      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;${pages.currentPageNo }&nbsp;|&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
+      <div style="padding-left: 600px; font-size: 14px;">
+      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;&nbsp;&nbsp;&nbsp;第${pages.currentPageNo }&nbsp;&nbsp;页/&nbsp;&nbsp;共${pages.totalPageCount }&nbsp;页&nbsp;
       		&nbsp;&nbsp;&nbsp;
         	<a href="statistics.html?pageIndex=1">首&nbsp;页</a>&nbsp;
-        	<a href="statistics.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;
+        	<a href="statistics.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;&nbsp;
         	<a href="statistics.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;
-        	<a href="statistics.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="statistics.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a href="javascript:_go();" > go </a>
       </div>
     </div>

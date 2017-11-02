@@ -331,6 +331,5 @@
 		<%@include file="../common/footer.jsp"%>
 		<!-- 底部结束 -->
 	</div>
->>>>>>> branch 'master' of https://github.com/ZeroOneSummer/ptm.git
 </body>
 </html>
