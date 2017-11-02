@@ -252,29 +252,30 @@
 		}
 		checkCode.value = code;//跟新新的验证码（未转大写）		
 	}
-	
+	//var newmsgcode1=$("#coded1").val();//获取保存在隐藏域中的验证码
 	var phone=$("#phone");//手机号
 	var imgcode=$("#imgcode");//填入的图片验证码
 	var msgcode=$("#msgcode");//填入的手机验证码
-		var newmsg;//生成的手机验证码（短信接口暂无实现）
+	var newmsg=$("#coded1");//生成的手机验证码（短信接口暂无实现）
 	var password=$("#password");//注册密码
 	var re_password=$("#re_password");//确认注册密码
 	var notification=$("#notification");//错误信息
-	function validate () {
-		var phone1=$("#phone").val();//手机号
-		var imgcode1=$("#imgcode").val().toUpperCase();//填入的图片验证码(转大写)
-		var msgcode1=$("#msgcode").val().toUpperCase();//填入的手机验证码(转大写)
-			var newmsg1;//生成的手机验证码（短信接口暂无实现）
-		var password1=$("#password").val();//注册密码
-		var re_password1=$("#re_password").val();//确认注册密码
+	
+	function validate(){		
+		var phone1=phone.val();//手机号
+		var imgcode1=imgcode.val().toUpperCase();//填入的图片验证码(转大写)
+		var msgcode1=msgcode.val().toUpperCase();//填入的手机验证码(转大写)
+		var newmsg1=newmsg.val().toUpperCase();//生成的手机验证码（短信接口暂无实现）
+		var password1=password.val();//注册密码
+		var re_password1=re_password.val();//确认注册密码		
 		
 		if(!(phone1 && imgcode1 && msgcode1 && password1 && re_password1)){
 			notification.html("* 有未填项，请填写完整");
-		}else if(!(/^[1](3|5|8)\d{9}$/.test(phone1))){
+		}else if(!(/^[1](3|4|5|8)\d{9}$/.test(phone1))){
 			notification.html("* 手机号不合法");
 		}else if(imgcode1 != code.toUpperCase()){
 			notification.html("* 图片验证码不正确");
-		}else if(!msgcode1){//暂时有值就为true
+		}else if($.trim(newmsg1) != msgcode1){
 			notification.html("* 手机验证码不正确");
 		}else if(password1.length<6 || password1.length>16){
 			notification.html("* 密码必须是6-16位");
@@ -297,6 +298,25 @@
 		}
 		
 	}
+	
+	/**
+	 * 点击请求发送短信验证
+	 */
+	$("#get_reg_code").click(function(){
+		var phone1=phone.val();//手机号
+		if(phone1 == ""){
+			alert("请先填写手机号码");
+		}else{			
+			$.ajax({
+				url:"code.html?phone="+phone1,
+				dateType:"json",
+				success:function(data){
+					$("#coded1").val(data);	
+				}
+			});
+		}
+	})
+		
 		
 		/*var inputCode = document.getElementById("imgcode").value.toUpperCase();//输入的验证码转大写		
 		if(inputCode.length <=0) {
