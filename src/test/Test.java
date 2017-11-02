@@ -22,7 +22,7 @@ public class Test {
 
 		/*SqlSession session=  MyBatisUtil.createSqlSession();			
 		User user= session.getMapper(UserMapper.class).getUsers();
-		System.out.println(user.getLoginName()+"---"+user.getPassword());*/
+		System.out.println(user.getLoginName()+"---"+user.getPassword());
 		ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserService service= (UserService) context.getBean("userService");
 		User_property user_property=new User_property();
@@ -47,6 +47,10 @@ public class Test {
 			service.addRechangeAndWithdrawDeposit(user_property, msg_push, trade_record);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		
+		int num=(int) ((Math.random()*9+1)*100000);
+		System.out.println(num);
 	}
 }
