@@ -1,11 +1,8 @@
 package service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import mapper.investproduct.InvestProductMapper;
 import pojo.Invest_product;
 import pojo.Invest_type;
@@ -72,6 +69,15 @@ public class InvestProductServiceImpl implements InvestProductService {
 	public int countInvest_msg(int invTypeId) {
 		return investProductMapper.countInvest_msg(invTypeId);
 	}
-
+	
+	@Override
+	public boolean deleteInvest_productById(Integer delId) throws Exception {
+		
+		boolean flag = false;
+		if(investProductMapper.deleteInvest_productById(delId) > 0){
+			flag = true;
+		}
+		return flag;
+	}
 
 }

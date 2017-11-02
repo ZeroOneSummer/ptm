@@ -1,3 +1,4 @@
+
 var currentPageNo = 0;
 
 $(document).ready(function() {
@@ -66,6 +67,7 @@ function userCharge() {
 	$("#user_charge_form").submit();
 }
 */
+
 
 function alertPromt() {
 

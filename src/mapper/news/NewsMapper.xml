@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
     
-    <mapper namespace="mapper.news.NewsMapper">
+<mapper namespace="mapper.news.NewsMapper">
     
-    <select id="getNewsList" resultType="News">
+   <select id="getNewsList" resultType="News">
   	select * from news limit #{from},#{pageSize}
   </select>
   
@@ -13,5 +13,24 @@
   	select count(1) as count from news
   
   </select>
+
+  <select id="findNewsById"  resultType="News">    
+        select * from news where id=#{id}    
+    </select>    
     
-    </mapper>
+  <delete id="deleteNewsById" parameterType="Integer">
+  		delete from news where id = #{id}	
+  </delete>
+  	
+  	
+	<update id="modifyNews" parameterType="News">
+		update news
+		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+			<if test="title != null">title=#{title},</if>
+			<if test="newsType != null">newsType=#{newsType},</if>
+			<if test="contentPath != null">contentPath=#{contentPath},</if>
+			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
+		</trim>
+	</update>  
+    
+</mapper>

@@ -1,3 +1,4 @@
+
 function changepwd(){
 	var id=$("#userId").val();
 	var password=$('#password').val();

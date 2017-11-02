@@ -40,25 +40,25 @@
 				<td>${userList.id}</td>
 				<td>${userList.loginName}</td>
 				<td>${userList.userName }</td>
-				<td>${userList.userType}</td>	
+				<td>
+					<c:if test="${userList.userType==1}">管理员用户</c:if> 
+					<c:if test="${userList.userType==2}">普通用户</c:if> 					
+				</td>	
 			</tr>
 		</c:forEach>
         </tbody>
       </table>
   
-   <div style="margin-left: 30px;">
-      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;${pages.currentPageNo }&nbsp;|&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
+   <div style="padding-left: 600px; font-size: 14px;">
+      		&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;&nbsp;&nbsp;&nbsp;第${pages.currentPageNo }&nbsp;页&nbsp;/&nbsp;&nbsp;共${pages.totalPageCount }&nbsp;页&nbsp;&nbsp;
       		&nbsp;&nbsp;&nbsp;
         	<a href="userList.html?pageIndex=1">首&nbsp;页</a>&nbsp;
-        	<a href="userList.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;
-        	<a href="userList.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;
+        	<a href="userList.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;&nbsp;
+        	<a href="userList.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;&nbsp;
         	<a href="userList.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a href="javascript:_go();" > go </a>
       </div>
    
-   
-   
-  
     </div>
  </div>
 </div>

@@ -15,35 +15,47 @@
   <!--Begin 用户中心 Begin -->
   <div class="m_content">
     <%@include file="../common/left.jsp" %>
+    <script type="text/javascript">
+		function update(frm){
+			var title = frm.title.value;
+			var newsType = frm.newsType.value;
+			var contentPath = frm.contentPath.value; 
+			frm.submit(); 
+		}
+	</script> 
+    
+    
+    
     <div class="m_right" id="content">
       <div class="mem_tit">修改信息</div>
-      <br>
-      		<div style="width:500px; height:200px;margin: auto;background-color: lightcoral;">
+      <br/>
+      		<div style="width:500px; height:300px;margin: auto;background-color: rgba(0,0,0,0.05);">
 			<div style="text-align: center;"><h2>修改信息</h2></div>
-			<form>
+			<form action="updateNews"  method="post">
+				<input type="hidden" name="id" value="${news.id}"/>
 			     <table style="margin: auto;">
 			  			<tr>
 			  				<td>请输入信息新标题：</td>
-			  				<td><input type="text"/></td>
+			  				<td><input type="text" name="title" value="${news.title}" id="title"/></td>
 			  			</tr>
 			  			<tr>
 		       			<td>请选择信息类型：</td>
 		       			<td>
-		       				<select>
-		       					<option>选择类型</option>
-		       					<option>公告</option>
-		       					<option>媒体报道</option>
-		       					<option>交流成长</option>
+		       				<select name="newsType" id="newsType">
+		       					<option value="0">选择类型</option>
+		       					<option value="1" <c:if test="${news.newsType==1}">selected="selected"</c:if>>公告</option>
+		       					<option value="2" <c:if test="${news.newsType==2}">selected="selected"</c:if>>媒体报道</option>
 		       				</select>
 		       			</td>
 		       		</tr>
 			  			<tr>
 			  				<td>请输入信息新内容：</td>
-			  				<td><input type="text"/></td>
+			  				<td><textarea rows="5" cols="40" id="contentPath" name="contentPath">${news.contentPath}</textarea></td>
 			  			</tr>
 			  			<tr>
-			  				<br />
-		      				<td colspan="2" style="text-align: center;"><input type="submit" value="提 交"/>
+			  				<br/>
+		      				<td colspan="2" style="text-align: center;">
+		      				<input type="button" value="提 交" onclick="update(document.forms[0])"/>
 		      				<input type="button" value="返 回" onclick="history.back(-1)"/></td>
 		      			</tr>
 			      </table>

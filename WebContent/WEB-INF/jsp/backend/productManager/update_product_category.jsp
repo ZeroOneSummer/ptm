@@ -14,23 +14,49 @@
   <!--Begin 用户中心 Begin -->
   <div class="m_content">
     <%@include file="../common/left.jsp" %>
+    <script type="text/javascript">
+		function update(frm){
+			var id = frm.id.value;
+			var invTypeName = frm.invTypeName.value;
+			var annualYield = frm.annualYield.value;
+			var purchaseMoney = frm.purchaseMoney.value;
+			var deadline = frm.deadline.value;
+			frm.submit(); 
+		}
+	</script> 
+       
     <div class="m_right" id="content">
       <div class="mem_tit">修改产品分类</div>
       <br/>
-      <form action="#" method="get">
+      <form action="updateInvest_type" method="post">
+      <input type="hidden" name="id" value="${invest_type.id}"/>
 	      <table border="0" class="order_tab" style="width:630px; text-align:center; margin-bottom:30px;" cellspacing="0" cellpadding="0">       
 	        <tbody>
 	        	<tr>
 		          <td width="5%">类别ID</td>	 
-		          <td width="8%"><input value="1" readonly="readonly"/></td>	          
+		          <td width="8%"><input value="1" readonly="readonly"  name="id" value="${invest_type.id}"/></td>	          
 		        </tr>
 		        <tr>
 		          <td>类别名称</td>	 
-		          <td><input /></td>	          
-		        </tr>        
+		          <td><input id="invTypeName" name="invTypeName" value="${invest_type.invTypeName }"/></td>	          
+		        </tr>    
+		        
+		        <tr>
+		          <td>年化收益率(保留4位小数)</td>	 
+		          <td><input id="annualYield" name="annualYield" value="${invest_type.annualYield }"/></td>	          
+		        </tr>  
+		        <tr>
+		          <td>起购金额(元)</td>	 
+		          <td><input id="purchaseMoney" name="purchaseMoney" value="${invest_type.purchaseMoney }"/></td>	          
+		        </tr>  
+		        <tr>
+		          <td>投资期限(天)</td>	 
+		          <td><input id="deadline" name="deadline" value="${invest_type.deadline }"/></td>	          
+		        </tr>  
+		                    
 	        </tbody>       
 	      </table> 
-      	<input type="submit" value="提交"  style="margin-left: 410px"/>&nbsp;&nbsp;&nbsp;<input type="button" value="返回" onclick="javascript:history.back(-1);"/>   
+      	<input type="button" value="提 交" onclick="update(document.forms[0])"  style="margin-left: 410px"/>&nbsp;&nbsp;&nbsp;<input type="button" value="返回" onclick="javascript:history.back(-1);"/>   
       </form> 
     </div>
   </div>

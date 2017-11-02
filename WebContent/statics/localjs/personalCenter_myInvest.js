@@ -8,7 +8,7 @@
 			num=totalPageCount;
 		}
 		frm.currentPageNo.value=num;
-		alert(frm.currentPageNo.value);
+		//alert(frm.currentPageNo.value);
 		frm.submit();
 	}
 

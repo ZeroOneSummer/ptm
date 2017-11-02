@@ -81,4 +81,25 @@
     <select id="countInvest_msg" resultType="int">
     	select count(1) from invest_msg where invTypeId=#{invTypeId} 
     </select>
+
+
+	<delete id="deleteInvest_productById" parameterType="Integer">
+  		delete from invest_product where id = #{id}	
+  	</delete>
+  	 	
+  	<insert id="addMsg_push" parameterType="Invest_product">
+		insert into invest_product (userId,title,msgType,content,releaseDate)
+				values(#{userId},#{title},#{msgType},#{content},#{releaseDate})
+	</insert>
+	
+	<update id="modify" parameterType="Invest_product">
+		update invest_product
+		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+			<if test="title != null">title=#{title},</if>
+			<if test="msgType != null">msgType=#{msgType},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
+		</trim>
+	</update>
+	
 </mapper>

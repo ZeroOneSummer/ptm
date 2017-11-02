@@ -1,3 +1,4 @@
+
 function alertConfirm() {
 	showBg("detail_invest_confirm");
 }
@@ -33,5 +34,3 @@ function sendType(frm,type){
   frm.submit();
 	
 }
-
-

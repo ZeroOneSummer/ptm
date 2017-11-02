@@ -319,7 +319,6 @@
 		</div>
 		<div
 			style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
->>>>>>> branch 'master' of https://github.com/ZeroOneSummer/ptm.git
 	</div>
 </body>
 </html>

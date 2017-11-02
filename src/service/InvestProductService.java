@@ -20,4 +20,8 @@ public interface InvestProductService {
 	public List<Invest_msg> getInvest_msgList(int invTypeId,int start,int size);
 
 	public int countInvest_msg(int invTypeId);
+	
+	//删除(后台功能)
+	public boolean deleteInvest_productById(Integer delId) throws Exception;
+
 }

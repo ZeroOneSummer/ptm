@@ -8,6 +8,14 @@ import pojo.Msg_push;
 
 public interface Msg_pushMapperService {
 	
+	public int count1()throws Exception;
+	
+	//删除
+	public boolean deleteMsg_pushById(Integer delId)throws Exception;
+
+	//修改
+	public int modify(Msg_push msg_push)throws Exception;
+	
 	/**
 	 * 消息推送集合
 	 * 

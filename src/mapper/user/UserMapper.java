@@ -37,6 +37,7 @@ public interface UserMapper {
 	 */
 	public int updateExchangePassword(User user) throws Exception;
 
+
 	/**
 	 * 实名认证
 	 * @param user

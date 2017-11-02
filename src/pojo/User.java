@@ -39,7 +39,7 @@ public class User {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
-	
+
 	public String getBankNumber() {
 		return bankNumber;
 	}

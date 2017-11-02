@@ -1,6 +1,5 @@
 package controller.frontend;
 
-
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -730,8 +729,7 @@ public class UserController {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		
+			}		
 	}
 
 

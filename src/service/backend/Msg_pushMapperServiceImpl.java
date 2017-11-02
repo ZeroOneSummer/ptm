@@ -16,8 +16,29 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 	private Msg_pushMapper msg;
 	
 	@Override
-	public List<Msg_push> getMsgList(Integer userId,Integer msgType,Integer currentPageNo, Integer pageSize) throws Exception {
-		
+	public int count1() throws Exception {		
+		return msg.count1();
+	}
+	
+	//修改
+	@Override
+	public int modify(Msg_push msg_push) throws Exception {		
+        return msg.modify(msg_push);  		
+	}
+
+	
+	//根据id删除
+	@Override
+	public boolean deleteMsg_pushById(Integer delId) throws Exception {
+		boolean flag = false;
+		if(msg.deleteMsg_pushById(delId) > 0){
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public List<Msg_push> getMsgList(Integer userId,Integer msgType,Integer currentPageNo, Integer pageSize) throws Exception {		
 		return msg.getMsgList(userId,msgType,(currentPageNo-1)*pageSize, pageSize);
 	}
 
@@ -38,5 +59,4 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 		
 		return msg.getMsg_pushById(msg_push);
 	}
-
 }

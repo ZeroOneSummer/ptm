@@ -26,4 +26,25 @@ public class NewsServiceImpl implements NewsService{
 		return newsMapper.count();
 	}
 
+	@Override
+	public boolean deleteNewsById(Integer delId) throws Exception {
+		boolean flag = false;
+		if(newsMapper.deleteNewsById(delId) > 0){
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public int modifyNews(News news) throws Exception {
+		
+		return newsMapper.modifyNews(news);
+	}
+
+	@Override
+	public List<News> findNewsById(int id) throws Exception {
+		
+		return newsMapper.findNewsById(id);
+	}
+
 }

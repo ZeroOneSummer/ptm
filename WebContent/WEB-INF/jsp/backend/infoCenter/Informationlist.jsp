@@ -9,14 +9,8 @@
 <title>信息中心-信息列表</title>
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/statics/css/style_1.css">
-
-	<script type="text/javascript">
-		function _go() {
-			var pageIndex = $("#pageIndex").val();
-			location.href = "statistics.html?pageIndex=" + pageIndex;
-		};
-	</script>
+	href="${pageContext.request.contextPath }/statics/css/style_1.css"/>
+	
 </head>
 <body>
 
@@ -26,7 +20,36 @@
 		</div>
 		<!--Begin 用户中心 Begin -->
 		<div class="m_content">
-			<%@include file="../common/left.jsp"%>
+		<%@include file="../common/left.jsp"%>
+			
+	<script type="text/javascript">
+		function _go() {
+			var pageIndex = $("#pageIndex").val();
+			location.href = "Information.html?pageIndex=" + pageIndex;
+		};
+		
+		 function delNews_json(id){
+			var mess=confirm("你确定要删除吗？");
+			 if(mess){
+				$.ajax({
+					type:"GET",//请求类型
+					url:"delNews.json?id="+id,//请求的url
+					dataType:"json",//ajax接口（请求url）返回的数据类型
+					success:function(data){//data：返回数据（json对象）
+						if(data){
+							alert("删除成功！");
+							location.href="Information.html";
+							alert("删除失败！");
+							location.href="Information.html";
+						}
+					}
+				});  
+			} 	
+		} 
+	</script>
+			
+			
+			
 			<div class="m_right" id="content">
 				<div class="mem_tit">信息列表</div>
 				<br />
@@ -46,23 +69,28 @@
 							<tr>
 								<td>${news.id}</td>
 								<td>${news.title}</td>
-								<td>${news.newsType}</td>
-								<td>${news.releaseDate}</td>
-								<td><a href="">查看详情</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-									href="" onclick="javascript:return del();">删除</a></td>
+								<td>
+									<c:if test="${news.newsType==1}">公告</c:if> 
+									<c:if test="${news.newsType==2}">媒体报道</c:if> 
+								</td>
+								<td>
+								<fmt:formatDate value="${news.releaseDate}" pattern="yyyy-MM-dd"/>
+								</td>
+								<td><a href="getNews?id=${news.id}">查看详情</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="modifyNews?id=${news.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="javascript:delNews_json(${news.id});;">删除</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 
-				<div style="margin-left: 30px;">
-					&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;${pages.currentPageNo }&nbsp;|&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
+				<div style="padding-left: 600px; font-size: 14px;">
+					&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;&nbsp;&nbsp;&nbsp;第${pages.currentPageNo }&nbsp;&nbsp;/共&nbsp;&nbsp;${pages.totalPageCount }&nbsp;页&nbsp;
 					&nbsp;&nbsp;&nbsp; <a href="Information.html?pageIndex=1">首&nbsp;页</a>&nbsp;
 					<a
-						href="Information.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;
+						href="Information.html?pageIndex=${pages.currentPageNo-1<1?1:pages.currentPageNo - 1}">上一页</a>&nbsp;&nbsp;
 					<a
 						href="Information.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;
-					<a href="Information.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="Information.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a
 						href="javascript:_go();"> go </a>
 				</div>
