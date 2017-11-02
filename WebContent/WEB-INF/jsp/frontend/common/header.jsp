@@ -41,7 +41,7 @@
                 </a>
                 <ul class="dropdown">
                     <li><a href="packageProject.html">帮助中心</a></li>
-                    <li><a href="publicNews.html">公告中心</a></li>
+                    <li><a href="jumpToPublicNews.html">公告中心</a></li>
                     <!-- <li><a href="http://tieba.baidu.com/f?kw=%E5%8F%A3%E8%A2%8B%E7%90%86%E8%B4%A2&ie=utf-8">官方贴吧</a></li> -->
                 </ul>
             </li>

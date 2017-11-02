@@ -52,6 +52,15 @@
   	 	limit #{from},#{pageSize}
   	</select>
   
+    <select id="getMsg_pushById" parameterType="Msg_push" resultType="Msg_push">
+  		select * from msg_push
+  	<where>
+  		<if test="id != 0">
+	  		id = #{id}
+  		</if>
+  	</where>
+  	</select>
+  
   	<select id="count" resultType="Integer">
   		select count(1) as count from msg_push
   		<where>

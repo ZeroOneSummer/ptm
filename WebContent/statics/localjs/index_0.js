@@ -1,11 +1,11 @@
 
     window.onload= function (){
         // 数据递增动效 2016-11-14 phoebe
-        var oneD = '27,159,483,737',
-            twoD = '494,608,760',
-            threeD = '6,525,291',
-            fourD = '30,731,710.14',
-            start1=0,start2=0,start3=0,start4=0;
+        var oneD = $("#one-d").val();
+        var twoD = $("#two-d").val();
+        var threeD = $("#three-d").val();
+        var fourD = $("#four-d").val();
+        var   start1=0,start2=0,start3=0,start4=0;
             
         var oneT = setInterval(addO, 50);
         var twoT = setInterval(addT, 50);

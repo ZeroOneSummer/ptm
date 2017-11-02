@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.alibaba.fastjson.JSON;
 
+import pojo.Info_statis;
 import pojo.Invest_product;
 import pojo.Invest_type;
 import pojo.Trade_record;
@@ -23,6 +25,7 @@ import pojo.User_property;
 import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
+import service.backend.Info_statisService;
 import utils.Constants;
 import utils.PageSupport;
 
@@ -38,6 +41,9 @@ public class InvestProductController {
 	@Resource
 	private TradeService tradeService;
 	
+	@Resource
+	private Info_statisService info_statisService;
+	
 	/**
 	 * 首页展示产品类型列表
 	 * @return
@@ -45,14 +51,27 @@ public class InvestProductController {
 	@RequestMapping("/typeList")
 	public String showInvestProductType(HttpServletRequest request,HttpServletResponse response,Model model){
 		List<Invest_type> type_list=investProductService.geInvest_types();
-		if (type_list == null) {
-			System.out.println("获取投资产品类型表错误");
+		List<Info_statis> info=null;
+		try {
+			info = info_statisService.getStatisList(1, 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (type_list == null || info == null) {
+			System.out.println("获取投资产品类型表以及平台运营数据错误");
 			try {
 				request.getRequestDispatcher("500.jsp").forward(request,response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
 		}
+		for (Info_statis info_statis : info) {
+			System.out.println("当月交易金额>>"+info_statis.getTradeAmount()
+					+"-总用户数>>"+info_statis.getUserAmount()
+					+"-平台累计收益>>"+info_statis.getTotalIncome()
+					+"-平台累计交易金额>>"+info_statis.getTotalAmount());
+		}
+		model.addAttribute("info_list", info);
 		model.addAttribute(Constants.type_list, type_list);
 		return "firstPage";
 	}

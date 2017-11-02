@@ -44,6 +44,7 @@
 							<a id="get_reg_code" class="_w_input1 btn_fd5353 a_center f_14_47 fff">点击获取</a><br>
 			                <!-- //用于阻止 chrome表单自动填充的占位符 -->
 			                <input class="_hidden" type="text">
+			                <input type="hidden" id="coded1">
 			                <input class="_hidden" type="password">
 			                <!-- //用于阻止 chrome表单自动填充的占位符 -->
 							<span class="f_14_16 _433f3e">创建密码</span>
