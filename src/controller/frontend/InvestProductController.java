@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.alibaba.fastjson.JSON;
+
 import pojo.Invest_product;
 import pojo.Invest_type;
 import pojo.Trade_record;
@@ -150,54 +153,38 @@ public class InvestProductController {
 		trade_record.setTradeDate(new Date());//传入当前时间
 		trade_record.setTradeStatus(2);//传入交易状态（2-成功）
 		
-		PrintWriter writer=null;
+		PrintWriter writer=null;		
 		boolean flag=false;//默认交易失败
 		try {
-			writer=response.getWriter();
-			//1.更新个人资产表user_property
-			User_property user_property=	
-					userService.getUserProperty(trade_record.getUserId());//查询个人资产
-			user_property.setBalance(user_property.getBalance() - trade_record.getTradeMoney());//余额-=交易金额
-			user_property.setInvProperty(user_property.getInvProperty() + trade_record.getTradeMoney());//投资资产+=交易金额
-			int num=userService.doInvest(user_property);//更新个人资产表
-			if (num>0) {
-				//2.更新投资产品表invest_product
-				Invest_product invest_product=new Invest_product();
-				invest_product.setId(trade_record.getProduceId());
-				List<Invest_product> list=investProductService.getInvest_products(invest_product);//查询该产品信息
-				double newResidueAmount=list.get(0).getResidueAmount() - trade_record.getTradeMoney();
-				if (newResidueAmount<0) {
-					System.out.println("产品不够投了，请回滚事物");
-				}else if (newResidueAmount == 0) {
-					System.out.println("产品刚好投满");
-					invest_product.setInvStatus(3);//投资状态3--投满
-					invest_product.setResidueAmount(newResidueAmount);//可投金额-=交易金额 	
-					int num2=investProductService.updateInvest_product(invest_product);//更新投资产品表
-					if (num2>0) {
-						//3.更新交易记录表trade_record
-						int num3=tradeService.addTradeRecord(trade_record);//更新交易记录表
-						if (num3>0) {
-							flag=true;//所有信息添加成功后，返回交易成功
-						}
-					}
-				}else{
-					invest_product.setResidueAmount(newResidueAmount);//可投金额-=交易金额 	
-					int num2=investProductService.updateInvest_product(invest_product);//更新投资产品表
-					if (num2>0) {
-						//3.更新交易记录表trade_record
-						int num3=tradeService.addTradeRecord(trade_record);//更新交易记录表
-						if (num3>0) {
-							flag=true;//所有信息添加成功后，返回交易成功
-						}
-					}
-				}				
-			}
+			flag = investProductService.updateInvestData(trade_record);//更新3张表的数据，加事务控制
+			writer=response.getWriter();			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			System.out.println(flag);
+			writer.println(flag);
+			writer.flush();
+			writer.close();				
 		}
-		writer.println(flag);
-		writer.flush();
-		writer.close();		
 	}
 
+	/**
+	 * 获取用户余额到投资详情product.jsp页面
+	 * @return
+	 */
+	@RequestMapping("/getBalance")
+	public void getBalance(int userId,HttpServletResponse response){
+		PrintWriter writer = null;
+		try {
+			writer = response.getWriter(); 
+			User_property user_property = userService.getUserProperty(userId);
+			Object json = JSON.toJSON(user_property);
+			writer.println(json);
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+		
 }

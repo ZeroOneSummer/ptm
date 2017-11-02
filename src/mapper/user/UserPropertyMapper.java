@@ -36,5 +36,5 @@ public interface UserPropertyMapper {
 	 * @param user_property
 	 * @return
 	 */
-	public int doInvest(User_property user_property);
+	public int doInvest(User_property user_property) throws Exception;
 }

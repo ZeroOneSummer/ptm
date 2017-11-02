@@ -76,6 +76,7 @@
 								<p>本期总额：<i id="bqze">${product_list.totalAmount}</i>元</p>
 								<p>剩余可投：<i id="sykt">${product_list.residueAmount}</i>元</p>
 								<input type="hidden" value="${user.id}" id="userId"/> 
+								<input type="hidden" value="${user.bankNumber}" id="bankNumber"/> 
 								<input type="hidden" value="${product_list.id}" id="productId"/> 							
 							</div>
 						</div>
