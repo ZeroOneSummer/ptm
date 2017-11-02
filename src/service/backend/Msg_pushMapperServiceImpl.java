@@ -33,4 +33,10 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 		return msg.addMsg_push(msg_push);
 	}
 
+	@Override
+	public Msg_push getMsg_pushById(Msg_push msg_push) throws Exception {
+		
+		return msg.getMsg_pushById(msg_push);
+	}
+
 }

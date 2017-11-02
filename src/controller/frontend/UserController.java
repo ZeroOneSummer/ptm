@@ -632,6 +632,9 @@ public class UserController {
 		System.out.println(
 				"获得当前用户的消息列表集合>>>>传递参数msgType>>" + msgType + ">>当前页码>>" + currentPageNo + ">>页面数量>>" + pageSize);
 		User user = this.updateUserSession(request, response);
+		if(user == null){
+			user = new User();
+		}
 		List<Msg_push> msgList = null;
 		try {
 			msgList = msgService.getMsgList(user.getId(), msgType, currentPageNo, pageSize);
@@ -646,6 +649,7 @@ public class UserController {
 			}
 		}
 		List<Msg_push> msgList1 = msgList.size() == 0 ? null : msgList;
+		System.out.println("获取到公告记录共>>"+ msgList.size() + " 条！");
 		model.addAttribute("msgList", msgList1);
 	}
 
@@ -656,15 +660,6 @@ public class UserController {
 	 */
 	public User updateUserSession(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute(Constants.USER_SESSION);
-		if (user == null) {
-			try {
-				request.getRequestDispatcher("500.jsp").forward(request, response);
-			} catch (ServletException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
 		return user;
 	}
 	
@@ -737,5 +732,89 @@ public class UserController {
 				e.printStackTrace();
 			}
 		
+	}
+
+
+	/**
+	 * 携带公告消息列表集合 信息在进入公告中心
+	 * 
+	 * @param currentPageNo
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/jumpToPublicNews.html")
+	public String jumpToPublicNews(@RequestParam(value = "currentPageNo", required = false) Integer currentPageNo,
+			HttpServletRequest request,
+			HttpServletResponse response, Model model){
+			System.out.println("携带公告消息列表集合 信息在进入公告中心>>>>>");
+			System.out.println("jumpToPublicNews.html>>当前页--"+currentPageNo);
+			Msg_push msg_push = new Msg_push();
+			// 页面容量
+			int pageSize = Constants.pageSize;
+			// 当前页码
+			Integer pageIndex = 1;
+			if (currentPageNo != null) {
+				pageIndex = Integer.valueOf(currentPageNo);
+			}
+
+			// 消息类型
+			Integer msgType1 = 4;
+			msg_push.setMsgType(msgType1);   //消息类型
+			msg_push.setUserId(1);   //当前用户Id
+			// 总数量（表）
+			int totalCount = 0;
+			try {
+				totalCount = msgService.count(msg_push);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 总页数
+			PageSupport pages = new PageSupport();
+			pages.setCurrentPageNo(pageIndex);
+			pages.setPageSize(pageSize);
+			pages.setTotalCount(totalCount);
+			pages.setTotalPageCountByRs();
+			try {
+				this.getMessageList(msgType1, pageIndex, pageSize, request, response, model);
+			} catch (Exception e) {
+				System.out.println("获取公告消息列表发生异常！");
+				e.printStackTrace();
+			}
+			model.addAttribute(Constants.PAGE, pages);
+			return "frontend/helpCenter/publicNews";//frontend/helpCenter/phoneNews
+	}
+	
+	/**
+	 * 进入具体的公告消息
+	 * 
+	 * @param currentPageNo
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/jumpToPhoneNews.html")
+	public String jumpToPhoneNews(@RequestParam(value = "msgId", required = true) Integer msgId,
+			HttpServletRequest request,
+			HttpServletResponse response, Model model){
+		System.out.println("进入具体的公告消息id>>>>>msgId="+ msgId);
+		Msg_push tempMsg_push = new Msg_push();
+		Msg_push msg_push = null;
+		if(msgId == null){
+			return "redirect:jumpToPublicNews.html";  //没有具体公告id，则重定向会公告中心
+		}else{
+			tempMsg_push.setId(msgId);   
+		}
+		try {
+			msg_push = msgService.getMsg_pushById(tempMsg_push);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("根据Id查询到的公告为>>"+msg_push.getTitle());
+		model.addAttribute("msg_push", msg_push);
+		
+		return "frontend/helpCenter/phoneNews";
 	}
 }

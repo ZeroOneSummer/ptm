@@ -1,6 +1,8 @@
 package controller.frontend;
 
 
+
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import com.mysql.jdbc.StringUtils;
 
 import pojo.User;
 import service.UserService;
+import service.backend.Msg_pushMapperService;
 import utils.Constants;
 
 /**
@@ -25,6 +28,9 @@ public class PageJumpController {
 	
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private Msg_pushMapperService msgService;
 	
 	/**
 	 * 跳转到首页
@@ -86,7 +92,8 @@ public class PageJumpController {
 	 */
 	@RequestMapping("/publicNews.html")
 	public String toPublicNews(){
-		return "frontend/helpCenter/publicNews";
+		
+		return "redirect:/jumpToPublicNews.html";
 	}
 	
 	/**
@@ -252,7 +259,7 @@ public class PageJumpController {
 	@RequestMapping("/phoneNews.html")
 	public String toPhoneNews(){
 		
-		return "frontend/helpCenter/phoneNews";
+		return "redirect: jumpToPhoneNews.html";
 	}
 	
 	
