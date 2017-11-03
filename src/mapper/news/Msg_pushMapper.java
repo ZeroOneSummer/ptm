@@ -52,5 +52,13 @@ public interface Msg_pushMapper {
 	 * @throws Exception
 	 */
 	public int addMsg_push(Msg_push msg_push) throws Exception;
-
+	
+	/**
+	 * 获取具体消息 封装数据有：id
+	 * 
+	 * @param msg_push
+	 * @return msg_push
+	 * @throws Exception
+	 */
+	public Msg_push getMsg_pushById(Msg_push msg_push) throws Exception;
 }

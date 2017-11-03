@@ -18,7 +18,7 @@ public interface InvestProductMapper {
 		
 	public List<Invest_product> getInvest_productsByPage(@Param("start")int start,@Param("size")int size);
 
-	public int updateInvest_product(Invest_product invest_product);
+	public int updateInvest_product(Invest_product invest_product) throws Exception;
 	
 	public List<Invest_msg> getInvest_msgList(@Param("invTypeId")int invTypeId,@Param("start")int start,@Param("size")int size);
 

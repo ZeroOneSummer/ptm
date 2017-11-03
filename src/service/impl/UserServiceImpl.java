@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int doInvest(User_property user_property) {
+	public int doInvest(User_property user_property) throws Exception{
 		return userPropertyMapper.doInvest(user_property);
 	}
 

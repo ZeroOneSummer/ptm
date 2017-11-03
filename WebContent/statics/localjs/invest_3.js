@@ -1,15 +1,15 @@
 
 //----------------------------自己添加----------------------------------	
-    // 点击立即投资
+     // 点击立即投资
     $('.invest_sure').click(function(){
     	var user_session=$("#user_session").val();
+    	var bankNumber=$("#bankNumber").val();
     	if(user_session){    	
-    		var invest_money=$('.user_invest_money').val();//投资金额
-    		alert(user_session.bankNumber);
-    		/*if(user_session.bankNumber){
+    		var invest_money=$('.user_invest_money').val();//投资金额    		
+    		if(!bankNumber){
+    			alert("您的账户还未绑定银行卡");
     			//未实名认证后绑定银行卡，跳转到账户中心
-    			
-    			
+    			location.href="account.html";  			
     		}else if(invest_money>=1000 && invest_money<=30000 && invest_money%1000==0){
     			var userId=$('#userId').val();//用户id
     			var productId=$('#productId').val();//产品id
@@ -22,21 +22,21 @@
     				dataType:"json",
     				success:function(data){
     					if(data){
-    						//alert('投资成功,跳转至组长提供的to个人中心--我要投资页面（暂无）');
+    						alert('投资成功');
     						location.href='jumpToMyInvest.html';
     					}else{
-    						alert('投资失败，赶紧回滚事物');
+    						alert('投资失败，已回滚事物');
     					}
     				}
     			});   			
     		}else{
-    			alert("单笔投资金额必须是在1000-30000之间1000的倍数")
-    			location.href="account.html";//未实名认证则跳转到账户中心   			
-    		}   */		
+    			alert("单笔投资金额必须是在1000-30000之间1000的倍数")    					
+    		}   		
     	}else{    		
     		location.href="login";//登录
     	}       
     });
+
    
 
 //将可投余额按xx,xxx,xxx.xx显示
@@ -124,9 +124,25 @@
 			}else{
 				outVouchers();
 			}
+			var userId=$("#userId").val();	
+			if(userId){
+				//获取我的账户余额
+				$.ajax({
+					url:"getBalance",
+					data:{userId:userId},
+					dataType:"json",
+					type:"get",
+					success:function(data){
+						$(".readonly").html(data.balance);
+						$(".user_invest_money").val(data.balance);
+					}
+				});				
+			}
+						
 		}else{
 			$('.user_invest_money').val('').css('color','#333333');
 			outVouchers();
+			$(".readonly").html(0);
 		}
 	});
 	$('.user_invest_money').focus(function(){

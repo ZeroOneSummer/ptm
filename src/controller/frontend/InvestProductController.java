@@ -1,11 +1,13 @@
 package controller.frontend;
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,13 +15,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
+import com.alibaba.fastjson.JSON;
+
+import pojo.Info_statis;
 import pojo.Invest_product;
 import pojo.Invest_type;
+import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User_property;
 import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
+import service.backend.Info_statisService;
+import service.backend.Msg_pushMapperService;
 import utils.Constants;
 import utils.PageSupport;
 
@@ -35,6 +45,12 @@ public class InvestProductController {
 	@Resource
 	private TradeService tradeService;
 	
+	@Resource
+	private Info_statisService info_statisService;
+	
+	@Resource
+	private Msg_pushMapperService msgService;
+	
 	/**
 	 * 首页展示产品类型列表
 	 * @return
@@ -42,14 +58,31 @@ public class InvestProductController {
 	@RequestMapping("/typeList")
 	public String showInvestProductType(HttpServletRequest request,HttpServletResponse response,Model model){
 		List<Invest_type> type_list=investProductService.geInvest_types();
-		if (type_list == null) {
-			System.out.println("获取投资产品类型表错误");
+		List<Info_statis> info=null;
+		List<Msg_push> msgList = null;
+		try {
+			info = info_statisService.getStatisList(1, 1);
+			msgList = msgService.getMsgList(0, 4, 1, 9);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (type_list == null || info == null || msgList == null) {
+			System.out.println("获取投资产品类型表,公告消息列表以及平台运营数据错误");
 			try {
 				request.getRequestDispatcher("500.jsp").forward(request,response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
 		}
+		for (Info_statis info_statis : info) {
+			System.out.println("当月交易金额>>"+info_statis.getTradeAmount()
+					+"-总用户数>>"+info_statis.getUserAmount()
+					+"-平台累计收益>>"+info_statis.getTotalIncome()
+					+"-平台累计交易金额>>"+info_statis.getTotalAmount());
+		}
+		
+		model.addAttribute("msgList", msgList);
+		model.addAttribute("info_list", info);
 		model.addAttribute(Constants.type_list, type_list);
 		return "firstPage";
 	}
@@ -150,54 +183,38 @@ public class InvestProductController {
 		trade_record.setTradeDate(new Date());//传入当前时间
 		trade_record.setTradeStatus(2);//传入交易状态（2-成功）
 		
-		PrintWriter writer=null;
+		PrintWriter writer=null;		
 		boolean flag=false;//默认交易失败
 		try {
-			writer=response.getWriter();
-			//1.更新个人资产表user_property
-			User_property user_property=	
-					userService.getUserProperty(trade_record.getUserId());//查询个人资产
-			user_property.setBalance(user_property.getBalance() - trade_record.getTradeMoney());//余额-=交易金额
-			user_property.setInvProperty(user_property.getInvProperty() + trade_record.getTradeMoney());//投资资产+=交易金额
-			int num=userService.doInvest(user_property);//更新个人资产表
-			if (num>0) {
-				//2.更新投资产品表invest_product
-				Invest_product invest_product=new Invest_product();
-				invest_product.setId(trade_record.getProduceId());
-				List<Invest_product> list=investProductService.getInvest_products(invest_product);//查询该产品信息
-				double newResidueAmount=list.get(0).getResidueAmount() - trade_record.getTradeMoney();
-				if (newResidueAmount<0) {
-					System.out.println("产品不够投了，请回滚事物");
-				}else if (newResidueAmount == 0) {
-					System.out.println("产品刚好投满");
-					invest_product.setInvStatus(3);//投资状态3--投满
-					invest_product.setResidueAmount(newResidueAmount);//可投金额-=交易金额 	
-					int num2=investProductService.updateInvest_product(invest_product);//更新投资产品表
-					if (num2>0) {
-						//3.更新交易记录表trade_record
-						int num3=tradeService.addTradeRecord(trade_record);//更新交易记录表
-						if (num3>0) {
-							flag=true;//所有信息添加成功后，返回交易成功
-						}
-					}
-				}else{
-					invest_product.setResidueAmount(newResidueAmount);//可投金额-=交易金额 	
-					int num2=investProductService.updateInvest_product(invest_product);//更新投资产品表
-					if (num2>0) {
-						//3.更新交易记录表trade_record
-						int num3=tradeService.addTradeRecord(trade_record);//更新交易记录表
-						if (num3>0) {
-							flag=true;//所有信息添加成功后，返回交易成功
-						}
-					}
-				}				
-			}
+			flag = investProductService.updateInvestData(trade_record);//更新3张表的数据，加事务控制
+			writer=response.getWriter();			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			System.out.println(flag);
+			writer.println(flag);
+			writer.flush();
+			writer.close();				
 		}
-		writer.println(flag);
-		writer.flush();
-		writer.close();		
 	}
 
+	/**
+	 * 获取用户余额到投资详情product.jsp页面
+	 * @return
+	 */
+	@RequestMapping("/getBalance")
+	public void getBalance(int userId,HttpServletResponse response){
+		PrintWriter writer = null;
+		try {
+			writer = response.getWriter(); 
+			User_property user_property = userService.getUserProperty(userId);
+			Object json = JSON.toJSON(user_property);
+			writer.println(json);
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+		
 }

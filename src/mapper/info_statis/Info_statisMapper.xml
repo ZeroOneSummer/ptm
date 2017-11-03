@@ -6,7 +6,7 @@
     <mapper namespace="mapper.info_statis.Info_statisMapper">
     
     <select id="getStatisList" resultType="Info_statis">
-  	select * from info_statis limit #{from},#{pageSize}
+  	select * from info_statis ORDER BY monthStatis DESC limit #{from},#{pageSize}
   </select>
   
   <select id="count" resultType="Integer">

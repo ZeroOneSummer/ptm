@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import pojo.Invest_product;
 import pojo.Invest_type;
+import pojo.Trade_record;
 import pojo.view.Invest_msg;
 
 public interface InvestProductService {
@@ -18,11 +19,13 @@ public interface InvestProductService {
 	
 	public List<Invest_product> getInvest_productsByPage(int start,int size);
 	
-	public int updateInvest_product(Invest_product invest_product);
+	public int updateInvest_product(Invest_product invest_product) throws Exception;
 	
 	public List<Invest_msg> getInvest_msgList(int invTypeId,int start,int size);
 
 	public int countInvest_msg(int invTypeId);
+	
+	public boolean updateInvestData(Trade_record trade_record) throws Exception;
 	
 	//删除(后台功能)
 	public boolean deleteInvest_productById(Integer delId) throws Exception;

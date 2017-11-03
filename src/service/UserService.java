@@ -63,7 +63,7 @@ public interface UserService{
 	 * @param user_property
 	 * @return
 	 */
-	public int doInvest(User_property user_property);
+	public int doInvest(User_property user_property) throws Exception;
 	
 	
 	/**

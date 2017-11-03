@@ -23,7 +23,7 @@
 		<!-- 头部开始 -->
 		<%@include file="frontend/common/header.jsp"%>
 		<!-- 头部结束 -->
-		<c:if test="${type_list == null}">
+		<c:if test="${type_list == null || info_list == null || msgList == null}">
 			<script type="text/javascript">
 				location.href="typeList";
 			</script>
@@ -90,26 +90,28 @@
 						class="_inline_block _title bg_fd5353 fff f_24_26 _b_radius_round">为什么有这么多人选择口袋？</span>
 					<p class="_666 f_14_16">我们认为：不是用户选择了我们，而是用户选择了适合自己的理财方式 !</p>
 					<div class="column1_c1">
-						<div class="f_left"
-							style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_2.png) no-repeat center top;">
-							<i class="_666">累计交易额(元)</i>
-							<p class="lh_em_1_5 f_24_26 one-d">27,159,483,737</p>
+					<c:forEach var="info" items="${info_list}">
+						<div class="f_left" style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_2.png) no-repeat center top;">
+							<i class="_666">当月交易额(元)</i>
+							<p class="lh_em_1_5 f_24_26 one-d" >${info.tradeAmount }</p>
+							<input type="hidden" id="one-d" value="${info.tradeAmount }">
 						</div>
-						<div class="f_left"
-							style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_1.png) no-repeat center top;">
-							<i class="_666">累计赚取收益(元)</i>
-							<p class="lh_em_1_5 f_24_26 two-d">494,608,760</p>
+						<div class="f_left" style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_1.png) no-repeat center top;">
+							 <i class="_666">累计赚取收益(元)</i>
+							 <p class="lh_em_1_5 f_24_26 two-d" >${info.totalIncome}</p>
+							<input type="hidden" id="two-d" value="${info.totalIncome}">
 						</div>
-						<div class="f_left"
-							style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_6.png) no-repeat center top;">
+						<div class="f_left" style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_6.png) no-repeat center top;">
 							<i class="_666">平台用户数(人)</i>
-							<p class="lh_em_1_5 f_24_26 three-d">6,525,291</p>
+							<p class="lh_em_1_5 f_24_26 three-d" >${info.userAmount }</p>
+							<input type="hidden" id="three-d" value="${info.userAmount }">
 						</div>
-						<div class="f_left"
-							style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_7.png) no-repeat center top;">
-							<i class="_666">09月24日平台还款(元)</i>
-							<p class="lh_em_1_5 f_24_26 four-d">30,731,710.14</p>
+						<div class="f_left" style="background: url(${pageContext.request.contextPath}/statics/img/column3_c2_7.png) no-repeat center top;">
+							<i class="_666">平台累计交易额(元)</i>
+							<p class="lh_em_1_5 f_24_26 four-d" >${info.totalAmount}</p>
+							<input type="hidden" id="four-d" value="${info.totalAmount}">
 						</div>
+				     </c:forEach>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -140,7 +142,6 @@
 									</div>
 								</c:if>							
 							</c:forEach>
-												
 							<div class="clear"></div>
 						</div>
 
@@ -341,135 +342,78 @@
 							</div>
 						</div>
 						<div class="column4_c1_right f_right">
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">9月22~23日银行维护通知</span></a><i
-									class="f_right f_14 _999">09-22</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">9月2日客服呼入电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">09-01</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">关于口袋理财撤销招商银行质量保障服务专款的通知</span></a><i
-									class="f_right f_14 _999">08-31</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">存管用户线下首次充值送抵扣红包</span></a><i
-									class="f_right f_14 _999">08-30</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">江西银行8月26~27日例行维护</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">8月25日推送异常通知</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">江西银行22~23日维护通知</span></a><i
-									class="f_right f_14 _999">08-21</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">08-21</i>
-							</p>
+								  <c:if test="${msgList != null }">
+							            <c:forEach items="${msgList}" var="msg_push"  varStatus="status">
+									          <p class="clear lh_em_2 a_left f_16 _333">
+												<a 	href="jumpToPhoneNews.html?msgId=${msg_push.id}">
+												<span class="f_left _333 _ellipsis _hover">${msg_push.title}</span>
+												</a>
+												<i class="f_right f_14 _999"><fmt:formatDate value="${msg_push.releaseDate }" pattern="MM-dd"/></i>
+											 </p>
+							            </c:forEach>
+					                </c:if>
+									<c:if test="${msgList == null }">
+						                	<p class="clear lh_em_2 a_left f_16 _333">
+													<a 	href="javascript:void(0);">
+													<span class="f_left _333 _ellipsis _hover">暂无公告消息&nbsp;</span>
+													</a>
+													<i class="f_right f_14 _999"></i>
+											</p>
+					                </c:if>
 						</div>
 						<div class="clear"></div>
 					</div>
 				</div>
-				<div id="column5" class="bg_fff a_center">
-					<div class="content">
-						<div class="common_title">
-							<div class="bg_fff">
-								<h3>合作伙伴</h3>
-								<p class="sub_title _999 f_14_16">partners</p>
-								<div class="sub_border"></div>
-							</div>
-							<div class="_border"></div>
-						</div>
-						<table class="column5_tb" width="100%">
-							<tbody>
-								<tr>
-									<td><a target="_blank"
-										href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/jxyh.jpg"></a>
-									</td>
-									<td><a target="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/zmxy.jpg"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/wdzj.png"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/wdty.png"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/ybzf.png"></a>
-									</td>
-									<td class="last-child"><a target="_blank"
-										href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/ld.png"></a>
-									</td>
-								</tr>
-								<tr>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/ppd.jpg"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/fql.jpg"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/fdd.jpg"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/758058c9b284ca.jpg"></a>
-									</td>
-									<td><a target="_blank" href="javascript:void(0);"><img
-											class="v_center" height="37px"
-											src="${pageContext.request.contextPath}/statics/img/llzf.png"></a>
-									</td>
-									<td class="last-child"><a target="_blank"
-										href="javascript:void(0);"><img class="v_center"
-											height="37px"
-											src="${pageContext.request.contextPath}/statics/img/kq.jpg"></a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+			    <div id="column5" class="bg_fff a_center">
+			        <div class="content">
+			            <div class="common_title">
+			                <div class="bg_fff">
+			                    <h3>合作伙伴</h3>
+			                    <p class="sub_title _999 f_14_16">partners</p>
+			                    <div class="sub_border"></div>
+			                </div>
+			                <div class="_border"></div>
+			            </div>
+			            <table class="column5_tb" width="100%">
+			                                    <tbody><tr>                    <td>
+			                        <a target="_blank" href="http://www.jx-bank.com/nccbank/zh_CN/home/index.html"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/jxyh.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="https://www.xin.xin/#/home"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/zmxy.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.wdzj.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/wdzj.png"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.p2peye.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/wdty.png"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.yeepay.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/ybzf.png"></a>
+			                    </td>
+			                                                                        <td class="last-child">
+			                        <a target="_blank" href="http://www.umpay.com/umpayPublic/index.html"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/ld.png"></a>
+			                    </td>
+			                                                    </tr><tr>                    <td>
+			                        <a target="_blank" href="http://www.ppdai.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/ppd.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.fenqile.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/fql.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="https://www.fadada.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/fdd.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.dailuopan.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/758058c9b284ca.jpg"></a>
+			                    </td>
+			                                                                        <td>
+			                        <a target="_blank" href="http://www.lianlianpay.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/llzf.png"></a>
+			                    </td>
+			                                                                        <td class="last-child">
+			                        <a target="_blank" href="https://www.99bill.com/"><img class="v_center" height="37px" src="${pageContext.request.contextPath}/statics/img/kq.jpg"></a>
+			                    </td>
+			                </tr></tbody></table>
+			        </div>
+			    </div>
 			</div>
 		</div>
 		<!-- 主体部分结束 -->
