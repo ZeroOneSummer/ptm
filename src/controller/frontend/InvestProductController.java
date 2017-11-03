@@ -1,11 +1,13 @@
 package controller.frontend;
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,12 +22,14 @@ import com.alibaba.fastjson.JSON;
 import pojo.Info_statis;
 import pojo.Invest_product;
 import pojo.Invest_type;
+import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User_property;
 import service.InvestProductService;
 import service.TradeService;
 import service.UserService;
 import service.backend.Info_statisService;
+import service.backend.Msg_pushMapperService;
 import utils.Constants;
 import utils.PageSupport;
 
@@ -44,6 +48,9 @@ public class InvestProductController {
 	@Resource
 	private Info_statisService info_statisService;
 	
+	@Resource
+	private Msg_pushMapperService msgService;
+	
 	/**
 	 * 首页展示产品类型列表
 	 * @return
@@ -52,13 +59,15 @@ public class InvestProductController {
 	public String showInvestProductType(HttpServletRequest request,HttpServletResponse response,Model model){
 		List<Invest_type> type_list=investProductService.geInvest_types();
 		List<Info_statis> info=null;
+		List<Msg_push> msgList = null;
 		try {
 			info = info_statisService.getStatisList(1, 1);
+			msgList = msgService.getMsgList(0, 4, 1, 9);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (type_list == null || info == null) {
-			System.out.println("获取投资产品类型表以及平台运营数据错误");
+		if (type_list == null || info == null || msgList == null) {
+			System.out.println("获取投资产品类型表,公告消息列表以及平台运营数据错误");
 			try {
 				request.getRequestDispatcher("500.jsp").forward(request,response);
 			} catch (Exception e) {
@@ -71,6 +80,8 @@ public class InvestProductController {
 					+"-平台累计收益>>"+info_statis.getTotalIncome()
 					+"-平台累计交易金额>>"+info_statis.getTotalAmount());
 		}
+		
+		model.addAttribute("msgList", msgList);
 		model.addAttribute("info_list", info);
 		model.addAttribute(Constants.type_list, type_list);
 		return "firstPage";

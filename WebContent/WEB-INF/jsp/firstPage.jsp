@@ -23,7 +23,7 @@
 		<!-- 头部开始 -->
 		<%@include file="frontend/common/header.jsp"%>
 		<!-- 头部结束 -->
-		<c:if test="${type_list == null || info_list == null}">
+		<c:if test="${type_list == null || info_list == null || msgList == null}">
 			<script type="text/javascript">
 				location.href="typeList";
 			</script>
@@ -342,60 +342,24 @@
 							</div>
 						</div>
 						<div class="column4_c1_right f_right">
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">9月22~23日银行维护通知</span></a><i
-									class="f_right f_14 _999">09-22</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">9月2日客服呼入电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">09-01</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">关于口袋理财撤销招商银行质量保障服务专款的通知</span></a><i
-									class="f_right f_14 _999">08-31</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">存管用户线下首次充值送抵扣红包</span></a><i
-									class="f_right f_14 _999">08-30</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">江西银行8月26~27日例行维护</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">8月25日推送异常通知</span></a><i
-									class="f_right f_14 _999">08-25</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">江西银行22~23日维护通知</span></a><i
-									class="f_right f_14 _999">08-21</i>
-							</p>
-							<p class="clear lh_em_2 a_left f_16 _333">
-								<a
-									href="phoneNews.html"><span
-									class="f_left _333 _ellipsis _hover">电话线路进行检测维护</span></a><i
-									class="f_right f_14 _999">08-21</i>
-							</p>
+								  <c:if test="${msgList != null }">
+							            <c:forEach items="${msgList}" var="msg_push"  varStatus="status">
+									          <p class="clear lh_em_2 a_left f_16 _333">
+												<a 	href="jumpToPhoneNews.html?msgId=${msg_push.id}">
+												<span class="f_left _333 _ellipsis _hover">${msg_push.title}</span>
+												</a>
+												<i class="f_right f_14 _999"><fmt:formatDate value="${msg_push.releaseDate }" pattern="MM-dd"/></i>
+											 </p>
+							            </c:forEach>
+					                </c:if>
+									<c:if test="${msgList == null }">
+						                	<p class="clear lh_em_2 a_left f_16 _333">
+													<a 	href="javascript:void(0);">
+													<span class="f_left _333 _ellipsis _hover">暂无公告消息&nbsp;</span>
+													</a>
+													<i class="f_right f_14 _999"></i>
+											</p>
+					                </c:if>
 						</div>
 						<div class="clear"></div>
 					</div>
