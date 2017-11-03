@@ -15,5 +15,7 @@ public interface Info_statisMapper {
 					@Param(value="pageSize")Integer pageSize)throws Exception;
 			
 	public int count()throws Exception;
-
+	
+	//任务调度添加统计数据
+	public int addInfo_statis(Info_statis info_statis);
 }

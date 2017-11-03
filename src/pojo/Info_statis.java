@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Info_statis {
 	private int id;//主键
-	private Date monthStatis;//月统计时间（yyyy-MM）
+	private Date monthStatis;//月统计时间（每月最后一天）
 	private double tradeAmount;//当月交易金额
 	private double totalAmount;//累计交易金额
 	private int userAmount;//用户总数

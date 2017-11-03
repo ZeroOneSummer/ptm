@@ -61,29 +61,34 @@ public class InvestProductController {
 		List<Info_statis> info=null;
 		List<Msg_push> msgList = null;
 		try {
-			info = info_statisService.getStatisList(1, 1);
+			info = info_statisService.getStatisList(1, 1);//获取最近一个月平台运营统计数据
 			msgList = msgService.getMsgList(0, 4, 1, 9);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (type_list == null || info == null || msgList == null) {
+		/*if (type_list == null || info == null || msgList == null) {
 			System.out.println("获取投资产品类型表,公告消息列表以及平台运营数据错误");
 			try {
 				request.getRequestDispatcher("500.jsp").forward(request,response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		}
-		for (Info_statis info_statis : info) {
-			System.out.println("当月交易金额>>"+info_statis.getTradeAmount()
-					+"-总用户数>>"+info_statis.getUserAmount()
-					+"-平台累计收益>>"+info_statis.getTotalIncome()
-					+"-平台累计交易金额>>"+info_statis.getTotalAmount());
-		}
+		}*/
 		
-		model.addAttribute("msgList", msgList);
-		model.addAttribute("info_list", info);
-		model.addAttribute(Constants.type_list, type_list);
+		Date date=new Date();
+		int m= date.getMonth()+1;
+		int d= date.getDate();
+		String date1=m+"月"+d+"日";
+		
+		if (msgList.size() == 0) {
+			model.addAttribute("msgList", null);//公告信息
+		} else {
+			model.addAttribute("msgList", msgList);//公告信息
+		}
+
+		model.addAttribute("date", date1);//当前时间
+		model.addAttribute("info", info.get(0));//平台运营数据
+		model.addAttribute(Constants.type_list, type_list);//产品类型列表
 		return "firstPage";
 	}
 	

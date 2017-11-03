@@ -27,5 +27,10 @@ public class Info_statisServiceImpl implements Info_statisService{
 		return info.count();
 	}
 
+	@Override
+	public int addInfo_statis(Info_statis info_statis) {		
+		return info.addInfo_statis(info_statis);
+	}
+
 
 }
