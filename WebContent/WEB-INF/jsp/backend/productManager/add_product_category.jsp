@@ -26,7 +26,7 @@
 		  
 		 if(!invTypeName){  
             alert("请输入类别名称！");                                	
-        }else if(annualYield==00){  
+        }else if(annualYield==0){  
         	alert("请输入年化收益率！");  
        		
         } else if(purchaseMoney==0){

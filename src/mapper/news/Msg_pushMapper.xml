@@ -5,6 +5,10 @@
     
     <mapper namespace="mapper.news.Msg_pushMapper">
     
+    <select id="getMsg_pushList" resultType="Msg_push">
+  	select * from msg_push limit #{from},#{pageSize}
+  </select>
+    
   	<select id="count1" resultType="Integer">
   		select count(1) as count from msg_push
   	</select>

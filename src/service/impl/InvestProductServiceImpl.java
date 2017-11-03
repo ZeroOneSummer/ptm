@@ -80,4 +80,28 @@ public class InvestProductServiceImpl implements InvestProductService {
 		return flag;
 	}
 
+	@Override
+	public int modifyInvest_product(Invest_product invest_product) throws Exception {
+		
+		return investProductMapper.modifyInvest_product(invest_product);
+	}
+
+	@Override
+	public int addInvest_product(Invest_product invest_product) throws Exception {
+		
+		return investProductMapper.addInvest_product(invest_product);
+	}
+
+	@Override
+	public int updateInvStatus(Integer invStatus, Integer id) throws Exception {
+		
+		return investProductMapper.updateInvStatus(invStatus, id);
+	}
+
+	@Override
+	public Invest_product getInvest_productById(Integer id) throws Exception {
+		
+		return investProductMapper.getInvest_productById(id);
+	}
+
 }

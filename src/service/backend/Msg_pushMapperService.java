@@ -5,8 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import pojo.Msg_push;
+import pojo.News;
 
 public interface Msg_pushMapperService {
+	
+	public List<Msg_push> getMsg_pushList(
+				@Param(value="from")Integer currentPageNo,
+				@Param(value="pageSize")Integer pageSize)throws Exception;
 	
 	public int count1()throws Exception;
 	

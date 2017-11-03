@@ -87,19 +87,34 @@
   		delete from invest_product where id = #{id}	
   	</delete>
   	 	
-  	<insert id="addMsg_push" parameterType="Invest_product">
-		insert into invest_product (userId,title,msgType,content,releaseDate)
-				values(#{userId},#{title},#{msgType},#{content},#{releaseDate})
+  	<insert id="addInvest_product" parameterType="Invest_product">
+		insert into invest_product (produceName,invTypeId,investor,totalAmount,residueAmount,invStatus)
+				values(#{produceName},#{invTypeId},#{investor},#{totalAmount},#{residueAmount},#{invStatus})
 	</insert>
 	
-	<update id="modify" parameterType="Invest_product">
+	<update id="modifyInvest_product" parameterType="Invest_product">
 		update invest_product
 		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-			<if test="title != null">title=#{title},</if>
-			<if test="msgType != null">msgType=#{msgType},</if>
-			<if test="content != null">content=#{content},</if>
-			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
+			<if test="produceName != null">produceName=#{produceName},</if>
+			<if test="investor != null">investor=#{investor},</if>
+			<if test="totalAmount != null">totalAmount=#{totalAmount},</if>
+			
 		</trim>
 	</update>
 	
+	<update id="updateInvStatus" parameterType="Integer">
+		update invest_product  
+		<trim prefix="set"  suffixOverrides="," suffix="where id=#{id}">
+			<if test="invStatus != null">invStatus=#{invStatus}</if>
+		</trim>
+	</update>
+	
+	 <select id="getInvest_productById" parameterType="Integer" resultType="Invest_product">
+    	select * from invest_product 
+    	<where>
+	    	<if test="id != null">
+	    		and id=#{id}
+	    	</if>
+    	</where>
+    </select>
 </mapper>

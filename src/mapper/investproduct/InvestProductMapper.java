@@ -30,5 +30,11 @@ public interface InvestProductMapper {
 	public int modifyInvest_product(Invest_product invest_product)throws Exception;
 	//添加(后台功能)
 	public int addInvest_product(Invest_product invest_product) throws Exception;
-
+	
+	//更新产品信息状态
+	public int updateInvStatus(@Param(value="invStatus")Integer invStatus,@Param(value="id")Integer id)throws Exception;
+	
+	//根据Id查找具体产品
+	public Invest_product getInvest_productById(@Param(value="id")Integer id) throws Exception;
+    
 }

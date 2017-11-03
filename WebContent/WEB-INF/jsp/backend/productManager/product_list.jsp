@@ -63,6 +63,7 @@
         	</tr> 
 	        
 	        <c:forEach var="invest_product" items="${invest_product}" varStatus="status">
+				<c:if test="${invest_product.invStatus != 1}">
 				<tr>
 					<td>${invest_product.id}</td>
 					<td>${invest_product.produceName}</td>
@@ -71,11 +72,32 @@
 						<c:if test="${invest_product.invStatus==2}">可投</c:if> 
 						<c:if test="${invest_product.invStatus==3}">已投满</c:if> 
 					</td>
-					<td><a href="getProduct?id=${invest_product.id }">产品详情</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="modifProduct?id=${invest_product.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<td><a href="getProduct?id=${invest_product.id }">&nbsp;&nbsp;&nbsp;产品详情</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0);" style="color: grey;">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="javascript:delaProduct_json(${invest_product.id});" >删除</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="">发布</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void();" style="color: rgba(0,0,0,0.3);">已发布</a> 
 					</td>
 				</tr>
+				</c:if>
+				
+				<c:if test="${invest_product.invStatus==1}">
+				<tr>
+					<td>${invest_product.id}</td>
+					<td>${invest_product.produceName}</td>
+					<td>${invest_product.invTypeId}</td>
+					<td><c:if test="${invest_product.invStatus==1}">未发布</c:if> 
+						<c:if test="${invest_product.invStatus==2}">可投</c:if> 
+						<c:if test="${invest_product.invStatus==3}">已投满</c:if> 
+					</td>
+					<td><a href="getProduct?id=${invest_product.id }">产品详情</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="modifProduct?id=${invest_product.id}" >修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascript:delaProduct_json(${invest_product.id});" >删除</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="changeStatus?id=${invest_product.id}">发布</a> 
+					</td>
+				</tr>
+				</c:if>
 			</c:forEach>
        
         </tbody>       
@@ -89,8 +111,8 @@
 					<a
 						href="productCenter.html?pageIndex=${pages.currentPageNo + 1>pages.totalPageCount?pages.totalPageCount:pages.currentPageNo + 1}">下一页</a>&nbsp;&nbsp;
 					<a href="productCenter.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a
-						href="javascript:_go();"> go </a>
+					跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;
+					<a href="javascript:_go(); "> go </a>
 				</div>
       
     </div>

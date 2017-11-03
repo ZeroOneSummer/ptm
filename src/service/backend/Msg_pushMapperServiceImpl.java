@@ -54,4 +54,10 @@ public class Msg_pushMapperServiceImpl implements Msg_pushMapperService{
 		return msg.addMsg_push(msg_push);
 	}
 
+	@Override
+	public List<Msg_push> getMsg_pushList(Integer currentPageNo, Integer pageSize) throws Exception {
+		
+		return msg.getMsg_pushList((currentPageNo-1)*pageSize, pageSize);
+	}
+
 }

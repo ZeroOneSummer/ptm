@@ -38,5 +38,10 @@
             <li><a href="statistics.html">累计统计表</a></li>
         </ul>
     </div>
+    
+    <a href="loginOut">
+    <div class="left_n" >退出登录</div>
+    </a>
+    
      
 </div>

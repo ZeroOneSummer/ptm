@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,56 +17,54 @@
   <!--Begin 用户中心 Begin -->
   <div class="m_content">
     <%@include file="../common/left.jsp" %>
+    
+    <script type="text/javascript">
+		function update(frm){
+			//alert("金泰"); 
+			var produceName = frm.produceName.value;
+			var investor = frm.investor.value;			
+			var totalAmount = frm.totalAmount.value;
+			//alert(totalAmount); 
+			frm.submit(); 
+		}
+	</script> 
+    
+  
     <div class="m_right" id="content">
       <div class="mem_tit">修改产品信息</div>
       <br/>
-      <form action="#" method="get">
+      <form action="updateInvest_product" method="post">
+     	 <input type="hidden" name="id" value="${product.id}"/>
 	      <table  class="order_tab" style="width:600px; text-align:center; margin-bottom:30px;" >       
 	        <tbody>   	
-		        <tr>
-		          <td width="5%">产品ID</td>	 
-		          <td width="8%"><input value="3" readonly="readonly"/></td>	          
-		        </tr>
+		        
+		        <c:if test="${product.invStatus == 1}">
 		        <tr>
 		          <td>产品名称</td>	 
-		          <td><input value="新手宝2期"/></td>	          
+		          <td><input value="${product.produceName}"  name="produceName" id="produceName" /></td>	          
 		        </tr>
-		        <tr>
-		          <td>产品类别</td><!--format判断  -->	 
-		          <td><input value="新手宝"/></td>	          
-		        </tr>
-		        <tr>
-		          <td>年化收益率</td>	 
-		          <td><input value="3%-4%"/></td>	          
-		        </tr>
-		        <tr>
-		          <td>起购金额（元）</td>	 
-		          <td><input value="1000"/></td>	          
-		        </tr>
-		        <tr>
-		          <td>期限（天）</td>	 
-		          <td><input value="7"/></td>	          
+		        
+		         <tr>
+		          <td>投资人数</td>	 
+		          <td><input type="text" id="investor" name="investor" value="${product.investor}"/></td>	          
 		        </tr>
 		        <tr>
 		          <td>本期可投总金额（元）</td>	 
-		          <td><input value="300000"/></td>	          
+		          <td><input value="${product.totalAmount}" name="totalAmount" id="totalAmount" /></td>	          
 		        </tr>
-		       <!--  <tr>
-		          <td>剩余可投金额（元）</td>	 
-		          <td>4,564.00</td>	          
-		        </tr> -->
-		        <tr>
-		          <td>产品投资状态</td>	 
-		          <td><input value="未发布" readonly="readonly"/></td>	          
-		        </tr>
+		        </c:if>
 	        </tbody>       
 	      </table>
-      	  <input type="submit" value="提交" style="margin-left: 410px"/>&nbsp;&nbsp;&nbsp;<input type="button" value="返回" onclick="javascript:history.back(-1);"/>    
+      	  <input type="button" value="提 交" onclick="update(document.forms[0]) " style="margin-left: 410px"/>&nbsp;&nbsp;&nbsp;
+      	  <input type="button" value="返回" onclick="javascript:history.back(-1);"/> 
+      	 
+      	  
       </form> 
     </div>
   </div>
 </div>
 </body>
+     
 </html>
 
 

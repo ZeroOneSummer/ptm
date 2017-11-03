@@ -10,9 +10,7 @@
 <title>信息中心-消息推送</title>
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/statics/css/style_1.css">
-	
-
+	href="${pageContext.request.contextPath }/statics/css/style_1.css"/>
 	
 	
 </head>

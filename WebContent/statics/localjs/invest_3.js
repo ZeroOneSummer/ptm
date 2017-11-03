@@ -5,7 +5,12 @@
     	var user_session=$("#user_session").val();
     	if(user_session){    	
     		var invest_money=$('.user_invest_money').val();//投资金额
-    		if(invest_money>=1000 && invest_money<=30000 && invest_money%1000==0){
+    		alert(user_session.bankNumber);
+    		/*if(user_session.bankNumber){
+    			//未实名认证后绑定银行卡，跳转到账户中心
+    			
+    			
+    		}else if(invest_money>=1000 && invest_money<=30000 && invest_money%1000==0){
     			var userId=$('#userId').val();//用户id
     			var productId=$('#productId').val();//产品id
     			var tradeTypeId=1;//交易类型：投资
@@ -26,8 +31,8 @@
     			});   			
     		}else{
     			alert("单笔投资金额必须是在1000-30000之间1000的倍数")
-    			/*location.href="account.html";//未实名认证则跳转到账户中心*/   			
-    		}   		
+    			location.href="account.html";//未实名认证则跳转到账户中心   			
+    		}   */		
     	}else{    		
     		location.href="login";//登录
     	}       
