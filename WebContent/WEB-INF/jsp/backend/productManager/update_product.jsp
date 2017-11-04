@@ -22,6 +22,7 @@
 		function update(frm){
 			//alert("金泰"); 
 			var produceName = frm.produceName.value;
+			var invTypeId = frm.invTypeId.value;
 			var investor = frm.investor.value;			
 			var totalAmount = frm.totalAmount.value;
 			//alert(totalAmount); 
@@ -45,6 +46,18 @@
 		        </tr>
 		        
 		         <tr>
+		          <td>产品类别</td>	 
+		          <td>
+			          <select style="width: 143px ;height: 22px" name="invTypeId"" id="invTypeId">
+			         	<option value="${product.invest_type.id}">原产品类别--${product.invest_type.invTypeName}</option>
+			         	<c:forEach items="${type_list}" var="invest_type">         
+			         	 <option value="${invest_type.id}" >${invest_type.invTypeName}</option>  
+			          	</c:forEach>	 	            
+			          </select>
+		          </td>	          
+		        </tr>
+		        
+		         <tr style="display: none;">
 		          <td>投资人数</td>	 
 		          <td><input type="text" id="investor" name="investor" value="${product.investor}"/></td>	          
 		        </tr>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import pojo.Invest_product;
 import pojo.Msg_push;
 import pojo.News;
 
@@ -61,4 +62,12 @@ public interface Msg_pushMapper {
 	 * @throws Exception
 	 */
 	public Msg_push getMsg_pushById(Msg_push msg_push) throws Exception;
+	
+	
+	
+	  
+	
+	
+	
+	
 }

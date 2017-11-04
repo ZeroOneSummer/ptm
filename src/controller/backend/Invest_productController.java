@@ -133,7 +133,8 @@ public class Invest_productController {
 		 */
 		@RequestMapping(value="/modifProduct",method=RequestMethod.GET)
 		public String updateInvest_product(String id,Model model) throws Exception{
-			
+			List<Invest_type> list = investProductService.geInvest_types();
+			model.addAttribute(Constants.type_list, list);
 			Invest_product invest_product=investProductService.getInvest_productById(Integer.parseInt(id));
 			
 			//根据id查找特定产品
@@ -148,6 +149,7 @@ public class Invest_productController {
 		 */
 		 @RequestMapping(value="/updateInvest_product",method=RequestMethod.POST)  
 		    public String updateInvest_product(Invest_product invest_product,HttpServletRequest request,HttpServletResponse response) throws Exception{  
+			 System.out.println("进入更新产品的方法");
 			 int num =investProductService.modifyInvest_product(invest_product);
 			  if (num > 0) {
 		    		List<Invest_product> list = investProductService.getInvest_products(invest_product);

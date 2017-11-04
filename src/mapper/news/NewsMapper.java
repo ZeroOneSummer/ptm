@@ -3,6 +3,7 @@ package mapper.news;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import pojo.Invest_product;
+import pojo.Msg_push;
 import pojo.News;
 
 public interface NewsMapper {
@@ -20,5 +21,10 @@ public interface NewsMapper {
 		public int deleteNewsById(@Param(value="id")Integer delId)throws Exception;
 		//修改
 		public int modifyNews(News news)throws Exception;
+		//根据Id查找具体产品
+		public News getNewsById(@Param(value="id")Integer id) throws Exception;
+		
+		
+		
 	
 }

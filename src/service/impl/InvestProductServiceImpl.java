@@ -163,4 +163,10 @@ public class InvestProductServiceImpl implements InvestProductService {
 		return flag;
 	}
 
+	@Override
+	public List<Invest_product> getInvest_productListByInvTypeId(int invTypeId) throws Exception {
+
+		return investProductMapper.getInvest_productListByInvTypeId(invTypeId);
+	}
+
 }

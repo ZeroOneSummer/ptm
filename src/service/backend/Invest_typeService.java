@@ -21,5 +21,8 @@ public interface Invest_typeService {
 		public int modifyInvest_type(Invest_type invest_type)throws Exception;
 		//添加
 		public int addInvest_type(Invest_type invest_type) throws Exception;
+		//根据Id查找具体产品
+		public Invest_type getInvest_typeById(@Param(value="id")Integer id) throws Exception;
+		
 
 }

@@ -78,9 +78,9 @@
 							<tr>
 								<td>${msg.id}</td>
 								<td>${msg.title}</td>
-								<td><c:if test="${msg.msgType==1}">充值</c:if> 
+								<td><%-- <c:if test="${msg.msgType==1}">充值</c:if> 
 									<c:if test="${msg.msgType==2}">提现</c:if> 
-									<c:if test="${msg.msgType==3}">积分</c:if> 
+									<c:if test="${msg.msgType==3}">积分</c:if>  --%>
 									<c:if test="${msg.msgType==4}">公告</c:if>
 								</td>
 								<td>${msg.content}</td>

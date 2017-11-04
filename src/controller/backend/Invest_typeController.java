@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysql.jdbc.StringUtils;
+
+import pojo.Invest_product;
 import pojo.Invest_type;
+import service.InvestProductService;
 import service.backend.Invest_typeService;
 import utils.Constants;
 import utils.PageSupport;
@@ -24,6 +28,10 @@ import utils.PageSupport;
 public class Invest_typeController {
 	@Resource
 	private Invest_typeService infoService;
+	
+	@Resource
+	private InvestProductService investProductService;
+	
 	/**
 	 * 产品分类
 	 * @return
@@ -86,11 +94,19 @@ public class Invest_typeController {
 	 */
 	@RequestMapping(value="/delproduct_category.json")
 	public void delproduct_category(@RequestParam String id,HttpServletResponse response) throws Exception{
-		boolean flag = infoService.deleteInvest_typeById(Integer.parseInt(id));			
+		//条件：没有这个类别的产品，可以删除
+		System.out.println("删除产品类别>>id="+id);
+		boolean flag = false;
 		PrintWriter writer=response.getWriter();
-		writer.println(flag);
-		writer.flush();
-		writer.close();
+		if(!StringUtils.isNullOrEmpty(id)){
+			List<Invest_product> list = investProductService.getInvest_productListByInvTypeId(Integer.parseInt(id));
+			if(list.size() == 0){
+				flag = infoService.deleteInvest_typeById(Integer.parseInt(id));			
+			}
+		}
+			writer.println(flag);
+			writer.flush();
+			writer.close();
 	}
 	
 	
@@ -99,13 +115,8 @@ public class Invest_typeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/modifInvest_type",method=RequestMethod.GET)
-	public String updateInvest_type(Invest_type invest_type,Model model) throws Exception{
-		List<Invest_type> list = infoService.getInvest_typeList(1, 5);
-		for (Invest_type invest_type2 : list) {
-			if (invest_type2.getId() == invest_type.getId()) {
-				invest_type=invest_type2;
-			}
-		}		
+	public String updateInvest_type(String id,Model model) throws Exception{
+		Invest_type invest_type=infoService.getInvest_typeById(Integer.parseInt(id));
 		model.addAttribute("invest_type",invest_type);
 		return "backend/productManager/update_product_category";
 	}
@@ -115,7 +126,8 @@ public class Invest_typeController {
 	 * @throws Exception 
 	 */
 	 @RequestMapping(value="/updateInvest_type",method=RequestMethod.POST)  
-	    public String updateInvest_type(Invest_type invest_type,HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	    public String updateInvest_type(Invest_type invest_type,String id,HttpServletRequest request,HttpServletResponse response) throws Exception{  
+			 
 		 int num =infoService.modifyInvest_type(invest_type) ;
 		  if (num > 0) {
 	    		List<Invest_type> list = infoService.getInvest_typeList(1, 5);

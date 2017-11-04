@@ -50,6 +50,12 @@ public class Invest_typeServiceImpl implements Invest_typeService{
 		return infoMapper.addInvest_type(invest_type);
 	}
 
+	@Override
+	public Invest_type getInvest_typeById(Integer id) throws Exception {
+		
+		return infoMapper.getInvest_typeById(id);
+	}
+
 	
 	
 	

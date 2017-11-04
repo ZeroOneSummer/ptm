@@ -64,10 +64,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td>类别：</td>
 									<td><select id="msgType" name="msgType">
-											<option value="0">选择类别</option>
-											<option value="1">充值类</option>
+											 <option value="0">选择类别</option>
+											<!--<option value="1">充值类</option>
 											<option value="2">提现类</option>
-											<option value="3">积分类</option>
+											<option value="3">积分类</option> -->
 											<option value="4">公告类</option>
 									</select></td>
 								</tr>

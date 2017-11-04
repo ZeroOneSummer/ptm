@@ -105,20 +105,14 @@ public class NewsController {
 			writer.flush();
 			writer.close();
 		}
-
-	 
 	 
 	 /**
 	  * 修改跳转到修改页面
 	  */
 	 @RequestMapping(value="/modifyNews",method=RequestMethod.GET)
-		public String updateMews(News news,Model model) throws Exception{
-			List<News> list = newsService.getNewsList(1, 5);
-			for (News news2 : list) {
-				if (news2.getId() == news.getId()) {
-					news=news2;
-				}
-			}
+		public String updateMews(String id,Model model) throws Exception{
+		 System.err.println("进入信息修改页面");
+		  	News news=newsService.getNewsById(Integer.parseInt(id));
 			model.addAttribute("news",news);
 			return "backend/infoCenter/updateInfomation";
 		}

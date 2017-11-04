@@ -32,5 +32,19 @@
 			<if test="releaseDate != null">releaseDate=#{releaseDate},</if>
 		</trim>
 	</update>  
+	
+	<select id="getNewsById" parameterType="Integer" resultType="News">
+    	select * from news
+    	<where>
+	    	<if test="id != null">
+	    		and id=#{id}
+	    	</if>
+    	</where>
+    </select>
+	
+	
+	
+	
+	
     
 </mapper>

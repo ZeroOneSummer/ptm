@@ -55,6 +55,7 @@
         	<a href="appInvest_product" style="color: red ;float: right;margin-right: 80px;margin-bottom:20px ; font-size: 18px">添加产品信息</a>
         	<!-- <a href="add_product.jsp"><input type="button" value="新增" style="float: right;margin-right: 30px;margin-bottom:5px"/></a> -->
         	<tr style="font-weight: 700;">
+        	 	<td width="1%">序号</td>
 	          <td width="5%">产品ID</td>
 	          <td width="8%">产品名称</td>
 	          <td width="5%">产品类别</td>
@@ -62,9 +63,10 @@
 	          <td width="10%" colspan="3">操作</td>
         	</tr> 
 	        
-	        <c:forEach var="invest_product" items="${invest_product}" varStatus="status">
+	        <c:forEach var="invest_product" items="${invest_product}" varStatus="status" >
 				<c:if test="${invest_product.invStatus != 1}">
 				<tr>
+					<td>${status.index + 1 }</td>
 					<td>${invest_product.id}</td>
 					<td>${invest_product.produceName}</td>
 					<td>${invest_product.invTypeId}</td>
@@ -73,8 +75,8 @@
 						<c:if test="${invest_product.invStatus==3}">已投满</c:if> 
 					</td>
 					<td><a href="getProduct?id=${invest_product.id }">&nbsp;&nbsp;&nbsp;产品详情</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="javascript:void(0);" style="color: grey;">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delaProduct_json(${invest_product.id});" >删除</a>
+					<a href="javascript:void(0);" style="color: rgba(0,0,0,0.3);">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0);" style="color: rgba(0,0,0,0.3);">删除</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="javascript:void();" style="color: rgba(0,0,0,0.3);">已发布</a> 
 					</td>
@@ -83,6 +85,7 @@
 				
 				<c:if test="${invest_product.invStatus==1}">
 				<tr>
+					<td>${status.index + 1 }</td>
 					<td>${invest_product.id}</td>
 					<td>${invest_product.produceName}</td>
 					<td>${invest_product.invTypeId}</td>
@@ -103,7 +106,7 @@
         </tbody>       
       </table>
       
-      <div style="padding-left: 600px; font-size: 14px;">
+      <div style="padding-left: 550px; font-size: 14px;">
 					&nbsp;共&nbsp;<span class="pages">${pages.totalCount }</span>&nbsp;条&nbsp;记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第${pages.currentPageNo }&nbsp;&nbsp;页/&nbsp;&nbsp;共${pages.totalPageCount }&nbsp;页&nbsp;
 					&nbsp;&nbsp;&nbsp; <a href="productCenter.html?pageIndex=1">首&nbsp;页</a>&nbsp;
 					<a

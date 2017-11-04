@@ -23,6 +23,7 @@
 		 var invTypeId = frm.invTypeId.value;
 		 var investor = frm.investor.value;
 		 var totalAmount = frm.totalAmount.value;
+		 frm.residueAmount.value = frm.totalAmount.value;
 		 var residueAmount = frm.residueAmount.value;
 		 var invStatus = frm.invStatus.value; 
 		  
@@ -64,19 +65,19 @@
 			          </select>
 		          </td>	          
 		        </tr>
-		         <tr>
+		         <tr style="display: none;">
 		          <td>投资人数</td>	 
 		          <td><input type="text" id="investor" name="investor" value="0" readonly="readonly"/></td>	          
 		        </tr>
 		        <tr>
 		          <td>本期可投总金额（元）</td>	 
-		          <td><input type="text" id="totalAmount" name="totalAmount" value="1000000"/></td>	          
+		          <td><input type="text" id="totalAmount" name="totalAmount" placeholder="请输入可投总金额" value="" /></td>	          
 		        </tr>
-		       <tr>
+		       <tr style="display: none;">
 		          <td>剩余可投金额（元）</td>	 
-		          <td><input  type="text" id="residueAmount" name="residueAmount" value="1000000"/></td>	            
+		          <td><input  type="text" id="residueAmount" name="residueAmount" value="" /></td>	            
 		        </tr>
-		        <tr>
+		        <tr style="display: none;">
 		          <td>产品投资状态</td>	 
 		          <td>
 		          	 <input type="hidden" id="invStatus" name="invStatus" value="1"/>

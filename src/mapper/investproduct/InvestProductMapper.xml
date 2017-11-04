@@ -67,6 +67,9 @@
     		<if test="residueAmount != 0">
     			residueAmount=#{residueAmount},
     		</if>
+    		<if test="invTypeId != 0">
+    			invTypeId=#{invTypeId},
+    		</if>
     		<if test="invStatus != 0">
     			invStatus=#{invStatus},
     		</if>
@@ -98,7 +101,7 @@
 			<if test="produceName != null">produceName=#{produceName},</if>
 			<if test="investor != null">investor=#{investor},</if>
 			<if test="totalAmount != null">totalAmount=#{totalAmount},</if>
-			
+			<if test="invTypeId != 0"> invTypeId=#{invTypeId}, </if>
 		</trim>
 	</update>
 	
@@ -109,11 +112,18 @@
 		</trim>
 	</update>
 	
-	 <select id="getInvest_productById" parameterType="Integer" resultType="Invest_product">
-    	select * from invest_product 
-    	<where>
-	    	<if test="id != null">
-	    		and id=#{id}
+	 <select id="getInvest_productById" parameterType="Integer" resultMap="investList">
+	    select * from invest_product p,invest_type t where p.invTypeId=t.id
+    	<if test="id != 0">
+    		and p.id=#{id}
+    	</if>
+    </select>
+    
+     <select id="getInvest_productListByInvTypeId" parameterType="Integer" resultType="invest_product">
+	    select * from invest_product 
+	    <where>
+	    	<if test="invTypeId != 0">
+	    		and invTypeId=#{invTypeId}
 	    	</if>
     	</where>
     </select>
