@@ -84,4 +84,14 @@ public interface UserService{
 	 */
 	public int addBackNumber(User user)throws Exception;
 	
+	/**
+	 * 用户累积收益
+	 */
+	public Double sumAccount(User user) throws Exception; 
+	
+	/**
+	 * 用户昨日收益
+	 */
+	public Double dayAccount(User user) throws Exception;
+	
 }

@@ -35,4 +35,12 @@
 		where userId=#{userId}
 	</update>
 	
+	<select id="sumAccount" parameterType="User" resultType="java.lang.Double">
+		SELECT SUM(dayAccount) FROM user_income WHERE userId=#{id}
+	</select>
+	
+	<select id="dayAccount" parameterType="User" resultType="java.lang.Double">
+		SELECT dayAccount FROM user_income WHERE userId=#{id} ORDER BY incomeDay DESC LIMIT 1
+	</select>
+	
 </mapper>

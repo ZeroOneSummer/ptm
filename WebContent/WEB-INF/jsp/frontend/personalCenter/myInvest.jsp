@@ -79,9 +79,9 @@
 								<ul>
 									<li class="a_center bg_fd5353_img li_border" invest_value="0">
 										<div style="height: 144px;">
-											<span class="f_20_22 _999 fff">昨日收益（元）</span><br> <span
-												class="f_36_38 _333 fff">0</span><br> <span
-												class="f_14_16 _333 fff">累计收益&nbsp;&nbsp;0</span>
+											<span class="f_20_22 _999 fff">昨日收益（元）</span><br> 
+											<span class="f_36_38 _333 fff">${dayAccount}</span><br> 
+											<span class="f_14_16 _333 fff">累计收益&nbsp;&nbsp;${sumAccount}</span>
 										</div>
 									</li>
 								<c:if test="user_property == null and noFinishWithdrawDepositNum<0">

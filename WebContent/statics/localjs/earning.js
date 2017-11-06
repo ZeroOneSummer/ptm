@@ -62,13 +62,13 @@ var week=function(){
 	myChart.setTooltip([7, '0.70']);	
 	
 	/*x坐标对应显示的值*/
-	myChart.setLabelX([1, '11/4']);
-	myChart.setLabelX([2, '11/5']);
-	myChart.setLabelX([3, '11/6']);
-	myChart.setLabelX([4, '11/7']);
-	myChart.setLabelX([5, '11/8']);
-	myChart.setLabelX([6, '11/9']);
-	myChart.setLabelX([7, '11/10']);	
+	myChart.setLabelX([1, '11/03']);
+	myChart.setLabelX([2, '11/04']);
+	myChart.setLabelX([3, '11/05']);
+	myChart.setLabelX([4, '11/06']);
+	myChart.setLabelX([5, '11/07']);
+	myChart.setLabelX([6, '11/08']);
+	myChart.setLabelX([7, '11/09']);	
 	
 	/*图表大小*/
 	myChart.setSize(616, 321);
@@ -144,13 +144,13 @@ var month=function(){
 	myChart.setTooltip([7, '0.41']);	
 
 	/*x坐标对应显示的值*/
-	myChart.setLabelX([1, '10/11']);
-	myChart.setLabelX([2, '10/16']);
-	myChart.setLabelX([3, '10/21']);
-	myChart.setLabelX([4, '10/26']);
-	myChart.setLabelX([5, '10/31']);
-	myChart.setLabelX([6, '11/05']);
-	myChart.setLabelX([7, '11/10']);	
+	myChart.setLabelX([1, '10/10']);
+	myChart.setLabelX([2, '10/15']);
+	myChart.setLabelX([3, '10/20']);
+	myChart.setLabelX([4, '10/25']);
+	myChart.setLabelX([5, '10/30']);
+	myChart.setLabelX([6, '11/04']);
+	myChart.setLabelX([7, '11/09']);	
 	
 	/*图表大小*/
 	myChart.setSize(616, 321);
