@@ -61,4 +61,6 @@ public interface Msg_pushMapperService {
 	 * @throws Exception
 	 */
 	public Msg_push getMsg_pushById(Msg_push msg_push) throws Exception;
+	
+	
 }

@@ -47,4 +47,10 @@ public class NewsServiceImpl implements NewsService{
 		return newsMapper.findNewsById(id);
 	}
 
+	@Override
+	public News getNewsById(Integer id) throws Exception {
+		
+		return newsMapper.getNewsById(id);
+	}
+
 }

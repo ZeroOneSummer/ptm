@@ -54,6 +54,10 @@
 	          <td>剩余可投金额（元）</td>	 
 	          <td>${invest_product.residueAmount }</td>	          
 	        </tr>
+	         <tr>
+	          <td>投资人数</td>	 
+	          <td>${invest_product.investor}</td>	          
+	        </tr>
 	        <tr>
 	          <td>产品投资状态</td>	 
 	          <td>	<c:if test="${invest_product.invStatus==1}">未发布</c:if> 

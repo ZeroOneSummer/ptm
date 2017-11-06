@@ -20,5 +20,8 @@ public interface NewsService {
 	public boolean deleteNewsById(Integer delId)throws Exception;
 	//修改
 	public int modifyNews(News news)throws Exception;
+	
+	//根据Id查找具体产品
+	public News getNewsById(@Param(value="id")Integer id) throws Exception;
 
 }

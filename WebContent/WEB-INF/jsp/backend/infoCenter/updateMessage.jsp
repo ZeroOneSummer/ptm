@@ -52,11 +52,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td>请选择类别：</td>
 									<td><select id="msgType" name="msgType" > 
-											<option value="0">选择类别</option>
-											<option value="1" <c:if test="${msg.msgType==1}">selected="selected"</c:if>>充值类</option>
+											<option value="0" selected="selected">选择类别</option>
+											<%-- <option value="1" <c:if test="${msg.msgType==1}">selected="selected"</c:if>>充值类</option>
 											<option value="2" <c:if test="${msg.msgType==2}">selected="selected"</c:if>>提现类</option>
-											<option value="3" <c:if test="${msg.msgType==3}">selected="selected"</c:if>>积分类</option>
-											<option value="4" <c:if test="${msg.msgType==4}">selected="selected"</c:if>>公告类</option> 
+											<option value="3" <c:if test="${msg.msgType==3}">selected="selected"</c:if>>积分类</option> --%>
+											<option value="4" <c:if test="${msg.msgType==4}"></c:if>>公告类</option> 
 									</select></td>
 								</tr>
 								<tr>

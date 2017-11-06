@@ -32,5 +32,17 @@
 		insert into invest_type (invTypeName,annualYield,purchaseMoney,deadline)
 				values(#{invTypeName},#{annualYield},#{purchaseMoney},#{deadline})
 	</insert>
+	
+	<select id="getInvest_typeById" parameterType="Integer" resultType="Invest_type">
+    	select * from invest_type 
+    	<where>
+	    	<if test="id != null">
+	    		and id=#{id}
+	    	</if>
+    	</where>
+    </select>
+	
+	
+	
     
    </mapper>
