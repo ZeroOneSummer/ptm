@@ -16,4 +16,11 @@ public interface Info_statisService {
 
 	//任务调度添加统计数据
 	public int addInfo_statis(Info_statis info_statis);
+	
+	/**
+	 * 查询信息统计表
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Info_statis> getInfo_statis()throws Exception;
 }

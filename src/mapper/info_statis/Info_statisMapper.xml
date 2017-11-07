@@ -15,4 +15,9 @@
     	insert into info_statis(monthStatis,tradeAmount,totalAmount,userAmount,totalIncome)
     	values(#{monthStatis},#{tradeAmount},#{totalAmount},#{userAmount},#{totalIncome})
     </insert>
+    
+    <!-- 查询信息统计表 -->
+    <select id="getInfo_statis" resultType="Info_statis">
+    	select * from info_statis
+    </select>
 </mapper>
