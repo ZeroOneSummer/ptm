@@ -8,7 +8,6 @@
 <title>统计中心-累计统计表</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/style_1.css"/>
-
 <script type="text/javascript">
 	function _go() {
 		var pageIndex = $("#pageIndex").val();
@@ -60,9 +59,16 @@
         	<a href="statistics.html?pageIndex=${pages.totalPageCount}">末&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	跳转到&nbsp;<input size="1" id="pageIndex" />&nbsp;页&nbsp;&nbsp;&nbsp;<a href="javascript:_go();" > go </a>
       </div>
+      <!-- 图表载体 -->
+      <div class="wrapper" style="width: 500px;height: 300px;padding: 20px;margin: 30px 440px;">
+			<div id="jqChart" style="width: 600px; height: 350px; position: relative;" class="ui-jqchart">				
+	  </div>
     </div>
   </div>
 </div>
+<script src="${pageContext.request.contextPath}/statics/js/jquery-1.5.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/statics/js/jquery.jqChart.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/statics/localjs/statis_chart.js" type="text/javascript"></script>
 </body>
 </html>
 

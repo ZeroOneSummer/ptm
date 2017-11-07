@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,7 @@ import service.UserService;
 import service.backend.Info_statisService;
 import service.backend.Msg_pushMapperService;
 import utils.Constants;
+import utils.LoggerUtils;
 import utils.PageSupport;
 
 @Controller
@@ -51,12 +53,15 @@ public class InvestProductController {
 	@Resource
 	private Msg_pushMapperService msgService;
 	
+	Logger logger=LoggerUtils.getLogger(InvestProductController.class);
+	
 	/**
 	 * 首页展示产品类型列表
 	 * @return
 	 */
 	@RequestMapping("/typeList")
 	public String showInvestProductType(HttpServletRequest request,HttpServletResponse response,Model model){
+		logger.info("进入InvestProductController的showInvestProductType方法");
 		List<Invest_type> type_list=investProductService.geInvest_types();
 		List<Info_statis> info=null;
 		List<Msg_push> msgList = null;
@@ -65,15 +70,7 @@ public class InvestProductController {
 			msgList = msgService.getMsgList(0, 4, 1, 9);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		/*if (type_list == null || info == null || msgList == null) {
-			System.out.println("获取投资产品类型表,公告消息列表以及平台运营数据错误");
-			try {
-				request.getRequestDispatcher("500.jsp").forward(request,response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-		}*/
+		}		
 		
 		Date date=new Date();
 		int m= date.getMonth()+1;
@@ -98,7 +95,7 @@ public class InvestProductController {
 	 */
 	@RequestMapping("/Invest_detail")
 	public String investDetail(){
-		
+		logger.info("进入InvestProductController的investDetail方法");
 		return "frontend/invest/investList";
 	}
 	
@@ -109,8 +106,7 @@ public class InvestProductController {
 	 */
 	@RequestMapping("/product")
 	public String investProduct(Invest_product invest_product,HttpServletRequest request,HttpServletResponse response,Model model){
-		System.out.println("into product控制器");
-		System.out.println("product类型id---->"+invest_product.getInvTypeId());
+		logger.info("进入InvestProductController的investProduct方法");
 		
 		List<Invest_product> product_list=investProductService.getInvest_products(invest_product);
 		if (product_list == null) {
@@ -136,7 +132,8 @@ public class InvestProductController {
 	 */
 	@RequestMapping("/product1")
 	public String investProduct1(@RequestParam(required=false) String currentPageNo,HttpServletRequest request,HttpServletResponse response,Model model){
-		System.out.println("当前页--"+currentPageNo);
+		logger.info("进入InvestProductController的investProduct1方法");
+		logger.info("当前页--"+currentPageNo);
 		
 		PageSupport page=new PageSupport();
 		if (currentPageNo != null) {//当前页
@@ -170,7 +167,8 @@ public class InvestProductController {
 	 * @return
 	 */
 	@RequestMapping("/myInvest")
-	public String myInvest(){			
+	public String myInvest(){	
+		logger.info("进入InvestProductController的myInvest方法");
 		return "redirect:product1";
 	}
 	
@@ -184,6 +182,7 @@ public class InvestProductController {
 	 */
 	@RequestMapping("/doInvest")
 	public void doInvest(Trade_record trade_record,HttpServletRequest request,HttpServletResponse response,Model model){
+		logger.info("进入InvestProductController的doInvest方法");
 		//传入的参数：userId、produceId、tradeMoney、tradeTypeId
 		trade_record.setTradeDate(new Date());//传入当前时间
 		trade_record.setTradeStatus(2);//传入交易状态（2-成功）
@@ -209,6 +208,7 @@ public class InvestProductController {
 	 */
 	@RequestMapping("/getBalance")
 	public void getBalance(int userId,HttpServletResponse response){
+		logger.info("进入InvestProductController的getBalance方法");
 		PrintWriter writer = null;
 		try {
 			writer = response.getWriter(); 
