@@ -90,9 +90,14 @@ public class UserController {
 				//当参数不为空的时候，赋值给对象
 				User_property user_property = userService.getUserProperty(user.getId());
 				
-				if (user.getBankName() != bankName || user_property == null) {
+				if (user.getBankName() != bankName) {
 					flag = false;
 				} else {
+					if(user_property == null ){
+						//考虑新用户没有财产情况
+						user_property = new User_property();
+						user_property.setUserId(user.getId());
+					}
 					double updateBalance = user_property.getBalance() + pay_amount;
 					user_property.setBalance(updateBalance);
 					String dateTime = DateUtils.dateTimeFormat(new Date());
@@ -123,8 +128,8 @@ public class UserController {
 			
 		} catch (Exception e2) {
 			e2.printStackTrace();
-		}finally {
 			System.out.println("（模拟充值，未调用外部接口）发生异常");
+		}finally {
 			json = JSON.toJSON(flag);
 			out.print(json);
 			out.flush();
@@ -243,7 +248,9 @@ public class UserController {
 			} else {
 				//当参数不为空的时候，赋值给对象
 				User_property user_property = userService.getUserProperty(user.getId());
-				if (!user.getExchangePassword().equals(exchangePassword) || user_property.getBalance()<pay_amount) {
+				//交易密码进行加密
+				String password= H5Utils.Hex5(exchangePassword);
+				if (!user.getExchangePassword().equals(password) || user_property.getBalance()<pay_amount) {
 					flag = false;
 				} else {
 					double updateBalance = user_property.getBalance() - pay_amount;

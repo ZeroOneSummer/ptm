@@ -23,7 +23,15 @@ public interface UserPropertyMapper {
 	 */
 	public User_property getUserProperty(@Param("userId")int userId) throws Exception;
 	
-
+	/**
+	 * 注册用户一并添加用户资产记录
+	 * 只需要传入参数 userId
+	 * @param user_property
+	 * @return
+	 * @throws Exception
+	 */
+	public int addUserProperty(User_property user_property) throws Exception;
+	
 	/**
 	 * 用户充值 | 提现
 	 * @param userId 用户编号

@@ -3,7 +3,7 @@
 //周收益曲线
 var week=function(){
 /*确定坐标上的点，y轴自动生成刻度*/
-	var myData = new Array([1, 0.10], [2, 0.25], [3, 0.30], [4, 0.45], [5, 0.50], [6, 0.90], [7, 0.70]);
+	var myData = new Array([1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]);
 	
 	/*指定载体和图表类型*/
 	var myChart = new JSChart('mychart', 'line');
@@ -17,8 +17,8 @@ var week=function(){
 	myChart.setTitleFontSize(11);
 	
 	/*x、y轴说明*/
-	myChart.setAxisNameX('收益（元）');
-	myChart.setAxisNameY('');
+	myChart.setAxisNameX('日 期');
+	myChart.setAxisNameY('收益—元—');
 	
 	/*坐标轴颜色*/
 	myChart.setAxisColor('#8420CA');
@@ -53,13 +53,13 @@ var week=function(){
 	myChart.setFlagRadius(4);
 	
 	/*x坐标对应点的鼠标悬浮时提示的文字*/
-	myChart.setTooltip([1, '0.10']);
-	myChart.setTooltip([2, '0.25']);
-	myChart.setTooltip([3, '0.30']);
-	myChart.setTooltip([4, '0.45']);
-	myChart.setTooltip([5, '0.50']);
-	myChart.setTooltip([6, '0.90']);
-	myChart.setTooltip([7, '0.70']);	
+	myChart.setTooltip([1, '0']);
+	myChart.setTooltip([2, '0']);
+	myChart.setTooltip([3, '0']);
+	myChart.setTooltip([4, '0']);
+	myChart.setTooltip([5, '0']);
+	myChart.setTooltip([6, '0']);
+	myChart.setTooltip([7, '0']);	
 	
 	/*x坐标对应显示的值*/
 	myChart.setLabelX([1, '11/03']);
@@ -85,7 +85,7 @@ var week=function(){
 //月收益曲线
 var month=function(){
 	/*确定坐标上的点，y轴自动生成刻度*/
-	var myData = new Array([1, 0.33], [2, 0.48], [3, 0.42], [4, 0.52], [5, 0.82], [6, 0.25], [7, 0.41]);
+	var myData = new Array([1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]);
 	
 	/*指定载体和图表类型*/
 	var myChart = new JSChart('mychart', 'line');
@@ -99,8 +99,8 @@ var month=function(){
 	myChart.setTitleFontSize(11);
 	
 	/*x、y轴说明*/
-	myChart.setAxisNameX('收益（元）');
-	myChart.setAxisNameY('');
+	myChart.setAxisNameX('日 期');
+	myChart.setAxisNameY('收益—元—');
 	
 	/*坐标轴颜色*/
 	myChart.setAxisColor('#8420CA');
@@ -135,13 +135,13 @@ var month=function(){
 	myChart.setFlagRadius(4);
 	
 	/*x坐标对应点的鼠标悬浮时提示的文字*/
-	myChart.setTooltip([1, '0.33']);
-	myChart.setTooltip([2, '0.48']);
-	myChart.setTooltip([3, '0.42']);
-	myChart.setTooltip([4, '0.52']);
-	myChart.setTooltip([5, '0.82']);
-	myChart.setTooltip([6, '0.25']);
-	myChart.setTooltip([7, '0.41']);	
+	myChart.setTooltip([1, '0']);
+	myChart.setTooltip([2, '0']);
+	myChart.setTooltip([3, '0']);
+	myChart.setTooltip([4, '0']);
+	myChart.setTooltip([5, '0']);
+	myChart.setTooltip([6, '0']);
+	myChart.setTooltip([7, '0']);	
 
 	/*x坐标对应显示的值*/
 	myChart.setLabelX([1, '10/10']);

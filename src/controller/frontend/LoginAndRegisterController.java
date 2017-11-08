@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 import pojo.User;
+import pojo.User_property;
 import service.UserService;
 import utils.Constants;
 import utils.H5Utils;
@@ -140,7 +141,11 @@ public class LoginAndRegisterController{
 				
 				if (num>0) {
 					System.out.println("添加用户成功");
-					request.getSession().setAttribute(Constants.USER_SESSION,user4);				
+					request.getSession().setAttribute(Constants.USER_SESSION,user4);
+					User_property user_property = new User_property();
+					user_property.setUserId(user4.getId());
+					int result =userService.addUserProperty(user_property);
+					System.out.println("添加用户资产情况(1为成功)>>"+result);
 				} else{
 					System.out.println("添加失败");
 				}
@@ -149,7 +154,7 @@ public class LoginAndRegisterController{
 			writer.println(json);						
 			writer.flush();
 			writer.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} 					
 	}

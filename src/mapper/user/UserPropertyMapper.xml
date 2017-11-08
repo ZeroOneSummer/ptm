@@ -16,6 +16,12 @@
 	   </where>
 	</select>
 
+   <!-- 注册用户时一并添加用户资产记录 -->
+	<insert id="addUserProperty" parameterType="User_property">
+		insert into user_property (pocketId,userId,balance,withdrawMoney,score,invProperty)
+		values(1,#{userId},0,0,100,0)
+	</insert>
+
 	<!-- 模拟用户充值 | 提现 -->
 	<update id="doRechangeAndWithdrawDeposit" >
 		update user_property set balance=#{balance} where userId=#{userId}

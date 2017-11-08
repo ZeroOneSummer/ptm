@@ -23,7 +23,7 @@
   <div class="m_content">
     <%@include file="../common/left.jsp" %>
     <div class="m_right" id="content">
-      <div class="mem_tit">数据统计</div>
+      <div class="mem_tit">数据统计——<a href="write.html" style="color:red">导出Excel表格</a></div>
       <br/>
       <table border="0" class="order_tab" style="width:930px; text-align:center; margin-bottom:30px;" cellspacing="0" cellpadding="0">       
         <tbody>   	

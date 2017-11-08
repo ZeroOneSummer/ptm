@@ -40,6 +40,16 @@ public interface UserService{
 	public int addUser(User user) throws Exception;
 	
 	/**
+	 * 注册用户一并添加用户资产记录
+	 * 只需要传入参数 userId
+	 * @param user_property
+	 * @return
+	 * @throws Exception
+	 */
+	public int addUserProperty(User_property user_property) throws Exception;
+	
+	
+	/**
 	 * 用户充值 / 提现方法
 	 * @param user_property 用户编号/充值金额
 	 * @param msg_push 用户编号/消息类型/创建时间/消息标题/消息内容

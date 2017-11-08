@@ -32,5 +32,11 @@ public class Info_statisServiceImpl implements Info_statisService{
 		return info.addInfo_statis(info_statis);
 	}
 
+	@Override
+	public List<Info_statis> getInfo_statis() throws Exception {
+		// TODO Auto-generated method stub
+		return info.getInfo_statis();
+	}
+
 
 }

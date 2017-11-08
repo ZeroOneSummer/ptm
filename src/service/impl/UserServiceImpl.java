@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public int addUserProperty(User_property user_property) throws Exception {
+
+		return userPropertyMapper.addUserProperty(user_property);
+	}
+
+	@Override
 	public int addRechangeAndWithdrawDeposit(User_property user_property,Msg_push msg_push,Trade_record trade_record) throws Exception{
 		int addUserProperty = -1;
 		int addMsg_push = -1;
