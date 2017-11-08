@@ -311,6 +311,7 @@
 				url:"code.html?phone="+phone1,
 				dateType:"json",
 				success:function(data){
+					$("#get_reg_code").html("已发送");
 					$("#coded1").val(data);	
 				}
 			});

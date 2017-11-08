@@ -78,7 +78,7 @@
     </update>
     
     <select id="getInvest_msgList" resultType="Invest_msg">
-    	select * from invest_msg where invTypeId=#{invTypeId} limit #{start},#{size}
+    	select * from invest_msg where invTypeId=#{invTypeId} order by tradeDate DESC limit #{start},#{size}
     </select>
     
     <select id="countInvest_msg" resultType="int">

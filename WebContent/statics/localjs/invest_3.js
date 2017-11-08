@@ -5,11 +5,16 @@
     	var user_session=$("#user_session").val();
     	var bankNumber=$("#bankNumber").val();
     	if(user_session){    	
-    		var invest_money=$('.user_invest_money').val();//投资金额    		
+    		var invest_money=$('.user_invest_money').val();//投资金额    	
+    		var balance=$('.readonly').html();//账户余额    	
+    		var rs=balance-invest_money; 		
     		if(!bankNumber){
     			alert("您的账户还未绑定银行卡");
     			//未实名认证后绑定银行卡，跳转到账户中心
     			location.href="account.html";  			
+    		}else if(balance-invest_money<0){
+    			alert("您的账户余额不足，请先进行充值");
+    			location.href="account.html";
     		}else if(invest_money>=1000 && invest_money<=30000 && invest_money%1000==0){
     			var userId=$('#userId').val();//用户id
     			var productId=$('#productId').val();//产品id

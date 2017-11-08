@@ -42,17 +42,13 @@
 									<tbody><tr>
 										<td class="usable-left">可用余额：</td>
 										<td class="usable-right">
-			                                <p id="use-money"><i>￥</i>
-											<c:choose>
-												<c:when test="${user_property == null}">
-													<script type="text/javascript">
-														location.href="jumpToRecharge.html";
-													</script>
-												</c:when>
-												<c:otherwise>
-					                                <span>${user_property.balance - user_property.withdrawMoney}</span>
-												</c:otherwise>
-											</c:choose>
+			                                <p id="use-money"><i>￥</i>										
+												<c:if test="${user_property == null}">
+					                                <span>0元</span>													
+												</c:if>	
+												<c:if test="${user_property != null}">
+					                                <span>${user_property.balance - user_property.withdrawMoney}元</span>													
+												</c:if>										
 			                                </p>
 			                            </td>
 									</tr>
