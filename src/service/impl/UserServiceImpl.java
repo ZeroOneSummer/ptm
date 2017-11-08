@@ -5,18 +5,13 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import mapper.news.Msg_pushMapper;
 import mapper.trade.TradeMapper;
-import mapper.user.BankTypeMapper;
 import mapper.user.UserMapper;
 import mapper.user.UserPropertyMapper;
-import pojo.Bank_Type;
 import pojo.Msg_push;
 import pojo.Trade_record;
 import pojo.User;
 import pojo.User_property;
-import service.BankTypeService;
-import service.TradeService;
 import service.UserService;
-import service.backend.Msg_pushMapperService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -68,6 +63,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User_property getUserProperty(@Param("userId") int userId) throws Exception {
+		
 		return userPropertyMapper.getUserProperty(userId);
 	}
 
@@ -78,14 +74,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int addIdNumber(User user) throws Exception {
-		// TODO Auto-generated method stub
+
 		return userMapper.addIdNumber(user);
 	}
 
 	@Override
 	public int addBackNumber(User user) throws Exception {
-		// TODO Auto-generated method stub
+
 		return userMapper.addBackNumber(user);
+	}
+
+	@Override
+	public Double sumAccount(User user) throws Exception {
+		return userPropertyMapper.sumAccount(user);
+	}
+
+	@Override
+	public Double dayAccount(User user) throws Exception {
+		return userPropertyMapper.dayAccount(user);
 	}
 
 }

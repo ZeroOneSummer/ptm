@@ -83,11 +83,11 @@
 										                    	$("#bank").html(bank);
 										                    </script>		
 					                            	</c:when>
-					                            	<c:otherwise>
+					                            	<%-- <c:otherwise>
 						                               <script type="text/javascript">
 															location.href="user/jumpToWithdrawDeposit.html";
 														</script>
-													</c:otherwise>
+													</c:otherwise> --%>
 				                          </c:choose>
 			                            
 			                        </tr>

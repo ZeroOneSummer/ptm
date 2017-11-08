@@ -44,14 +44,9 @@
 										<td class="usable-right">
 			                                <p id="use-money"><i>￥</i>
 											<c:choose>
-												<c:when test="${user_property == null}">
-													<script type="text/javascript">
-														location.href="jumpToRecharge.html";
-													</script>
-												</c:when>
-												<c:otherwise>
+												<c:when test="${user_property != null}">
 					                                <span>${user_property.balance - user_property.withdrawMoney}</span>
-												</c:otherwise>
+												</c:when>
 											</c:choose>
 			                                </p>
 			                            </td>

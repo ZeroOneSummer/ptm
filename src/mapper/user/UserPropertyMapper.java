@@ -3,6 +3,8 @@ package mapper.user;
 
 import org.apache.ibatis.annotations.Param;
 
+import pojo.User;
+import pojo.User_income;
 import pojo.User_property;
 
 /**
@@ -37,4 +39,14 @@ public interface UserPropertyMapper {
 	 * @return
 	 */
 	public int doInvest(User_property user_property) throws Exception;
+	
+	/**
+	 * 用户累积收益
+	 */
+	public Double sumAccount(User user) throws Exception; 
+	
+	/**
+	 * 用户昨日收益
+	 */
+	public Double dayAccount(User user) throws Exception;
 }
