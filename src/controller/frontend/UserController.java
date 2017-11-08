@@ -389,7 +389,22 @@ public class UserController {
 		if (currentPageNo != null) {
 			pageIndex = Integer.valueOf(currentPageNo);
 		}
-		
+		//---------------------携带个人收益到个人中心------------------------
+		try {
+			Double sumAccount = userService.sumAccount(user);
+			Double dayAccount =	userService.dayAccount(user);
+			sumAccount=sumAccount==null?0:sumAccount;
+			dayAccount=dayAccount==null?0:dayAccount;
+			model.addAttribute("sumAccount",sumAccount);
+			model.addAttribute("dayAccount",dayAccount);
+		} catch (Exception e2) {
+			try {
+				e2.printStackTrace();
+				request.getRequestDispatcher("500.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}		
 		//---------------------携带交易记录数据到个人中心---------------------
 		PageSupport page1=new PageSupport();
 		pageIndex=currentPageNo==null?1:currentPageNo;

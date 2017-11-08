@@ -88,4 +88,14 @@ public class UserServiceImpl implements UserService {
 		return userMapper.addBackNumber(user);
 	}
 
+	@Override
+	public Double sumAccount(User user) throws Exception {
+		return userPropertyMapper.sumAccount(user);
+	}
+
+	@Override
+	public Double dayAccount(User user) throws Exception {
+		return userPropertyMapper.dayAccount(user);
+	}
+
 }
