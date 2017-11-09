@@ -732,8 +732,8 @@ public class UserController {
 	public void addBackNumber(@RequestParam(value="id")int id,
 			@RequestParam(value="backNumber")String bankNumber,
 			HttpServletRequest request,HttpServletResponse response){
-			//模拟设定银行编号-招商银行
-			int backName=3001;
+			//模拟设定银行编号-中国工商银行
+			int backName=3002;
 			User user=new User();
 			user.setBankName(backName);
 			user.setId(id);

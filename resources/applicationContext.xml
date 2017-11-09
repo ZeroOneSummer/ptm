@@ -68,7 +68,7 @@
 	<!-- 使用spring定时器实现任务调度配置方法 -->   
     <bean id="myJob" class="job.Month_statis"/>
    	<task:scheduled-tasks>  
-    	<task:scheduled ref="myJob" method="addStatis" cron="0/10 * * * * ?"/>  	<!-- 每10秒执行一次 -->
+    	<!-- <task:scheduled ref="myJob" method="addStatis" cron="0/10 * * * * ?"/>  --> 	<!-- 每10秒执行一次 -->
     	<task:scheduled ref="myJob" method="addStatis" cron="0 0 23 30 * ?"/>	<!-- 每月最后一天23:00执行 -->
 	</task:scheduled-tasks> 
 </beans>

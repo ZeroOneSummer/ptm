@@ -65,11 +65,11 @@
 					<thead>
 						<tr>
 							<td width="10%">消息ID：</td>
-							<td width="20%">消息标题</td>
+							<td width="12%">消息标题</td>
 							<td width="10%">消息类别</td>
-							<td width="20%">内容</td>
-							<td width="10%">发布时间</td>
-							<td width="10%" colspan="2">操作</td>
+							<td width="40%">内容</td>
+							<td width="12%">发布时间</td>
+							<td width="20%" colspan="2">操作</td>
 						</tr>
 					</thead>
 					<tbody>

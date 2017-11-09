@@ -11,6 +11,7 @@
     
   	<select id="count1" resultType="Integer">
   		select count(1) as count from msg_push
+  		where msgType=4
   	</select>
   	
   	<delete id="deleteMsg_pushById" parameterType="Integer">

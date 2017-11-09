@@ -193,7 +193,7 @@ public class LoginAndRegisterController{
 		String code = JSON.toJSONString(map);
 		PrintWriter out=null;
 		try {
-			/*SMSTest.send(code, phone);*/
+			SMSTest.send(code, phone);
 			out=response.getWriter();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

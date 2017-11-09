@@ -1,6 +1,6 @@
 /*
-SQLyog 企业版 - MySQL GUI v8.14 
-MySQL - 5.5.40 : Database - pocket_money
+SQLyog Ultimate v11.24 (32 bit)
+MySQL - 5.5.56 : Database - pocket_money
 *********************************************************************
 */
 
@@ -110,11 +110,11 @@ CREATE TABLE `invest_product` (
   PRIMARY KEY (`id`),
   KEY `FK_Reference_3` (`invTypeId`),
   CONSTRAINT `FK_Reference_3` FOREIGN KEY (`invTypeId`) REFERENCES `invest_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='投资产品信息表';
 
 /*Data for the table `invest_product` */
 
-insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,384000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,579000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,0.00,3),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,0.00,3),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,940000.00,2),(11,'新手宝-信17JQO5期',1,40,1000000.00,463000.00,2),(12,'新手宝-信17JQO3期',1,52,1000000.00,531000.00,2);
+insert  into `invest_product`(`id`,`produceName`,`invTypeId`,`investor`,`totalAmount`,`residueAmount`,`invStatus`) values (1,'新手宝-信17JQO1期',1,36,1000000.00,383000.00,2),(2,'月盈宝-信17JWQ4期',2,24,1000000.00,578000.00,2),(3,'新手宝-信17JQ01期',1,36,1000000.00,394000.00,2),(4,'月盈宝-信17JQ04期',2,24,1000000.00,0.00,3),(5,'季盈宝-信17JQ02期',3,28,1000000.00,600000.00,2),(6,'双季盈-信17JQ03期',4,35,1000000.00,480000.00,2),(7,'年盈宝-信17JWT7期',5,4,1000000.00,955000.00,2),(8,'月盈宝-信17EQ02期',2,22,1000000.00,0.00,3),(9,'双季盈-信17SJ03期',4,13,1000000.00,450000.00,2),(10,'年盈宝-信17JWT5期',5,18,1000000.00,939000.00,2),(11,'新手宝-信17JQO5期',1,40,1000000.00,463000.00,2),(12,'新手宝-信17JQO3期',1,52,1000000.00,531000.00,2);
 
 /*Table structure for table `invest_type` */
 
@@ -140,18 +140,18 @@ DROP TABLE IF EXISTS `msg_push`;
 CREATE TABLE `msg_push` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `msgType` int(10) NOT NULL COMMENT '类型(1:充值2:提现3:积分兑现4:公告)',
-  `content` varchar(250) NOT NULL COMMENT '内容',
+  `content` varchar(500) NOT NULL COMMENT '内容',
   `releaseDate` datetime NOT NULL COMMENT '发送时间\n            ',
   `title` varchar(50) NOT NULL COMMENT '消息标题',
   `userId` int(10) NOT NULL COMMENT '用户Id',
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   CONSTRAINT `msg_push_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='消息推送表';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='消息推送表';
 
 /*Data for the table `msg_push` */
 
-insert  into `msg_push`(`id`,`msgType`,`content`,`releaseDate`,`title`,`userId`) values (6,1,'您在2017-10-29 14:52:15成功充值了50元！','2017-10-29 00:00:00','用户充值消息',2),(7,1,'您在2017-10-29 14:53:03成功充值了100元！','2017-10-29 00:00:00','用户充值消息',3),(8,1,'您在2017-10-29 19:37:12成功充值了120元！','2017-10-29 00:00:00','用户充值消息',2),(9,2,'您在2017-10-30 08:10:46成功提现了11.0元！','2017-10-30 00:00:00','用户提现消息',2),(10,2,'您在2017-10-30 08:26:24成功提现了1009.12元！','2017-10-30 00:00:00','用户提现消息',2),(11,2,'您在2017-10-30 08:30:12成功提现了1000.0元！','2017-10-30 00:00:00','用户提现消息',2),(12,1,'您在2017-11-01 22:20:22成功充值了11.0元！','2017-11-01 00:00:00','用户充值消息',2),(13,1,'您在2017-11-08 12:08:59成功充值了1200.0元！','2017-11-08 00:00:00','用户充值消息',2),(14,2,'您在2017-11-08 12:09:40成功提现了1200.0元！','2017-11-08 00:00:00','用户提现消息',2),(15,1,'您在2017-11-08 17:46:31成功充值了1000.0元！','2017-11-08 00:00:00','用户充值消息',2);
+insert  into `msg_push`(`id`,`msgType`,`content`,`releaseDate`,`title`,`userId`) values (6,1,'您在2017-10-29 14:52:15成功充值了50元！','2017-10-29 00:00:00','用户充值消息',2),(7,1,'您在2017-10-29 14:53:03成功充值了100元！','2017-10-29 00:00:00','用户充值消息',3),(8,1,'您在2017-10-29 19:37:12成功充值了120元！','2017-10-29 00:00:00','用户充值消息',2),(9,2,'您在2017-10-30 08:10:46成功提现了11.0元！','2017-10-30 00:00:00','用户提现消息',2),(10,2,'您在2017-10-30 08:26:24成功提现了1009.12元！','2017-10-30 00:00:00','用户提现消息',2),(11,2,'您在2017-10-30 08:30:12成功提现了1000.0元！','2017-10-30 00:00:00','用户提现消息',2),(12,1,'您在2017-11-01 22:20:22成功充值了11.0元！','2017-11-01 00:00:00','用户充值消息',2),(13,1,'您在2017-11-08 12:08:59成功充值了1200.0元！','2017-11-08 00:00:00','用户充值消息',2),(14,2,'您在2017-11-08 12:09:40成功提现了1200.0元！','2017-11-08 00:00:00','用户提现消息',2),(15,1,'您在2017-11-08 17:46:31成功充值了1000.0元！','2017-11-08 00:00:00','用户充值消息',2),(16,4,'数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会','2017-07-05 00:00:00','数字经济，无限未来”，口袋理财携“海清”亮相上海国际信息消费博览会',1),(17,4,'平台【4000020802】客服呼入电话线路升级维护已完成，400客服电话可正常呼入，给您带来的不便敬请谅解 。您的支持是我们前进的动力，愿口袋理财做您最贴心的理财专家。','0217-11-03 00:00:00','400客服呼入电话已恢复正常',1),(18,4,'平台近日会对【4000020802】客服呼入电话线路进行升级维护，届时客服电话将无法正常呼入，敬请谅解 。这段时间内袋王们可以拨打【021-8031-1208】电话联系我们，或者通过客服QQ【4000020802】、社区答疑、口袋小妹【koudaixiaom】、微信公众号【koudailc88】、口袋君微信号与我们联系。您的支持是我们前进的动力，愿口袋理财做您最贴心的理财专家。','2017-11-03 00:00:00','400客服呼入电话线路维护',1),(19,4,'人行将于2017年10月27日23:30至2017年10月28日8:30期间进行系统维护，期间存管提现业务暂停，部分充值业务可能会延迟到账。对您造成的不便，再次表示歉意！','2017-10-27 00:00:00','人行10月28日维护通知',1),(20,4,'平台于10月24日16:00-18:00之间对客服呼入电话线路进行升级维护，整个检测过程大约持续40分钟左右，届时客服电话将无法正常呼入，敬请谅解 。袋王们可以通过客服QQ【4000020802】、社区答疑、口袋小妹【koudaixiaom】、微信公众号【koudailc88】、口袋君微信号与我们联系。您的支持是我们前进的动力，愿口袋理财做您最贴心的理财专家。','2017-10-24 00:00:00','10月24日客服呼入电话线路进行升级维护',1),(21,4,'很抱歉，因为银行通道维护原因，造成午饭时间的提现临时紧急暂停，现口袋技术人员正全力修复该问题，预计下午13:30恢复正常，对您造成的不便，再次表示歉意！','2017-09-29 00:00:00','提通道紧急维护通知',1),(22,4,'十一长假将至，特此将国庆期间的运营情况通知如下：国庆期间，因银行相关系统进行维护，在2017年9月30日18:00至10月8日24:00期间，所有提现将于10月9日到账，请袋王们做好资金安排。节假日期间，口袋理财投资和充值功能均正常进行，不受影响。另外国庆期间平台和社区都有丰富的活动，欢迎袋王们的参与。10月1日 ~ 10月8日为国庆假期，客服服务时间为9:00 ~ 18:00,10月9日起恢复正常 ：工作日9:00 ~ 21:00  节假日9:00 ~ 18:00','2017-09-29 00:00:00','国庆期间运营公告',1),(23,4,'1、央行将于9月22日 23:00~9月23日 9:00 进行维护，期间平台所有提现业务暂停。部分存管用户的大额充值和线下转账充值暂停，其余用户充值不受影响。2、工商银行将于9月22日 19:30~9月23日 0:30 进行维护，期间开户、提现业务暂停。感谢各位袋王的理解与支持。','2017-09-22 00:00:00','9月22~23日银行维护通知',1),(24,4,'平台于9月2日12:00-13:00之间对客服呼入电话线路进行检测维护，整个检测过程大约持续一个小时左右，届时客服电话将无法正常呼入，敬请谅解 。袋王们可以通过客服QQ、社区答疑、口袋小妹、微信公众号、口袋君微信号与我们联系。   您的支持是我们前进的动力，愿口袋理财做您最贴心的理财专家。','2017-09-01 00:00:00','9月2日客服呼入电话线路进行检测维护',1);
 
 /*Table structure for table `news` */
 
@@ -227,7 +227,7 @@ CREATE TABLE `trade_record` (
   CONSTRAINT `FK_Reference_11` FOREIGN KEY (`tradeTypeId`) REFERENCES `trade_type` (`id`),
   CONSTRAINT `FK_Reference_4` FOREIGN KEY (`produceId`) REFERENCES `invest_product` (`id`),
   CONSTRAINT `FK_Reference_5` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='个人交易记录表';
 
 /*Data for the table `trade_record` */
 
@@ -264,7 +264,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `bankName` (`bankName`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`bankName`) REFERENCES `bank_type` (`bankCode`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='用户注册信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='用户注册信息表';
 
 /*Data for the table `user` */
 
@@ -305,7 +305,7 @@ CREATE TABLE `user_property` (
   KEY `FK_Reference_9` (`userId`),
   CONSTRAINT `FK_Reference_10` FOREIGN KEY (`pocketId`) REFERENCES `pocket_stamp` (`id`),
   CONSTRAINT `FK_Reference_9` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='个人资产详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='个人资产详情表';
 
 /*Data for the table `user_property` */
 
@@ -319,11 +319,11 @@ DROP TABLE IF EXISTS `invest_msg`;
 /*!50001 DROP TABLE IF EXISTS `invest_msg` */;
 
 /*!50001 CREATE TABLE  `invest_msg`(
- `produceName` varchar(50) NOT NULL ,
- `invTypeId` int(10) NOT NULL ,
- `tradeMoney` double(10,2) NOT NULL ,
- `tradeDate` datetime NOT NULL ,
- `tradeStatus` int(10) NOT NULL 
+ `produceName` varchar(50) ,
+ `invTypeId` int(10) ,
+ `tradeMoney` double(10,2) ,
+ `tradeDate` datetime ,
+ `tradeStatus` int(10) 
 )*/;
 
 /*View structure for view invest_msg */

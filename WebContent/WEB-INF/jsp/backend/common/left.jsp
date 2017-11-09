@@ -29,8 +29,8 @@
     <div class="left_m">
         <div class="left_m_t t_bg2" style="font-weight: 700;">信息中心</div>
         <ul>
-            <li><a href="Information.html">信息列表</a></li>
-            <li><a href="beingpushed.html">消息推送</a></li>
+            <li><a href="Information.html">新闻列表</a></li>
+            <li><a href="beingpushed.html">公告推送</a></li>
         </ul>
     </div>
      <div class="left_m">

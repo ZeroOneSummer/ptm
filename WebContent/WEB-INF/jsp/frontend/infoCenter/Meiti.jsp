@@ -13,7 +13,7 @@
     <meta name="description" content="口袋理财——报喜鸟上市系投资的移动理财平台，是上海十强互联网金融公司、上海金融信息行业协会副会长单位。口袋理财专注于小额分散的投资理财，多元化的投资理财产品，严格风控，灵活安全。">
     <meta name="baidu-site-verification" content="W0p7tymOhp">
     <meta name="baidu_union_verify" content="ac175d4c07bcca63a8a2f76d7023d69d">
-    <script src="https://hm.baidu.com/hm.js?6938787281b59cbc7fcb6a9381463695"></script><script type="text/javascript" src="${pageContext.request.contextPath }/statics/img/jquery.min.js"></script>
+  <%--   <script src="https://hm.baidu.com/hm.js?6938787281b59cbc7fcb6a9381463695"></script><script type="text/javascript" src="${pageContext.request.contextPath }/statics/img/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/statics/img/jquery.effects.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/statics/img/cookie.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/statics/img/public.js"></script>
@@ -22,13 +22,13 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/base.css">
-    <link rel="shortcut icon" href="https://www.koudailc.com/image/site/ico.ico">
+    <link rel="shortcut icon" href="https://www.koudailc.com/image/site/ico.ico"> --%>
        
-    <script src="${pageContext.request.contextPath}/statics/js/mask.js" ></script>
-	<script src="${pageContext.request.contextPath}/statics/js/jquery.colorbox.js" ></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/Object.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/Meiti.js"></script>
-<style type="text/css" abt="234"></style><style type="text/css" adt="123"></style>
+    <%-- <script src="${pageContext.request.contextPath}/statics/js/mask.js" ></script>
+	<script src="${pageContext.request.contextPath}/statics/js/jquery.colorbox.js" ></script> --%>
+   <%--  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/Object.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/Meiti.js"></script> --%>
+<!-- <style type="text/css" abt="234"></style><style type="text/css" adt="123"></style> -->
 
 
 </head>
